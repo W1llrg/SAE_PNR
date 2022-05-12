@@ -2,8 +2,7 @@ package modele.donnee;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.util.Vector;
-import donnee.Observateur;
+//import donnee.Observateur;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +15,7 @@ public abstract class Observation {
 	protected Date dateObs;
 	protected Time heureObs;
 	protected Lieu lieuObs;
-	protected Vector<Observateur> lesObservateurs = new Vector<Observateur>();
+	protected ArrayList<Observateur> lesObservateurs = new ArrayList<Observateur>();
 
 	/**
 	 * Constructeur observation, initialise tout les parametre d'une observation 
@@ -28,23 +27,23 @@ public abstract class Observation {
 	 */
 	public Observation(int id, Date date, Time heure, Lieu lieu, ArrayList<Observateur> observateurs) {
 		boolean pasDObservateur = false;
-		if(observateur!=null){
-			for(Observateur o: observateur){
-				if(observateur==null) pasDObservateur= true;
+		if(observateurs!=null){
+			for(Observateur o: observateurs){
+				if(o==null) pasDObservateur= true;
 			}
 		}else pasDObservateur =true;
 		
-		if(date!=null && heure!=null && lieu&=null && !pasDObservateur{
+		if(date!=null && heure!=null && lieu!=null && !pasDObservateur) {
 			this.idObs=id;
 			this.dateObs=date;
 			this.heureObs=heure;
 			this.lieuObs=lieu;
-			this.lesObservateurs=observateur;
+			this.lesObservateurs=observateurs;
 		}else throw new IllegalArgumentException("Erreur Observation : constructeur : parametre invalide");
 	}
 
 	public void ajouteObservateur(Observateur aO) {
-		if(observateur!=null) this.lesObservateurs.add(aO);
+		if(aO!=null) this.lesObservateurs.add(aO);
 		else System.err.println("Erreur observation : ajouteObservateur : observateur null");
 	}
 
