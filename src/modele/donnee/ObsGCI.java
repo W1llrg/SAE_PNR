@@ -6,15 +6,14 @@ import java.util.ArrayList;
 /**
  * Classe observation CGI
  * @author William RAGUENEAU
- * Dernière modif : William
- * @version 1.0
+ * @version 1.1
  */
 public class ObsGCI extends Observation {
 
 	/** nombre d'oeufs */
 	private int nombre;
 
-	/** accesseur classe NidGCI */
+	/** instance de la classe NidGCI */
 	public NidGCI unnamed_NidGCI;
 
 	/** enum ContenuNid */
@@ -22,7 +21,7 @@ public class ObsGCI extends Observation {
 
 	/**
 	 * constructeur ; initialise les parametres de classe
-	 * @param id identifiant du nid observe
+	 * @param id identifiant de l'observation
 	 * @param date date de l'observation
 	 * @param heure heure de l'observation
 	 * @param lieu lieu de l'observation
@@ -42,8 +41,7 @@ public class ObsGCI extends Observation {
 
 	}
 
-	
-	public EspeceObservee especeObs() {
+	public EspeceObservee EspeceObs() {
 		throw new UnsupportedOperationException();
 	}
 }
