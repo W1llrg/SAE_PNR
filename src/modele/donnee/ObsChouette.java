@@ -8,10 +8,9 @@ public class ObsChouette extends Observation {
 
 	public ObsChouette(int id, Date date, Time heure, Lieu lieu, ArrayList<Observateur> observateurs, TypeObservation type) {
 		super(id,date,heure,lieu,observateurs);
-		if(type==null) System.out.println("Erreur ObsChouette : Constructeur > parametre type null");
+		if(type==null) System.out.println("Erreur ObsChouette : Constructeur : parametre type null");
 		else this.typeObs = type;
 	}
-UwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwUUwU
 	public EspeceObservee especeObs() {
 		return EspeceObservee.CHOUETTE;
 	}
