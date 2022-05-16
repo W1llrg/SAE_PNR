@@ -32,6 +32,40 @@ public class Chouette implements IObs<ObsChouette>{
 
 	}
 
+	public String getIdChouette(){
+		return idChouette;
+	}
+
+	public String getLesObservations(){
+		return lesObservations;
+	}
+
+	public String getSexe(){
+		return sexe;
+	}
+
+	public String getEspece(){
+		return espece;
+	}
+
+	public void setIdChouette(String id){
+		if(id == null) System.out.println("Chouette : setIdChouette : paramètre null");
+		else idChouette = id;
+	}
+
+	public void setLesObservations(String obs){
+		if(obs == null) System.out.println("Chouette : setLesObservations : paramètre null");
+		else lesObservations = obs;
+	}
+	public void setSexe(String sexe){
+		if(sexe == null) System.out.println("Chouette : setSexe : paramètre null");
+		else this.sexe = sexe;
+	}
+	public void setEspece(String espece){
+		if(espece == null) System.out.println("Chouette : setEspece : paramètre null");
+		else this.espece = espece;
+	}
+
 	@Override
 	public int nbObs() {
 		int rep = 

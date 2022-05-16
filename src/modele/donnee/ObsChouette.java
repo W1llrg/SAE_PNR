@@ -14,4 +14,13 @@ public class ObsChouette extends Observation {
 	public EspeceObservee especeObs() {
 		return EspeceObservee.CHOUETTE;
 	}
+
+	public TypeObservation getTypeObs(){
+		return typeObs;
+	}
+
+	public void setTypeObs(TypeObservation t){
+		if(t == null) System.out.println("Erreur ObsChouette : setTypeObs : paramètre null");
+		else typeObs = t;
+	}
 }
