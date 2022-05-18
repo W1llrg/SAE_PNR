@@ -5,7 +5,7 @@ import java.sql.Time;
 /** 
 * Observation des hippocampes
 * @author Lucas
-* @version Lucas
+* @version 1.0
 */
 public class ObsHippocampe extends Observation {
 
@@ -54,22 +54,38 @@ public class ObsHippocampe extends Observation {
 		throw new UnsupportedOperationException();
 	}
 
+	/** 
+	* Getter de la taille de l'espece
+	*/
 	public void getTaille(){
 		return this.taille;	
 	}
 
+	/** 
+	* Getter du type de peche utilise 
+	*/
 	public void getTypePeche(){
 		return this.typePeche;	
 	}
 
+	/** 
+	* Getter de l'espece observee
+	*/
 	public void getEspece(){
 		return this.espece;	
 	}
 
+	/** 
+	* Getter du sexe de l'espece observee
+	*/
 	public void getSexe(){
 		return this.sexe;	
 	}
 
+	/** 
+	* Setter de la taille de l'espece observee
+	* @param nouvelleTaille remplacera l'ancienne taille
+	*/
 	public double setTaille(double nouvelleTaille){
 		if(nouvelleTaille == null || nouvelleTaille < 0){
 			throw new IllegalArgumentException("Erreur setLaTaille : setter : nouvelleTaille null ou negative");
@@ -78,6 +94,10 @@ public class ObsHippocampe extends Observation {
 		}
 	}
 
+	/** 
+	* Setter du type de peche utilise
+	* @param nouveauType remplacera l'ancien type de peche
+	*/
 	public Peche setTypePeche(Peche nouveauType){
 		if(nouveauType == null){
 			throw new IllegalArgumentException("Erreur setLeTypePeche : setter : nouveauType null");
@@ -85,6 +105,11 @@ public class ObsHippocampe extends Observation {
 			this.typePeche = nouveauType;
 		}
 	}
+
+	/** 
+	* Setter du type d'espece observee
+	* @param nouvelleEspece remplacera l'ancienne espece observee
+	*/
 	public double setEspece(EspeceHippocampe nouvelleEspece){
 		if(nouvelleEspece == null){
 			throw new IllegalArgumentException("Erreur setLEspece : setter : nouvelleEspece null");
@@ -92,6 +117,11 @@ public class ObsHippocampe extends Observation {
 			this.espece = nouvelleEspece;
 		}
 	}
+
+	/** 
+	* Setter du sexe de l'espece observee
+	* @param nouveauSexe remplacera l'ancien sexe de l'espece
+	*/
 	public Sexe setSexe(Sexe nouveauSexe){
 		if(nouveauSexe == null){
 			throw new IllegalArgumentException("Erreur setLeSexe : setter : nouveauSexe null");
