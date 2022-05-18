@@ -150,7 +150,7 @@ public abstract class Observation {
 	}
 
 	/**
-	 * gette de especeObs
+	 * cette mehode renvoie le nom de l'espece
 	 * @return renvoie le nom de l'espece observee
 	 */
 	public abstract EspeceObservee especeObs();
