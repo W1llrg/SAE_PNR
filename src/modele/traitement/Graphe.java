@@ -6,7 +6,7 @@ import java.util.HashMap;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.0
+ * @version 1.0.1
  */
 public class Graphe{
 
@@ -30,7 +30,8 @@ public class Graphe{
                 for (Sommet s : sommets) {
                     if(som!=s && som.calculeDist(s)<=dist) soms.add(s);
                 }
-                this.sommetVoisins.put(som,soms);
+                if(soms.size()!=0) this.sommetVoisins.put(som,soms);
+                else this.sommetVoisins.put(som,null);
             }
         }else throw new IllegalArgumentException("Erreur Graphe : constructeur : parametre invalide");
     }
@@ -54,4 +55,20 @@ public class Graphe{
         else throw new IllegalArgumentException();
     }
 
+    /**
+     * cette methode permet de renvoie le nombre de sommet 
+     * @return renvoie la nombre de cle de sommetVoisins
+     */
+    public int nbSommets(){
+        return sommetVoisins.size();
+    }
+
+    /**
+     * renvoie le nom d'arrete du graphe
+     * @return 
+     */
+    public int nbArret(){
+
+        return 0;
+    }
 }
