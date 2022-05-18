@@ -2,7 +2,7 @@ package modele.donnee;
 
 /**
  * cette classe représente un lieu par les coordonnee x et y en Lambert93
- * @author BOURBIGOT Tristan
+ * @author Tristan
  * @version 1.1
  */
 public class Lieu {

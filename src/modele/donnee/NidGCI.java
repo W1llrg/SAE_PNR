@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 /**
  * une classe qui represente un nid de GCI
- * @author William RAGUENEAU
- * @version 1.1
+ * @author William
+ * @version 1.2
  */
 public class NidGCI implements IObs<ObsGCI> {
 
@@ -66,6 +66,10 @@ public class NidGCI implements IObs<ObsGCI> {
 
 	}
 
+	/**
+	 * setter pour le parametre idNid
+	 * @param id le nouvel id
+	 */
 	public void setIdNid(int id) {
 
 		if (id < 0) System.err.println("Erreur NidGCI : setIdNid() : valeur invalide (<0)");
@@ -73,6 +77,10 @@ public class NidGCI implements IObs<ObsGCI> {
 
 	}
 
+	/**
+	 * setter pour le parametre nbEnvol
+	 * @param nbEnvol la nouvelle valeur pour le parametre
+	 */
 	public void setNbEnvol(int nbEnvol) {
 
 		if (nbEnvol < 0) System.err.println("Erreur NidGCI : setIdNid() : valeur invalide (<0)");
@@ -81,6 +89,10 @@ public class NidGCI implements IObs<ObsGCI> {
 	}
 
 	
+	/**
+	 * setter pour le parametre nomPlage 
+	 * @param nom le nouveau nom pour la plage
+	 */
 	public void setNomPlage(String nom) {
 
 		if (nom == null || nom.equals("")) System.err.println("Erreur NidGCI : setNomPlage() : valeur invalide");
@@ -88,6 +100,11 @@ public class NidGCI implements IObs<ObsGCI> {
 		
 	}
 	
+	
+	/**
+	 * setter pour le parametre lesObservations
+	 * @param observations le nouvel ArrayList d'observations pour les GCI
+	 */
 	public void setLesObservations(ArrayList<ObsGCI> observations) {
 
 		if (observations == null) System.err.println("Erreur NidGCI : setLesObservations() : donnee invalide");
@@ -96,31 +113,53 @@ public class NidGCI implements IObs<ObsGCI> {
 	}
 
 	/**
-	 * CETTE METHODE MARCHE PAS SANS LES GETTERS D'Observation
-	 * @return
+	 * Cette methode consulte toutes les observations et recupere pour chacune la date de l'observation.
+	 * Si la date recuperee precede la date sauvegardee, elle remplace la date sauvegardee.  
+	 * @return la date la plus ancienne des observations pour ce nid
 	 */
 	public Date dateDebutObs() {
 
-		/*
 		// date premiere obs
 		// comparer dates lesObservations et garder le minimum
-		Date oldestDate = this.lesObservations.get(0).getDate();
+		Date oldestDate = this.lesObservations.get(0).getDateObs();	// initialisation, cette valeur n'est pas definitive
 		
 		for (ObsGCI obs : lesObservations) {
 			
-			Date tmp = obs.getDate();
-			if (tmp.compareTo(oldestDate) > 0) {
+			Date tmp = obs.getDateObs();
+			if (tmp.compareTo(oldestDate) < 0) {
 				
+				oldestDate = tmp;
+
 			}
+
 		}
-		*/
-		throw new UnsupportedOperationException();
+
+		return oldestDate;
 	}
 
+	/**
+	 * Cette methode consulte toutes les observations et recupere pour chacune la date de l'observation.
+	 * Si la date recuperee succede la date sauvegardee, elle remplace la date sauvegardee.  
+	 * @return la date la plus recente des observations pour ce nid
+	 */
 	public Date dateFinObs() {
+		
 		// date derniere obs
 		// comparer dates lesObservations et garder le maximum
-		throw new UnsupportedOperationException();
+		Date recentDate = this.lesObservations.get(0).getDateObs();	// initialisation, cette valeur n'est pas definitive
+		
+		for (ObsGCI obs : lesObservations) {
+			
+			Date tmp = obs.getDateObs();
+			if (tmp.compareTo(recentDate) > 0) {
+				
+				recentDate = tmp;
+
+			}
+
+		}
+
+		return recentDate;
 	}
 
 	/**

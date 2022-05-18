@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 /**
  * Classe des observations des CGI
- * @author William RAGUENEAU
+ * @author William
  * @version 1.2.2
  */
 public class ObsGCI extends Observation {

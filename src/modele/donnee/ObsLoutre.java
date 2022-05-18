@@ -3,6 +3,11 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
 
+/**
+ * une classe qui represente l'observation des loutres
+ * @author Theo POULAIN
+ * @version 1.0.1
+ */
 public class ObsLoutre extends Observation {
 	private IndiceLoutre indice;
 
@@ -45,7 +50,7 @@ public class ObsLoutre extends Observation {
 	 * Methode setter d'indice 
 	 * @param lIndice l'indice de la loutre en IndiceLoutre
 	 */
-	public IndiceLoutre setIndice(IndiceLoutre lIndice){
+	public void setIndice(IndiceLoutre lIndice){
 		if(lIndice == null){
 			System.out.println("Erreur setIndice : setter : lIndice est null");
 		}else{

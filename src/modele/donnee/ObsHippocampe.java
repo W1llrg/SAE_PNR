@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
 * Observation des hippocampes
 * @author Lucas
-* @version 1.0
+* @version 1.0.1
 */
 public class ObsHippocampe extends Observation {
 
@@ -35,10 +35,12 @@ public class ObsHippocampe extends Observation {
 			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : laTaille null ou negative");
 		}else{
 			this.taille = laTaille;
+		}
 		if(leTypePeche == null) {
 			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : leTypePeche null");
 		}else{
 			this.typePeche = leTypePeche;
+		}
 		if(lEspece == null) {
 			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : lEspece null");
 		}else{
