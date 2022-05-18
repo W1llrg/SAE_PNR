@@ -28,13 +28,75 @@ public class ObsHippocampe extends Observation {
 	* @param leSexe le sexe de l'animal observé
 	*/
 	public ObsHippocampe(int id, Date date, Time heure, Lieu lieu, ArrayList<Observateur> observateurs, double laTaille, Peche leTypePeche, EspeceHippocampe lEspece, Sexe leSexe) {
-		if(id == null) throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : id null");
+		super(id,date,heure,lieu,observateurs);
 
-
-		throw new UnsupportedOperationException();
+		if(laTaille == null || laTaille < 0){
+			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : laTaille null ou negative");
+		}else{
+			this.taille = laTaille;
+		if(leTypePeche == null) {
+			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : leTypePeche null");
+		}else{
+			this.typePeche = leTypePeche;
+		if(lEspece == null) {
+			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : lEspece null");
+		}else{
+			this.espece = lEspece;
+		}
+		if(leSexe == null){
+			throw new IllegalArgumentException("Erreur ObsHippocampe : constructeur : leSexe null");
+		}else{
+			this.sexe = leSexe;
+		}
 	}
 
 	public EspeceObservee especeObs() {
 		throw new UnsupportedOperationException();
+	}
+
+	public void getTaille(){
+		return this.taille;	
+	}
+
+	public void getTypePeche(){
+		return this.typePeche;	
+	}
+
+	public void getEspece(){
+		return this.espece;	
+	}
+
+	public void getSexe(){
+		return this.sexe;	
+	}
+
+	public double setTaille(double nouvelleTaille){
+		if(nouvelleTaille == null || nouvelleTaille < 0){
+			throw new IllegalArgumentException("Erreur setLaTaille : setter : nouvelleTaille null ou negative");
+		}else{
+			this.taille = nouvelleTaille;
+		}
+	}
+
+	public Peche setTypePeche(Peche nouveauType){
+		if(nouveauType == null){
+			throw new IllegalArgumentException("Erreur setLeTypePeche : setter : nouveauType null");
+		}else{
+			this.typePeche = nouveauType;
+		}
+	}
+	public double setEspece(EspeceHippocampe nouvelleEspece){
+		if(nouvelleEspece == null){
+			throw new IllegalArgumentException("Erreur setLEspece : setter : nouvelleEspece null");
+		}else{
+			this.espece = nouvelleEspece;
+		}
+	}
+	public Sexe setSexe(Sexe nouveauSexe){
+		if(nouveauSexe == null){
+			throw new IllegalArgumentException("Erreur setLeSexe : setter : nouveauSexe null");
+		}else{
+			this.sexe = nouveauSexe;
+		}
 	}
 }
