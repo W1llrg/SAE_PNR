@@ -17,4 +17,5 @@ public interface IObs<T> {
 	public boolean retireObs(int idObs);
 
 	public int nbObs();
+	
 }
