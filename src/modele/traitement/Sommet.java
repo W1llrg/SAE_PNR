@@ -57,7 +57,7 @@ public class Sommet {
             this.id=obs.getIdObs();
             this.coordLieu =obs.getLieuObs();
             this.date=obs.getDateObs();
-            this.espece=obs.EspeceObservee();
+           // this.espece=obs.EspeceObservee();
         }
     } 
 
@@ -68,8 +68,8 @@ public class Sommet {
      * @return renvoie la distance calculer entre deux sommet
      */
     public double calculeDist(Sommet som){
-        double x1=som.getCoordLieu().getXCoord();
-        double y1=som.getCoordLieu().getYCoord();
+        double x1=som.coordLieu.getXCoord();
+        double y1=som.coordLieu.getYCoord();
         double x2=this.coordLieu.getXCoord();
         double y2=this.coordLieu.getYCoord();
         return Math.sqrt(Math.sqrt(y2 - y1) + Math.sqrt(x2 - x1));
