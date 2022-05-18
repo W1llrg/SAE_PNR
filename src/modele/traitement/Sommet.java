@@ -7,25 +7,37 @@ import java.lang.Math;
 /**
  * Cette classe represent une observation sous forme de sommet
  * @author Tristan
- * @version 1.1
+ * @version 1.3
  */
 public class Sommet {
 
+    /**
+     * l'id du sommet
+     */
     private int id;
 
+    /**
+     * coordonne du sommet
+     */
     private Lieu coordLieu;
 
+    /**
+     * date du sommet
+     */
     private Date date;
 
+    /**
+     * espece du sommet
+     */
     private EspeceObservee espece;  
 
 
     /**
      * constructeur de Sommet, prend tout les attributs en parametre
-     * @param id l'id de l'observation
-     * @param coord coordonnee de l'
-     * @param date
-     * @param espece
+     * @param id l'id du sommet
+     * @param coord les coordonnees du sommet
+     * @param date la date du  sommet
+     * @param espece l'espece du sommet
      */
      public Sommet(int id,Lieu coord,Date date,EspeceObservee espece){
          if(coord != null && date != null && espece != null){
@@ -49,8 +61,11 @@ public class Sommet {
         }
     } 
 
+
     /**
-     * Cette methode calcul la distance entre deux sommets
+     * Cette methode calcul la distance entre un sommet en parametre et celui courant
+     * @param som le deuxième sommet pour calculer la distance
+     * @return renvoie la distance calculer entre deux sommet
      */
     public double calculeDist(Sommet som){
         double x1=som.getCoordLieu().getXCoord();
