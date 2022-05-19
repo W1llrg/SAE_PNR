@@ -48,7 +48,7 @@ public class ScenarioDonnee{
         tabBatracien[3] = nombrePonte;
 
         //Creation de l'objet ObsBatracien
-        ObsBat    ObsBatracien testBatracien = new ObsBatracien(1, date, heure, lieu, observateurs, tabBatracien, EspeceBatracien.CALAMITE);
+        ObsBatracien testBatracien = new ObsBatracien(1, date, heure, lieu, observateurs, tabBatracien, EspeceBatracien.CALAMITE);
 
         //Test ObsLoutre 
 
@@ -56,10 +56,45 @@ public class ScenarioDonnee{
 
 
         //Test ObsChouette
-       ObsChouette newObsChouette = new ObsChouette(1,date,heure,lieu, observateurs, TypeObservation.SONORE);
-       
-       
-       Chouette newChouette = new Chouette(1,Sexe.FEMELLE,EspeceChouette.HULOTTE);
+        System.out.println("Partie Chouettes/ObsChouette..." + "\n");
+        ObsChouette obsChouette1 = new ObsChouette(1,date,heure,lieu, observateurs, TypeObservation.SONORE);
+        Chouette newChouette = new Chouette(1,Sexe.FEMELLE,EspeceChouette.HULOTTE);
+        Chouette falseChouette = new Chouette(2,null,null);
+        ObsChouette obsChouette2 = new ObsChouette(2,date,heure,lieu,observateurs,TypeObservation.VISUELLE);
+        ObsChouette obsChouette3 = new ObsChouette(3,date,heure,lieu,observateurs,TypeObservation.SONORE_VISUELLE);
+            //liste d'observations 
+        ArrayList<ObsChouette> list = new ArrayList<ObsChouette>();
+        list.add(obsChouette2);
+        list.add(obsChouette3);
+
+            //tests methodes chouette
+        newChouette.ajouteUneObs(obsChouette1);
+        newChouette.ajoutePlsObs(list);;
+        System.out.println("Observations de chouettes (doit y en avoir 3) : ");
+        int n = 1;
+        for(ObsChouette elem : newChouette.getLesObservations()){
+            System.out.println("Observation " + n + " : " + elem);
+            n++;
+        }
+
+        newChouette.retireObs(0);
+        System.out.println("Observations de chouettes (La premiere doit avoir disparu) : ");
+        n = 1;
+        for(ObsChouette elem : newChouette.getLesObservations()){
+            System.out.println("Observation " + n + " : " + elem);
+            n++;
+        }
+
+        System.out.println("Nombre d'observations : " + newChouette.nbObs());
+
+        newChouette.videObs();
+        System.out.println("Observations de chouettes (aucune) : ");
+        n = 1;
+        for(ObsChouette elem : newChouette.getLesObservations()){
+            System.out.println("Observation " + n + " : " + elem);
+            n++;
+        }
+
 
     
     }
