@@ -65,6 +65,7 @@ public class Graphe{
 
     /**
      * renvoie le nom d'arrete du graphe
+     * @author Tristan
      * @return 
      */
     public int nbArret(){
