@@ -1,0 +1,1 @@
+javac -d ../class ../src/modele/traitement/*.java ../src/modele/ScenarioTraitement.java

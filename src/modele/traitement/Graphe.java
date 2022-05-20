@@ -2,11 +2,12 @@ package modele.traitement;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.0.1
+ * @version 1.1.0
  */
 public class Graphe{
 
@@ -26,12 +27,14 @@ public class Graphe{
         if(sommets!=null){
             sommetVoisins = new HashMap<Sommet,ArrayList<Sommet>>();
             for (Sommet som : sommets) {
-                ArrayList<Sommet> soms = new ArrayList<Sommet>();
-                for (Sommet s : sommets) {
-                    if(som!=s && som.calculeDist(s)<=dist) soms.add(s);
-                }
-                if(soms.size()!=0) this.sommetVoisins.put(som,soms);
-                else this.sommetVoisins.put(som,null);
+                if(som!=null){
+                    ArrayList<Sommet> soms = new ArrayList<Sommet>();
+                    for (Sommet s : sommets) {
+                        if(s!=null && som!=s && som.calculeDist(s)<=dist) soms.add(s);
+                    }
+                    if(soms.size()!=0) this.sommetVoisins.put(som,soms);
+                    else this.sommetVoisins.put(som,null);
+                }else System.err.println("Erreur Graphe : constructeur : objet dans l'ArrayList null ");
             }
         }else throw new IllegalArgumentException("Erreur Graphe : constructeur : parametre invalide");
     }
@@ -64,11 +67,35 @@ public class Graphe{
     }
 
     /**
-     * renvoie le nom d'arrete du graphe
-     * @return 
+     * renvoie le nombre d'arrete du graphe
+     * @return renvoie le nombre d'arret entre les differents sommets du graphe
+     * @version 1.0
      */
     public int nbArret(){
+        ArrayList<Sommet[]> res = new ArrayList<>();
+        
+        for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+            Sommet key = entry.getKey();
+            ArrayList<Sommet> value = entry.getValue();
 
-        return 0;
+            if(value!=null && !res.isEmpty()){
+
+                for(Sommet v : value){
+                    if(v!=null){
+                        boolean existant = true;
+
+                        for(Sommet[] r : res){
+                            if(res==null && r[0]==key && r[1]!=v || res==null && r[0]==v && r[1]==key) existant=false;
+                        }
+                        if(existant){
+                            Sommet[] soms = {key,v};
+                            res.add(soms);
+                        }
+
+                    } 
+                }
+            }
+        }
+        return res.size();
     }
 }
