@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
 * Observation des hippocampes
 * @author Lucas
-* @version 1.0.1
+* @version 1.1
 */
 public class ObsHippocampe extends Observation {
 
@@ -55,7 +55,7 @@ public class ObsHippocampe extends Observation {
 	}
 
 	public EspeceObservee especeObs() {
-		throw new UnsupportedOperationException();
+		return EspeceObservee.HIPPOCAMPE;
 	}
 
 	/**

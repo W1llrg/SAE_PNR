@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Classe des observations des CGI
  * @author William
- * @version 1.2.2
+ * @version 1.2.3
  */
 public class ObsGCI extends Observation {
 
@@ -33,7 +33,7 @@ public class ObsGCI extends Observation {
 		if (leNombre < 0) throw new IllegalArgumentException("Erreur ObsGCI : constructeur : leNombre : valeur invalide (<0)");
 		else this.nombre = leNombre;
 
-		if (nature == null) throw new IllegalArgumentException("Erreur ObsGCI : constructeur : nature : parametre null");
+		if (nature == null) System.err.println("Erreur ObsGCI : constructeur : nature : parametre null");
 		else this.natureObs = nature;
 
 	}
