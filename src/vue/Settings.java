@@ -2,6 +2,6 @@ package vue;
 
 import javax.swing.*;
 
-public class Parametre extends JPanel {
+public class Settings extends JPanel {
     
 }
