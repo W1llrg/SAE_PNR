@@ -1,0 +1,1 @@
+javac -d ../class ../src/modele/donnee/*.java ../src/modele/ScenarioDonnee.java
