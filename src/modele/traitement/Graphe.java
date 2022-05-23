@@ -3,11 +3,12 @@ package modele.traitement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Iterator;
 
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class Graphe{
 
@@ -98,4 +99,20 @@ public class Graphe{
         }
         return res.size();
     }
+
+    /**
+     * regarde si un sommet est présent de le graphe
+     * @param idSom
+     * @return
+     */
+    public boolean estDansGraphe(int idSom){
+        boolean ret = false;
+        Iterator it = sommetVoisins.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
+	        if(entry.getKey().getId() == idSom) ret=true; 
+	    }
+        return ret;
+    }
+    
 }
