@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.1.1
+ * @version 1.2.0
  */
 public class Graphe{
 
@@ -102,16 +102,55 @@ public class Graphe{
 
     /**
      * regarde si un sommet est présent de le graphe
-     * @param idSom
-     * @return
+     * @param idSom id du sommet a cherche 
+     * @return renvoie Vrai si le sommet est bien de le graphe sinon la methode renvoie Faux
      */
     public boolean estDansGraphe(int idSom){
         boolean ret = false;
         Iterator it = sommetVoisins.entrySet().iterator();
-	    while (it.hasNext()) {
+	    while (it.hasNext() && !ret) {
 	        Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
 	        if(entry.getKey().getId() == idSom) ret=true; 
 	    }
+        return ret;
+    }
+
+    /**
+     * calcul le degre d'un sommet du graphe
+     * @param idSom id du sommet dont on doit calculer le degre
+     * @return renvoie le degre du sommet designe en parametre
+     */
+    public int calculeDegre(int idSom){
+        int ret=0;
+        boolean trouve=false;
+        Iterator it = sommetVoisins.entrySet().iterator();
+        while (it.hasNext() && !trouve) {
+            Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
+            if(entry.getKey().getId() == idSom){
+                trouve=true;
+                if(sommetVoisins.get(entry.getKey())!=null) ret = sommetVoisins.get(entry.getKey()).size();
+            }
+        }
+        
+        return ret;
+    }
+
+
+    /**
+     * calcul tout les degres du graphe pour chaque sommet
+     * @return renvoie un HasMap contenent la le sommet(cle) et son degre(valeur)
+     */
+    public HashMap<Sommet,Integer> calculeDegres(){
+        HashMap<Sommet,Integer> ret= new HashMap<Sommet,Integer>();
+        
+        Iterator it = sommetVoisins.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
+            if(entry.getValue()!=null){
+                ret.put(entry.getKey(),Integer.valueOf(entry.getValue().size()));
+            }else ret.put(entry.getKey(),Integer.valueOf(0));
+        }
+        
         return ret;
     }
     
