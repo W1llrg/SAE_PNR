@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.2.0
+ * @version 1.3.1
  */
 public class Graphe{
 
@@ -59,6 +59,29 @@ public class Graphe{
         else throw new IllegalArgumentException();
     }
 
+    
+    /**
+     * cherche et renvoie le sommet du graphe avec le même id
+     * @param idSom id du sommet a cherche 
+     * @return renvoie null si le sommet n'est pas dans le graphe sinon il renvoie le sommet
+     */
+    public Sommet getSommet(int idSom){
+        Sommet ret = null;
+        boolean trouve =false;
+        Iterator it = sommetVoisins.entrySet().iterator();
+	    while (it.hasNext() && !trouve) {
+	        Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
+	        if(entry.getKey().getId() == idSom) {
+                trouve=true; 
+                ret = entry.getKey();
+            }
+	    }
+        return ret;
+    }
+
+
+
+
     /**
      * cette methode permet de renvoie le nombre de sommet 
      * @return renvoie la nombre de cle de sommetVoisins
@@ -72,7 +95,7 @@ public class Graphe{
      * @return renvoie le nombre d'arret entre les differents sommets du graphe
      * @version 1.2
      */
-    public int nbArret(){
+    public int nbAretes(){
         int res = 0;
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
             ArrayList<Sommet> value = entry.getValue();
@@ -88,11 +111,7 @@ public class Graphe{
      */
     public boolean estDansGraphe(int idSom){
         boolean ret = false;
-        Iterator it = sommetVoisins.entrySet().iterator();
-	    while (it.hasNext() && !ret) {
-	        Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
-	        if(entry.getKey().getId() == idSom) ret=true; 
-	    }
+        if(getSommet(idSom)!=null) ret =true;
         return ret;
     }
 
@@ -103,16 +122,8 @@ public class Graphe{
      */
     public int calculeDegre(int idSom){
         int ret=0;
-        boolean trouve=false;
-        Iterator it = sommetVoisins.entrySet().iterator();
-        while (it.hasNext() && !trouve) {
-            Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
-            if(entry.getKey().getId() == idSom){
-                trouve=true;
-                if(sommetVoisins.get(entry.getKey())!=null) ret = sommetVoisins.get(entry.getKey()).size();
-            }
-        }
-        
+        Sommet som = this.getSommet(idSom);
+        if(som!=null) ret = sommetVoisins.get(som).size();
         return ret;
     }
 
@@ -123,7 +134,7 @@ public class Graphe{
      */
     public HashMap<Sommet,Integer> calculeDegres(){
         HashMap<Sommet,Integer> ret= new HashMap<Sommet,Integer>();
-        
+
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
             if(entry.getValue()!=null){
                 ret.put(entry.getKey(),Integer.valueOf(entry.getValue().size()));
@@ -132,5 +143,29 @@ public class Graphe{
 
         return ret;
     }
+
     
+
+    public boolean sontVoisins(int idSom1, int idSom2){
+        boolean ret=false;
+        Sommet som1 = this.getSommet(idSom1);
+        Sommet som2 = this.getSommet(idSom2);
+        if(som1!=null && som2!=null && sommetVoisins.get(som1).contains(som2)) ret=true;
+            
+        return ret;
+    }
+    
+    public boolean existeChemin(int idSom1, int idSom2){
+        boolean ret=false;
+        if(sontVoisins(idSom1,idSom2)) ret=true;
+
+        Sommet som1 = this.getSommet(idSom1);
+        Sommet som2 = this.getSommet(idSom2);
+        if(!ret && som1!=null && som2!=null){
+            int[][] s1 = new int[sommetVoisins.size()][sommetVoisins.size()];
+        }
+
+
+        return ret;
+    }
 }
