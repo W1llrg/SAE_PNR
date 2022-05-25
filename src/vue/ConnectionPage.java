@@ -1,6 +1,8 @@
 package vue;
 
 import javax.swing.*;
+import java.awt.GridLayout;
+import java.awt.Color;
 
 public class ConnectionPage extends JPanel {
     private JLabel connexionTitre;
@@ -8,7 +10,7 @@ public class ConnectionPage extends JPanel {
     private JLabel mdp;
 
     private JTextField textFieldUser;
-    private JTextField textFieldMdp;
+    private JPasswordField textFieldMdp;
 
     private JButton connexion;
 
@@ -18,12 +20,12 @@ public class ConnectionPage extends JPanel {
      */
     public ConnectionPage() {
 
-        JPanel panel = new JPanel();
-        panel = (JPanel)this.getContentPane();
+        // JPanel panel = new JPanel();
+        // panel = (JPanel)this.getContentPane();
 
-        panel.setBackground(Color.green);
+        this.setBackground(Color.green);
 
-        panel.setLayout(new GridLayout(6,1));
+        this.setLayout(new GridLayout(6,1));
 
         connexion = new JButton();
         connexion.setText("Connexion");
@@ -38,16 +40,16 @@ public class ConnectionPage extends JPanel {
         mdp.setText("Mot de passe");
 
         textFieldUser = new JTextField();
-        textFieldMdp = new JTextField(); 
+        textFieldMdp = new JPasswordField(); 
     
 
         //put the button in a JPanel
-        panel.add(this.connexionTitre);
-        panel.add(this.nom);
-        panel.add(this.textFieldUser);
-        panel.add(this.mdp);
-        panel.add(this.textFieldMdp);
-        panel.add(this.connexion);
+        this.add(this.connexionTitre);
+        this.add(this.nom);
+        this.add(this.textFieldUser);
+        this.add(this.mdp);
+        this.add(this.textFieldMdp);
+        this.add(this.connexion);
 
         //Creation of the listener
         //Listener listener = new ChronoListener(this.timer, this.time);

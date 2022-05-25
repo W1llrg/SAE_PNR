@@ -27,7 +27,6 @@ public class ScenarioTraitement {
         Graphe g = new Graphe(sommets,15);
 
         System.out.println("Nombre de sommet :"+g.nbSommets());
-
         System.out.println("Nombre d'arret :"+g.nbArret());
 
     }

@@ -4,6 +4,11 @@ import java.sql.Connection;
 import javax.swing.*;
 import java.awt.CardLayout;
 
+/**
+ * une classe qui gere l'affichage des differentes pages de l'application
+ * @author William
+ * @version 1.0
+ */
 public class ViewWindowManager extends JFrame {
     
     /** panel pour la fenetre */
@@ -13,19 +18,19 @@ public class ViewWindowManager extends JFrame {
     private ConnectionPage connectionPage; 
 
     /** accesseur de la classe CreateAccount  */
-    private CreateAccount createAccount; 
+    // private CreateAccount createAccount; 
 
-    /** accesseur de la classe HomePage  */
-    private HomePage homePage;
+    // /** accesseur de la classe HomePage  */
+    // private HomePage homePage;
     
-    /** accesseur de la classe NewEntry  */
-    private NewEntry newEntry;
+    // /** accesseur de la classe NewEntry  */
+    // private NewEntry newEntry;
     
-    /** accesseur de la classe Settings  */
-    private Settings settings; 
+    // /** accesseur de la classe Settings  */
+    // private Settings settings; 
 
-    /** accesseur de la classe Visualization  */
-    private Visualization visualization; 
+    // /** accesseur de la classe Visualization  */
+    // private Visualization visualization; 
 
 
     public ViewWindowManager() {
@@ -36,9 +41,15 @@ public class ViewWindowManager extends JFrame {
         setLocationRelativeTo(null);
         setDefaultLookAndFeelDecorated(true);
 
+        // initialisations des pages
+        this.connectionPage = new ConnectionPage();
+
         // creation du panel
         this.panel = (JPanel)this.getContentPane();
         this.panel.setLayout(new CardLayout());
+
+        // ajout des pages
+        panel.add(this.connectionPage);
 
     }
 
