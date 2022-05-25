@@ -31,7 +31,7 @@ public class ConnectionPage extends JPanel {
         connexion.setText("Connexion");
 
         connexionTitre = new JLabel();
-        connexionTitre.setText("                 CONNEXION");
+        connexionTitre.setText("CONNEXION");
        
         nom = new JLabel();
         nom.setText("Nom d'utilisateur");
