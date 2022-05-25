@@ -37,4 +37,54 @@ public class Observateur {
 			this.prenom=lePrenom;
 		}else throw new IllegalArgumentException("Erreur Observateur : constructeur : argument invalide");
 	}
+
+	/**
+	 * getter de idObservateur
+	 * @return renvoie l'id de l'observateur
+	 */
+	public int getIdObservateur(){
+		return this.idObservateur;
+	}
+
+	/**
+	 * getter de nom
+	 * @return revoie le nom de l'observateur
+	 */
+	public String getNom(){
+		return this.nom;
+	}
+
+	/**
+	 * getter de prenom
+	 * @return renvoie le prenom de l'observateur
+	 */
+	public String prenom(){
+		return this.prenom;
+	}
+
+	/**
+	 * settre de idObservateur
+	 * @param id nouvelle id de l'observateur
+	 */
+	public void setIdObservateur(int id){
+		this.idObservateur=id;
+	}
+
+	/**
+	 * setter de nom
+	 * @param leNom nouveau nom de l'observateur
+	 */
+	public void setNom(String leNom){
+		if(leNom!=null&& !leNom.equals("")) this.nom=leNom;
+		else System.err.println("Erreur Observateur : setNom : parametre invalide");
+	}
+
+	/**
+	 * setter de prenom
+	 * @param lePrenom nouveau prenom de l'observateur
+	 */
+	public void setPrenom(String lePrenom){
+		if(lePrenom!=null&& !lePrenom.equals("")) this.nom=lePrenom;
+		else System.err.println("Erreur Observateur : setPrenom : parametre invalide");
+	}
 }

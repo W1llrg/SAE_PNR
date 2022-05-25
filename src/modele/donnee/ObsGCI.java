@@ -4,17 +4,14 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 /**
- * Classe observation CGI
- * @author William RAGUENEAU
- * @version 1.1
+ * Classe des observations des CGI
+ * @author William
+ * @version 1.2.3
  */
 public class ObsGCI extends Observation {
 
 	/** nombre d'oeufs */
 	private int nombre;
-
-	/** instance de la classe NidGCI */
-	public NidGCI unnamed_NidGCI;
 
 	/** enum ContenuNid */
 	private ContenuNid natureObs;
@@ -33,15 +30,61 @@ public class ObsGCI extends Observation {
 
 		super(id, date, heure, lieu, observateurs);
 
-		if (leNombre < 0) throw new IllegalArgumentException("ERREUR - leNombre: valeur invalide (<0)");
+		if (leNombre < 0) throw new IllegalArgumentException("Erreur ObsGCI : constructeur : leNombre : valeur invalide (<0)");
 		else this.nombre = leNombre;
 
-		if (nature == null) throw new IllegalArgumentException("Erreur ObsGCI : constructeur : nature: parametre null");
+		if (nature == null) System.err.println("Erreur ObsGCI : constructeur : nature : parametre null");
 		else this.natureObs = nature;
 
 	}
 
-	public EspeceObservee EspeceObs() {
-		throw new UnsupportedOperationException();
+	/**
+	 * getter pour le parametre nombre
+	 * @return le parametre nombre
+	 */
+	public int getNombre() {
+
+		return this.nombre;
+
 	}
+
+	/**
+	 * getter pour le parametre natureObs
+	 * @return le parametre natureObs
+	 */
+	public ContenuNid getNatureObs() {
+
+		return this.natureObs;
+		
+	}
+	
+	/**
+	 * setter pour le parametre nombre
+	 * @param nombre le nouveau nombre pour le parametre
+	 */
+	public void setNombre(int nombre) {
+		
+		if (nombre < 0) System.err.println("Erreur ObsGCI : setNombre() : valeur invalide (<0)");
+		else this.nombre = nombre;
+		
+	}
+	
+	/**
+	 * setter pour le parametre natureObs
+	 * @param natureObs la nouvelle valeur pour le parametre
+	 */
+	public void setNatureObs(ContenuNid natureObs) {
+		
+		if (natureObs == null) System.err.println("Erreur ObsGCI : getNatureObs() : natureObs est null");
+		else this.natureObs = natureObs;
+		
+	}
+
+	/** methode qui precise l'espece observee dans cette classe */
+	public EspeceObservee especeObs() {
+		
+		return EspeceObservee.GCI;
+
+	}
+
 }

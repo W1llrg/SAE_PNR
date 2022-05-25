@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 /**
  * Une interface qui implemente des methodes de controle pour les observations
- * @author William RAGUENEAU
+ * @author William
  * @version 1.0
  */
 public interface IObs<T> {
@@ -17,4 +17,5 @@ public interface IObs<T> {
 	public boolean retireObs(int idObs);
 
 	public int nbObs();
+	
 }

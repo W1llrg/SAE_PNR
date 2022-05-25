@@ -1,7 +1,7 @@
 package modele.donnee;
 
 /** 
-* Enumeration regroupant les différents types de pèche
+* Enumeration regroupant les differents types de peche
 * @author Lucas
 * @version 1.0
 */

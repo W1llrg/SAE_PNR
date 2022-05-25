@@ -1,7 +1,7 @@
 package modele.donnee;
 
 /** 
-* Enumeration regroupant le sexe des espèces
+* Enumeration regroupant le sexe des especes
 * @author Lucas
 * @version 1.0
 */
