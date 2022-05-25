@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.4.1
+ * @version 1.4.2
  */
 public class Graphe{
 
@@ -184,7 +184,7 @@ public class Graphe{
             i=0;
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
                 for(Sommet som : entry.getValue()){
-                    s1[i][indSom.get(som)]=1;
+                    s1[i][indSom.get(som)]+=1;
                 }
                 i++;
             }
@@ -267,5 +267,48 @@ public class Graphe{
         }
         return ret;
     }
+
+
+    /**
+     * cree et renvoie la matrice d'adjacence du graphe
+     * @return renvoie une matrice d'adjacence du graphe
+     */
+    public int[][] matriceAdjacence(){
+        HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
+        int[][] ret = new int[sommetVoisins.size()][sommetVoisins.size()];
+            int i=0;
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                indSom.put(entry.getKey(),Integer.valueOf(i));
+                i++;
+            }
+            i=0;
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                for(Sommet som : entry.getValue()){
+                    ret[i][indSom.get(som)]+=1;
+                }
+                i++;
+            }
+        return ret;
+    }
+
+
+    /**
+     * cherche si le graphe est connex
+     * @return renvoie Vrai si le graphe est connex, sinon Faux
+     */
+    public boolean estConnex(){
+        boolean ret=true;
+        if(sommetVoisins.size()>0){
+            Iterator it = sommetVoisins.entrySet().iterator();
+            Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
+            Sommet som1 = entry.getKey();
+            while (it.hasNext() && ret) {
+                entry = (Map.Entry) it.next();
+                ret = this.existeChemin(som1.getId(),entry.getKey().getId());
+            }
+        }
+        return ret;
+    }
+
 
 }
