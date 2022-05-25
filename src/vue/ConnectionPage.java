@@ -32,6 +32,7 @@ public class ConnectionPage extends JPanel {
 
         connexion = new JButton();
         connexion.setText("Connexion");
+        connexion.addActionListener(l);
 
         connexionTitre = new JLabel();
         connexionTitre.setText("CONNEXION");
@@ -59,5 +60,12 @@ public class ConnectionPage extends JPanel {
         
         // I add an action listener to every button 
         //start.addActionListener(listener);
+    }
+
+
+    public void setText(String text) {
+
+        this.connexion.setText(text);
+
     }
 }

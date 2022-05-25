@@ -39,14 +39,10 @@ public class ConnectionPageListener implements ActionListener{
     public void actionPerformed(ActionEvent paramActionEvent) {
                 
         Object o = paramActionEvent.getSource();
-
+        System.out.println("oui");
         if(o instanceof JButton){
-            this.connexion = (JButton) paramActionEvent.getSource();
-        
-            if(this.textFieldUser.getText().equals("Theo")){
-                this.textFieldUser.setText("test");
-                System.out.println("coucou");
-            }
+            JButton button = (JButton) paramActionEvent.getSource();
+            view.getConnectionPage().setText("test");
         }
 
     }

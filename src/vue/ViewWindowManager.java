@@ -75,4 +75,8 @@ public class ViewWindowManager extends JFrame {
         });
 
     }
+
+    public ConnectionPage getConnectionPage(){
+        return this.connectionPage;
+    }
 }
