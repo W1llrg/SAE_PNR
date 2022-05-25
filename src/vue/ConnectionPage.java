@@ -1,5 +1,6 @@
 package vue;
 
+import controler.*;
 import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.Color;
@@ -14,15 +15,17 @@ public class ConnectionPage extends JPanel {
 
     private JButton connexion;
 
+    /** listener de cette classe */
+    private ConnectionPageListener listener;
+
     /**
      * methode PNRView (constructor)
      * in this methode we have all the configuration for the interface and the initialization
+     * @param l le listener pour cette classe
      */
-    public ConnectionPage() {
+    public ConnectionPage(ConnectionPageListener l) {
 
-        // JPanel panel = new JPanel();
-        // panel = (JPanel)this.getContentPane();
-
+        this.listener = l;
         this.setBackground(Color.green);
 
         this.setLayout(new GridLayout(6,1));

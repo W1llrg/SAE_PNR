@@ -17,7 +17,7 @@ public class HomePage extends JPanel {
         Icon icon = new ImageIcon("../Icons/newEntry.PNG");
 
         JPanel panel = new JPanel();
-        panel = (JPanel)this.getContentPane();
+        panel = (JPanel)this.getContentPane();cd
 
         panel.setBackground(Color.green);
 

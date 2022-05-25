@@ -1,4 +1,6 @@
 package controler;
+
+import vue.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,10 +11,11 @@ import javax.swing.*;
  */
 public class ConnectionPageListener implements ActionListener{
 
-    private JTextField textFieldUser;
-    private JPasswordField textFieldMdp;
+    // private JTextField textFieldUser;
+    // private JPasswordField textFieldMdp;
+    // private JButton connexion;
 
-    private JButton connexion;
+    private ViewWindowManager view;
 
     /**
      * methode constructeur pour ConnectionPageListener
@@ -20,10 +23,12 @@ public class ConnectionPageListener implements ActionListener{
      * @param textFieldMdp Champ de texte pour le mot de passe
      * @param connexion bouton de connexion final 
      */
-    public ConnectionPageListener(JTextField nomFieldUser,e JPasswordField textFieldMdp, JButton connexion) {
-        this.textFieldUser = textFieldUser;
-        this.textFieldMdp = textFieldMdp;
-        this.connexion = connexion;
+    public ConnectionPageListener(ViewWindowManager view) {
+        // this.textFieldUser = textFieldUser;
+        // this.textFieldMdp = textFieldMdp;
+        // this.connexion = connexion;
+
+        this.view = view;
     }
 
 
@@ -37,9 +42,10 @@ public class ConnectionPageListener implements ActionListener{
 
         if(o instanceof JButton){
             this.connexion = (JButton) paramActionEvent.getSource();
-
-            if(this.connexion.getText()=="Connexion"){
-this.textFieldUser .getText()=="Theo"                this.textFieldUser = "Jaj";
+        
+            if(this.textFieldUser.getText().equals("Theo")){
+                this.textFieldUser.setText("test");
+                System.out.println("coucou");
             }
         }
 

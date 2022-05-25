@@ -1,5 +1,6 @@
 package vue;
 
+import controler.*;
 import java.sql.Connection;
 import javax.swing.*;
 import java.awt.CardLayout;
@@ -41,8 +42,11 @@ public class ViewWindowManager extends JFrame {
         setLocationRelativeTo(null);
         setDefaultLookAndFeelDecorated(true);
 
-        // initialisations des pages
-        this.connectionPage = new ConnectionPage();
+        // initialisation des listeners
+        ConnectionPageListener coPageListener = new ConnectionPageListener(this);
+
+        // initialisation des pages
+        this.connectionPage = new ConnectionPage(coPageListener);
 
         // creation du panel
         this.panel = (JPanel)this.getContentPane();
