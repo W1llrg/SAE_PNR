@@ -70,34 +70,15 @@ public class Graphe{
     /**
      * renvoie le nombre d'arrete du graphe
      * @return renvoie le nombre d'arret entre les differents sommets du graphe
-     * @version 1.0
+     * @version 1.2
      */
     public int nbArret(){
-        ArrayList<Sommet[]> res = new ArrayList<>();
-        
+        int res = 0;
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-            Sommet key = entry.getKey();
             ArrayList<Sommet> value = entry.getValue();
-
-            if(value!=null && !res.isEmpty()){
-
-                for(Sommet v : value){
-                    if(v!=null){
-                        boolean existant = true;
-
-                        for(Sommet[] r : res){
-                            if(res==null && r[0]==key && r[1]!=v || res==null && r[0]==v && r[1]==key) existant=false;
-                        }
-                        if(existant){
-                            Sommet[] soms = {key,v};
-                            res.add(soms);
-                        }
-
-                    } 
-                }
-            }
+            if(value!=null) res+= value.size();
         }
-        return res.size();
+        return res/2;
     }
 
     /**
@@ -143,14 +124,12 @@ public class Graphe{
     public HashMap<Sommet,Integer> calculeDegres(){
         HashMap<Sommet,Integer> ret= new HashMap<Sommet,Integer>();
         
-        Iterator it = sommetVoisins.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
+        for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
             if(entry.getValue()!=null){
                 ret.put(entry.getKey(),Integer.valueOf(entry.getValue().size()));
             }else ret.put(entry.getKey(),Integer.valueOf(0));
         }
-        
+
         return ret;
     }
     
