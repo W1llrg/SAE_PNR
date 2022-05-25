@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.3.1
+ * @version 1.4.1
  */
 public class Graphe{
 
@@ -145,7 +145,12 @@ public class Graphe{
     }
 
     
-
+    /**
+     * cherche si deux sommet sont reliers par une arete
+     * @param idSom1 id du premier sommet a chercher 
+     * @param idSom2 id du deuxieme sommet a cherceher
+     * @return renvoie Vrai si les sommets sont relier par une arete, sinon Faux
+     */
     public boolean sontVoisins(int idSom1, int idSom2){
         boolean ret=false;
         Sommet som1 = this.getSommet(idSom1);
@@ -155,17 +160,112 @@ public class Graphe{
         return ret;
     }
     
+
+    /**
+     * chercher si un sommet peut parcourire un chemin d'aretes pour arrive a un autre sommet 
+     * @param idSom1 id du premier sommet a chercher le chemin
+     * @param idSom2 id du deuxieme sommet a chercher le chemin
+     * @return renvoie Vrai si il existe un chemin entre les deux sommets, sinon Faux
+     */
     public boolean existeChemin(int idSom1, int idSom2){
         boolean ret=false;
+        HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
         if(sontVoisins(idSom1,idSom2)) ret=true;
 
         Sommet som1 = this.getSommet(idSom1);
         Sommet som2 = this.getSommet(idSom2);
-        if(!ret && som1!=null && som2!=null){
+        if(!ret && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
             int[][] s1 = new int[sommetVoisins.size()][sommetVoisins.size()];
+            int i=0;
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                indSom.put(entry.getKey(),Integer.valueOf(i));
+                i++;
+            }
+            i=0;
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                for(Sommet som : entry.getValue()){
+                    s1[i][indSom.get(som)]=1;
+                }
+                i++;
+            }
+
+            int[][] s2 = s1;
+            int[][] res = s1;
+            int nbZero = 0;
+            while(nbZero>=(s1.length*s1[0].length) && !ret){
+                nbZero=0;
+                for(int j=0;j<s1.length;j++){
+                    for(int k=0;k<s1.length;k++){
+                        for(int u=0;u<s1.length;u++){
+                            res[j][k]+=s1[j][u]*s2[u][k];
+                        }
+                        if(res[j][k]==0) nbZero++;
+                    }
+                }
+                if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=true;
+                s2=res;
+            }
         }
 
 
         return ret;
     }
+
+    /**
+     * revoie la list des voisins du sommet
+     * @param idSom id du sommet 
+     * @return renvoie un ArrayList compose de tout les sommets qui sont relier par une arete avec le sommet dont l'id est passe en parametre
+     */
+    public ArrayList<Sommet> voisins(int idSom){
+        return sommetVoisins.get(this.getSommet(idSom));
+    }
+
+    
+    /**
+     * Ajoute une aretes entre les deux sommet specifier dans les parametre
+     * @param idSom1 id du premier sommet a relier
+     * @param idSom2 id du deuxieme sommet a relier
+     * @return revoie Vrai si l'arete a bien ete ajoute, sinon Faux
+     */
+    public boolean ajouteArete(int idSom1, int idSom2){
+        boolean ret=false;
+        if(!this.sontVoisins(idSom1, idSom2)){
+            Sommet som1 = this.getSommet(idSom1);
+            Sommet som2 = this.getSommet(idSom2);
+            ArrayList<Sommet> s1= sommetVoisins.get(som1);
+            ArrayList<Sommet> s2= sommetVoisins.get(som1);
+            if(s1==null) s1 = new ArrayList<Sommet>();
+            if(s2==null) s2 = new ArrayList<Sommet>();
+            s1.add(som2);
+            s2.add(som1);
+            sommetVoisins.replace(som1,s1);
+            sommetVoisins.replace(som2,s2);
+            ret=true;
+        }
+        return ret;
+    }
+
+
+    /**
+     * Retire une aretes entre les deux sommet specifier dans les parametre
+     * @param idSom1 id du premier sommet a retire
+     * @param idSom2 id du deuxieme sommet a retire
+     * @return revoie Vrai si l'arete a bien ete retire, sinon Faux
+     */
+    public boolean retireArete(int idSom1, int idSom2){
+        boolean ret=false;
+        if(this.sontVoisins(idSom1, idSom2)){
+            Sommet som1 = this.getSommet(idSom1);
+            Sommet som2 = this.getSommet(idSom2);
+            ArrayList<Sommet> s1= sommetVoisins.get(som1);
+            ArrayList<Sommet> s2= sommetVoisins.get(som1);
+            s1.remove(som2);
+            s2.remove(som1);
+            sommetVoisins.replace(som1,s1);
+            sommetVoisins.replace(som2,s2);
+            ret=true;
+        }
+        return ret;
+    }
+
 }
