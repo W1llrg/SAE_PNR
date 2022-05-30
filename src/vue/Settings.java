@@ -2,6 +2,8 @@ package vue;
 
 import javax.swing.*;
 
+import controler.SettingsListener;
+
 public class Settings extends JPanel {
     
     private JLabel container;
@@ -12,7 +14,14 @@ public class Settings extends JPanel {
     private JButton changePassWord;
     private JButton save;
 
-    public Settings(){
+    /** listener pour cette classe */
+    private SettingsListener listener;
+
+    public Settings(SettingsListener l) {
+
+        // verification de la validite du listener
+        if (l == null) throw new IllegalArgumentException("ERREUR FATALE: Settings: listener inconnu");
+        else this.listener = l;
 
     }
 }
