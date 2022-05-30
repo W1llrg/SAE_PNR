@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.4.2
+ * @version 1.4.3
  */
 public class Graphe{
 
@@ -296,7 +296,7 @@ public class Graphe{
      * cherche si le graphe est connex
      * @return renvoie Vrai si le graphe est connex, sinon Faux
      */
-    public boolean estConnex(){
+    public boolean estConnexe(){
         boolean ret=true;
         if(sommetVoisins.size()>0){
             Iterator it = sommetVoisins.entrySet().iterator();
@@ -310,5 +310,90 @@ public class Graphe{
         return ret;
     }
 
+    
+    public ArrayList<Graphe> composanteConnexe(){
+        ArrayList<Graphe> ret = new ArrayList<Graphe>();
+        if(this.estConnexe()) ret.add(new Graphe(this));
+        else{
+            HashMap<Sommet,ArrayList<Sommet>> sommets=new HashMap<Sommet,ArrayList<Sommet>>();
+            Graphe graphe=new Graphe(this);
+
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                sommets.put(entry.getKey(),entry.getValue());
+                graphe = new Graphe(sommets);
+
+                if(!graphe.estConnexe()){
+                    sommets.remove(entry.getKey());
+                    boolean existe=false;
+
+                    for(Graphe e : ret){
+                        if(e.estDansGraphe(entry.getKey().getId())) existe=true;
+                    }
+
+                    if(!existe){
+                        HashMap<Sommet,ArrayList<Sommet>> soms=new HashMap<Sommet,ArrayList<Sommet>>();
+                        soms.put(entry.getKey(),entry.getValue());
+                        Graphe g=new Graphe(soms);
+                        for (Map.Entry<Sommet, ArrayList<Sommet>> ent : sommetVoisins.entrySet()) {
+                            if(ent.getKey()!=entry.getKey()){
+                                soms.put(ent.getKey(),ent.getValue());
+                                g = new Graphe(soms);
+                
+                                if(!g.estConnexe()) soms.remove(entry.getKey());
+                            }
+                        }
+
+                        ret.add(g);
+                    }
+
+                }
+            }
+            ret.add(graphe);
+        }
+        return ret;
+    } 
+
+
+    public int distAretes(int idSom1,int idSom2){
+        int ret=0;
+        HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
+        if(sontVoisins(idSom1,idSom2)) ret=1;
+
+        Sommet som1 = this.getSommet(idSom1);
+        Sommet som2 = this.getSommet(idSom2);
+        if(ret!=0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
+            int[][] s1 = new int[sommetVoisins.size()][sommetVoisins.size()];
+            int i=0;
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                indSom.put(entry.getKey(),Integer.valueOf(i));
+                i++;
+            }
+            i=0;
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+                for(Sommet som : entry.getValue()){
+                    s1[i][indSom.get(som)]+=1;
+                }
+                i++;
+            }
+
+            int[][] s2 = s1;
+            int[][] res = s1;
+            int nbZero = 0;
+            while(nbZero>=(s1.length*s1[0].length) && ret!=0){
+                nbZero=0;
+                for(int j=0;j<s1.length;j++){
+                    for(int k=0;k<s1.length;k++){
+                        for(int u=0;u<s1.length;u++){
+                            res[j][k]+=s1[j][u]*s2[u][k];
+                        }
+                        if(res[j][k]==0) nbZero++;
+                    }
+                }
+                if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=res[indSom.get(som1)][indSom.get(som2)];
+                s2=res;
+            }
+        }else if(som1==null || som2==null) ret=-1;
+        return ret;
+    }
 
 }
