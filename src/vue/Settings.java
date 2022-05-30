@@ -1,6 +1,8 @@
 package vue;
 
+import controler.*;
 import javax.swing.*;
+import java.awt.*;
 
 import controler.SettingsListener;
 

@@ -1,7 +1,9 @@
 package vue;
 
+import controler.*;
 import javax.swing.*;
-import java.awt.GridLayout;
+import java.awt.*;
+
 
 public class Toolbar extends JPanel {
     

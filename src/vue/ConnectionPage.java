@@ -68,4 +68,12 @@ public class ConnectionPage extends JPanel {
         this.connexion.setText(text);
 
     }
+
+    public void connectUser(){
+        String user = this.textFieldUser.getText();
+        char[] tabPassword = this.textFieldMdp.getPassword();
+        String password = String.valueOf(tabPassword);
+
+        ConnectionDatabase c = new ConnectionDatabase(user, password);
+    }
 }

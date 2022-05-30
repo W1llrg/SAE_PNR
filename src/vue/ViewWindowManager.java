@@ -19,7 +19,7 @@ public class ViewWindowManager extends JFrame {
     private ConnectionPage connectionPage; 
 
     /** accesseur de la classe CreateAccount  */
-    // private CreateAccount createAccount; 
+    private CreateAccount createAccount; 
 
     // /** accesseur de la classe HomePage  */
     // private HomePage homePage;
@@ -36,6 +36,9 @@ public class ViewWindowManager extends JFrame {
 
     public ViewWindowManager() {
 
+        // connection a la database
+        ConnectionDatabase c = new ConnectionDatabase();
+        
         // parametres de fenetre
         setTitle("PNR");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,12 +51,15 @@ public class ViewWindowManager extends JFrame {
         // initialisation des pages
         this.connectionPage = new ConnectionPage(coPageListener);
 
+        this.createAccount = new CreateAccount();
+
         // creation du panel
         this.panel = (JPanel)this.getContentPane();
         this.panel.setLayout(new CardLayout());
 
         // ajout des pages
-        panel.add(this.connectionPage);
+        //panel.add(this.connectionPage);
+        panel.add(this.createAccount);
 
     }
 
