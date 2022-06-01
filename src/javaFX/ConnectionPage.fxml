@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.698" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="870.0" minWidth="10.0" prefWidth="866.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="630.0" minWidth="10.0" prefWidth="414.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane layoutX="247.0" layoutY="102.0" prefHeight="521.0" prefWidth="384.0" style="-fx-border-radius: 88px; -fx-background-color: #ffffff;">
+            <Pane layoutX="148.0" layoutY="40.0" prefHeight="640.0" prefWidth="485.0" style="-fx-background-color: #ffffff; -fx-background-radius: 88;">
                <effect>
                   <DropShadow height="0.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
                      <color>
@@ -20,14 +31,19 @@
                   </DropShadow>
                </effect>
                <children>
-                  <Text fill="#008f71" layoutX="61.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONNEXION" textAlignment="CENTER">
+                  <Text fill="#008f71" layoutX="82.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CONNEXION">
                      <font>
-                        <Font size="46.0" />
+                        <Font size="56.0" />
                      </font>
                   </Text>
                </children>
-            </AnchorPane>
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #008f71;" />
-  </items>
-</SplitPane>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #008f71;" GridPane.columnIndex="1">
+         <children>
+            <SVGPath content="m327.93 302.43c-24.117-22.657-42-37.206-42-37.206 2.419-1.613 5.147-2.705 8.012-3.205 7.756 9.839 20.207 24.276 34.02 40.347l-0.032 0.064zm-62.015 41.309c4.903 37.014 9.615 76.72 8.012 97.374-4.807-25.814-13.557-78.515-8.012-97.374zm-54.66-24.789 2.34-8.941 0.336 2.612c-0.881 2.067-1.762 4.182-2.676 6.329zm337.64-14.693c1.138-16.024-5.737-48.215-5.737-48.215-67.768-34.45-169.97-55.12-169.97-55.12 55.124-33.297 107.94-70.039 107.94-70.039-29.854-39.033-44.772-50.506-44.772-50.506-37.417 21.118-73.329 44.798-107.48 70.872 26.729-55.377 40.174-122.21 40.174-122.21-6.987 8.0117-30.703 81.48-51.695 131.39l-0.433 0.352c33.315-97.583 44.788-138.92 44.788-138.92l-71.197-21.856c-21.697 58.598-46.471 169.45-49.131 181.43-15.015-67.426-72.815-148.34-72.815-148.34 1.154 10.992 41.263 83.034 62.88 132.74-35.719-62.267-69.546-128.01-69.546-128.01l-89.241 44.737 72.784 109.87c-66.198-9.87-145.44 0.465-145.44 0.465 0 18.363 15.207 51.147 15.207 51.147 72.11-5.224 136.72-2.019 175.58 7.851-33.475 47.782-121.93 143.78-121.93 143.78 10.384 8.476 78.12 36.036 78.12 36.036 17.354-21.519 35.494-51.771 47.176-72.394-14.422 33.425-29.421 65.536-39.741 76.641 26.633-25.334 47.561-70.295 61.486-107.58l17.195 136.63 43.634-9.181s-1.025-4.92-2.515-12.707c6.762-28.378 4.951-64.478 0.48-97.07 49.035 43.424 105.38 114.36 105.38 114.36 45.942-19.516 55.124-30.989 55.124-30.989-14.006-24.772-33.844-50.105-54.483-73.227-25.175-39.45-63.249-76.913-82.591-94.875 43.827-6.409 177.49 16.488 250.78 42.943" fill="#ccd952" layoutX="-68.0" layoutY="127.0" scaleX="0.7" scaleY="0.7" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>
