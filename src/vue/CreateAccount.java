@@ -71,8 +71,8 @@ public class CreateAccount extends JPanel {
     public void creationCompte(){
         try{
             String user = "CREATE USER '" + this.id.getText() + "'@'localhost' IDENTIFIED BY '" + this.password.getText() + "';";
-            Statement stAddUser = c.createStatement();
-            ResultSet rsAdd = stAddUser.executeQuery(user);
+            Statement stAddUser = getConnection().createStatement();
+            ResultSet rsAddUser = stAddUser.executeQuery(user);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }catch(Exception e){

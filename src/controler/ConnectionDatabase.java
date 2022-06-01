@@ -8,7 +8,7 @@ import java.sql.*;
  * @version 1.0
  */
 public class ConnectionDatabase {
-    
+    Connection c;
     /**
      * constructeur, initialise la connexion
      */
@@ -16,7 +16,7 @@ public class ConnectionDatabase {
 
         try {
             
-            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr",user, password);
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr",user, password);
 
             //consulter bdd 
             //Statement stmt = c.createStatement();
@@ -31,5 +31,13 @@ public class ConnectionDatabase {
             System.out.println(e.getMessage());
 
         }
+    }
+
+    public Connection getConnection(){
+        return c;
+    }
+
+    public void setConnection(Connection e){
+        c = e;
     }
 }
