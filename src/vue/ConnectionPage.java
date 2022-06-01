@@ -64,9 +64,7 @@ public class ConnectionPage extends JPanel {
 
 
     public void setText(String text) {
-
         this.connexion.setText(text);
-
     }
 
     public void connectUser(){

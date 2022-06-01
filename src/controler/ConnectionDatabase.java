@@ -17,7 +17,8 @@ public class ConnectionDatabase {
         try {
             
             Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr",user, password);
-            //consulter bdd
+
+            //consulter bdd 
             //Statement stmt = c.createStatement();
             //ResultSet res = stmt.executeQuery("commande sql");
 
