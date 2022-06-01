@@ -8,7 +8,7 @@ import java.util.Iterator;
 /**
  * Cette classe represente un reseaux de sommet et leur voisin
  * @author Tristan
- * @version 1.4.3
+ * @version 1.4.4
  */
 public class Graphe{
 
@@ -175,20 +175,13 @@ public class Graphe{
         Sommet som1 = this.getSommet(idSom1);
         Sommet som2 = this.getSommet(idSom2);
         if(!ret && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
-            int[][] s1 = new int[sommetVoisins.size()][sommetVoisins.size()];
+            int[][] s1 = this.matriceAdjacence();
             int i=0;
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
                 indSom.put(entry.getKey(),Integer.valueOf(i));
                 i++;
             }
-            i=0;
-            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                for(Sommet som : entry.getValue()){
-                    s1[i][indSom.get(som)]+=1;
-                }
-                i++;
-            }
-
+            
             int[][] s2 = s1;
             int[][] res = s1;
             int nbZero = 0;
@@ -310,7 +303,11 @@ public class Graphe{
         return ret;
     }
 
-    
+
+    /**
+     * cherche tout les composantes connexes du graphe et les renvoies dans un Arraylist de graphe
+     * @return renvoie un Arraylist de graphe qui sont toute les composante connexe de celui ci
+     */
     public ArrayList<Graphe> composanteConnexe(){
         ArrayList<Graphe> ret = new ArrayList<Graphe>();
         if(this.estConnexe()) ret.add(new Graphe(this));
@@ -353,7 +350,12 @@ public class Graphe{
         return ret;
     } 
 
-
+    /**
+     * chercher et calcul la distance entre deux sommet avec leur id
+     * @param idSom1 id du premier sommet
+     * @param idSom2 id du deuxieme sommet
+     * @return renvoie la distance entre les deux sommets si un chemin existe, sinon si les deux sommets existe il renvoie 0, sinon -1
+     */
     public int distAretes(int idSom1,int idSom2){
         int ret=0;
         HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
@@ -362,20 +364,14 @@ public class Graphe{
         Sommet som1 = this.getSommet(idSom1);
         Sommet som2 = this.getSommet(idSom2);
         if(ret!=0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
-            int[][] s1 = new int[sommetVoisins.size()][sommetVoisins.size()];
+
             int i=0;
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
                 indSom.put(entry.getKey(),Integer.valueOf(i));
                 i++;
             }
-            i=0;
-            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                for(Sommet som : entry.getValue()){
-                    s1[i][indSom.get(som)]+=1;
-                }
-                i++;
-            }
 
+            int[][] s1 = this.matriceAdjacence();
             int[][] s2 = s1;
             int[][] res = s1;
             int nbZero = 0;
@@ -396,4 +392,56 @@ public class Graphe{
         return ret;
     }
 
+
+    /**
+     * cherche le sommet ayant le plus long chemin par rapport au sommet en parametre 
+     * @param idSom id du sommet
+     * @return renvoie le nombre d'arrete du sommet le plus distant 
+     */
+    public int excentricite(int idSom){
+        int ret=0;
+
+        Sommet som = this.getSommet(idSom);
+        if(ret!=0 && som!=null && this.sommetVoisins.get(som)!=null){
+
+            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : this.sommetVoisins.entrySet()) {
+                if(entry.getKey()!=som && this.distAretes(som.getId(),entry.getKey().getId())>ret){
+                    ret = this.distAretes(som.getId(),entry.getKey().getId());
+                } 
+            }      
+            
+        }else if(som==null) ret=-1;
+
+        return ret;
+    }
+
+    /**
+     * cherche le diamtre du graphe, soit la distance maximal dans un graphe
+     * @return renvoie le nombre d'arrete entre les deux sommet les plus eloigner si il n'est pas connexe, sinon renvoie -1
+     */
+    public int diametre(){
+        int ret=0;
+        if(!this.estConnexe()){
+            for(Map.Entry<Sommet, ArrayList<Sommet>> entry : this.sommetVoisins.entrySet()){
+                int res = this.excentricite(entry.getKey().getId());
+                if(res>ret)ret=res;
+            }
+        }else ret=-1;
+        return ret;
+    }
+
+    /**
+     * cherche le rayon du graphe, soit la distance minimal dans un graphe
+     * @return retourne le minimum des excentricites. Si le rayon est calcule sur un graphe non connexe, retourner -1.
+     */
+    public int rayon(){
+        int ret=0;
+        if(!this.estConnexe()){
+            for(Map.Entry<Sommet, ArrayList<Sommet>> entry : this.sommetVoisins.entrySet()){
+                int res = this.excentricite(entry.getKey().getId());
+                if(res<ret)ret=res;
+            }
+        }else ret=-1;
+        return ret;
+    }
 }
