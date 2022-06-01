@@ -4,6 +4,7 @@ import controler.*;
 import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.Color;
+import java.sql.*;
 
 public class CreateAccount extends JPanel {
     
@@ -66,7 +67,15 @@ public class CreateAccount extends JPanel {
         this.add(this.user);
         this.add(this.admin);
 
-        
+    }
 
+    public void creationCompte(){
+        try{
+            String user = "CREATE USER '" + this.id.getText() + "'@'localhost' IDENTIFIED BY '" + this.password.getText() + "';";
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }   
