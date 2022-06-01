@@ -17,6 +17,9 @@ public class Graphe{
      * liste sommet et de ces voisins
      */
     private HashMap<Sommet,ArrayList<Sommet>> sommetVoisins;
+
+
+    
     
     /**
      * Constructeur de Graphe, prend les sommets d'un Arraylist un a un et les compares aux autre pour voir si il sont voisin grace a
@@ -42,6 +45,8 @@ public class Graphe{
     }
     
 
+
+
     /**
      * Construteur de Graphe, utilise un HashMap directement en parametre pour l'atribut
      * @param somVoisins
@@ -50,6 +55,8 @@ public class Graphe{
         if(somVoisins!=null) this.sommetVoisins=somVoisins;
         else throw new IllegalArgumentException("Erreur Graphe : constructeur : parametre invalide");
     }
+
+
 
     /**
      * constructeur de Graphe par copie
@@ -61,6 +68,8 @@ public class Graphe{
     }
 
     
+
+
     /**
      * cherche et renvoie le sommet du graphe avec le même id
      * @param idSom id du sommet a cherche 
@@ -91,6 +100,9 @@ public class Graphe{
         return sommetVoisins.size();
     }
 
+
+
+
     /**
      * renvoie le nombre d'arrete du graphe
      * @return renvoie le nombre d'arret entre les differents sommets du graphe
@@ -105,6 +117,8 @@ public class Graphe{
         return res/2;
     }
 
+
+
     /**
      * regarde si un sommet est présent de le graphe
      * @param idSom id du sommet a cherche 
@@ -115,6 +129,9 @@ public class Graphe{
         if(getSommet(idSom)!=null) ret =true;
         return ret;
     }
+
+
+
 
     /**
      * calcul le degre d'un sommet du graphe
@@ -127,6 +144,8 @@ public class Graphe{
         if(som!=null) ret = sommetVoisins.get(som).size();
         return ret;
     }
+
+
 
 
     /**
@@ -146,6 +165,8 @@ public class Graphe{
     }
 
     
+
+
     /**
      * cherche si deux sommet sont reliers par une arete
      * @param idSom1 id du premier sommet a chercher 
@@ -161,6 +182,8 @@ public class Graphe{
         return ret;
     }
     
+
+
 
     /**
      * chercher si un sommet peut parcourire un chemin d'aretes pour arrive a un autre sommet 
@@ -205,6 +228,10 @@ public class Graphe{
         return ret;
     }
 
+
+
+
+
     /**
      * revoie la list des voisins du sommet
      * @param idSom id du sommet 
@@ -215,6 +242,9 @@ public class Graphe{
     }
 
     
+
+
+
     /**
      * Ajoute une aretes entre les deux sommet specifier dans les parametre
      * @param idSom1 id du premier sommet a relier
@@ -240,6 +270,8 @@ public class Graphe{
     }
 
 
+    
+
     /**
      * Retire une aretes entre les deux sommet specifier dans les parametre
      * @param idSom1 id du premier sommet a retire
@@ -261,6 +293,8 @@ public class Graphe{
         }
         return ret;
     }
+
+
 
 
     /**
@@ -286,6 +320,9 @@ public class Graphe{
     }
 
 
+
+
+
     /**
      * cherche si le graphe est connex
      * @return renvoie Vrai si le graphe est connex, sinon Faux
@@ -303,6 +340,9 @@ public class Graphe{
         }
         return ret;
     }
+
+
+
 
 
     /**
@@ -351,6 +391,11 @@ public class Graphe{
         return ret;
     } 
 
+
+
+
+
+
     /**
      * chercher et calcul la distance entre deux sommet avec leur id
      * @param idSom1 id du premier sommet
@@ -394,6 +439,9 @@ public class Graphe{
     }
 
 
+
+
+
     /**
      * cherche le sommet ayant le plus long chemin par rapport au sommet en parametre 
      * @param idSom id du sommet
@@ -416,6 +464,9 @@ public class Graphe{
         return ret;
     }
 
+
+
+
     /**
      * cherche le diamtre du graphe, soit le nombre d'aretes maximal entre deux sommet dans un graphe
      * @return renvoie le nombre d'arrete entre les deux sommet les plus eloigner si il n'est pas connexe, sinon renvoie -1
@@ -433,6 +484,7 @@ public class Graphe{
 
 
 
+
     /**
      * cherche le rayon du graphe, soit le nombre d'aretes entre deux sommet minimal dans un graphe
      * @return retourne le minimum des excentricites. Si le rayon est calcule sur un graphe non connexe, retourner -1.
@@ -447,6 +499,9 @@ public class Graphe{
         }else ret=-1;
         return ret;
     }
+
+
+
 
 
 
@@ -502,6 +557,10 @@ public class Graphe{
         return ret;
     }
 
+
+
+
+
     /**
      * cherche la cle(sommet) correspondant a la valeur(index)
      * @param indSom hasmap qui assosie des sommets a un index
@@ -515,6 +574,9 @@ public class Graphe{
         }
         return ret;
     }
+
+
+
 
     /**
      * cherche la distance maximale du chemin entre le sommet en parametre et les autres sommets du graphe
@@ -540,6 +602,8 @@ public class Graphe{
     }
 
 
+
+
     /**
      * cherche le diamtre du graphe, soit la distance maximal dans un graphe
      * @return renvoie la distance maximum entre les deux sommet les plus eloigner si il ests connexe, sinon renvoie -1
@@ -557,6 +621,7 @@ public class Graphe{
 
 
 
+
     /**
      * cherche le rayon du graphe, soit la distance minimal dans un graphe
      * @return renvoie la distance minimum entre les deux sommet les plus eloigner si il ests connexe, sinon renvoie -1
@@ -571,6 +636,8 @@ public class Graphe{
         }else ret=-1;
         return ret;
     }
+
+
 
 
     /**
@@ -607,8 +674,23 @@ public class Graphe{
         return ret;
     }
 
+
+
+    /**
+     * cree un graphe avec le quelle tout les sommets avec un chemin existant vers un autre devient sont voisin
+     * @return renvoie le nouveau graphe cree
+     */
     public Graphe clotureTransitive(){
-        Graphe ret=new Graphe(this);
-        return ret;
+        HashMap<Sommet,ArrayList<Sommet>> soms=this.sommetVoisins;
+        for (Map.Entry<Sommet, ArrayList<Sommet>> entry : soms.entrySet()) {
+            for(Map.Entry<Sommet, ArrayList<Sommet>> ent : soms.entrySet()){
+                if(this.existeChemin(entry.getKey().getId(),ent.getKey().getId()) && !this.sontVoisins(entry.getKey().getId(), ent.getKey().getId())){
+                    entry.getValue().add(ent.getKey());
+                    ent.getValue().add(entry.getKey());
+                }
+            }
+        }
+
+        return new Graphe(soms);
     }
 }
