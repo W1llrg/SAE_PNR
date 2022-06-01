@@ -6,8 +6,7 @@ import java.awt.GridLayout;
 import java.awt.Color;
 import java.sql.*;
 
-public class CreateAccount extends JPanel {
-    
+public class CreateAccount extends JPanel {    
     private JLabel nouveauCompteTitre;
 
     private JButton user;
@@ -72,6 +71,8 @@ public class CreateAccount extends JPanel {
     public void creationCompte(){
         try{
             String user = "CREATE USER '" + this.id.getText() + "'@'localhost' IDENTIFIED BY '" + this.password.getText() + "';";
+            Statement stAddUser = c.createStatement();
+            ResultSet rsAdd = stAddUser.executeQuery(user);
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }catch(Exception e){
