@@ -17,7 +17,7 @@ public class Sommet {
     private int id;
 
     /**
-     * coordonne du sommet
+     * coordonnee du sommet
      */
     private Lieu coordLieu;
 
@@ -33,7 +33,7 @@ public class Sommet {
 
 
     /**
-     * constructeur de Sommet, prend tout les attributs en parametre
+     * constructeur de sommet, prend tous les attributs en parametre
      * @param id l'id du sommet
      * @param coord les coordonnees du sommet
      * @param date la date du  sommet
@@ -49,7 +49,7 @@ public class Sommet {
      }
 
     /**
-     * constructeur de sommet, recupere tous les attributs vias les getter de observation
+     * constructeur de sommet, recupere tous les attributs via les getter de observation
      * @param obs l'observation dont on recupere tous les attributs
      */
     public Sommet(Observation obs){
@@ -57,15 +57,15 @@ public class Sommet {
             this.id=obs.getIdObs();
             this.coordLieu =obs.getLieuObs();
             this.date=obs.getDateObs();
-           // this.espece=obs.EspeceObservee();
+            this.espece=obs.especeObs();
         }
     } 
 
 
     /**
-     * Cette methode calcul la distance entre un sommet en parametre et celui courant
-     * @param som le deuxième sommet pour calculer la distance
-     * @return renvoie la distance calculer entre deux sommet
+     * Cette methode calcule la distance entre un sommet en parametre et celui courant
+     * @param som le deuxieme sommet pour calculer la distance
+     * @return renvoie la distance calculee entre deux sommets
      */
     public double calculeDist(Sommet som){
         double x1=som.coordLieu.getXCoord();
@@ -109,7 +109,7 @@ public class Sommet {
 
     /**
      * setter de id
-     * @param idSom nouvelle id du sommet
+     * @param idSom nouvel id du sommet
      */
     public void setId(int idSom){
         this.id=idSom;

@@ -6,21 +6,21 @@ import java.util.Map;
 import java.util.Iterator;
 
 /**
- * Cette classe represente un reseaux de sommet et leur voisin
+ * Cette classe represente un reseaux de sommets et leurs voisins
  * @author Tristan
  * @version 1.4.4
  */
 public class Graphe{
 
     /**
-     * liste sommet et de ces voisins
+     * liste des sommets et de ses voisins
      */
     private HashMap<Sommet,ArrayList<Sommet>> sommetVoisins;
     
     /**
-     * Constructeur de Graphe, prend les sommets d'un Arraylist un a un et les compares aux autre pour voir si il sont voisin grace a
-     * une distance donnee. Si il sont voisin alors on l'ajoute dans un ArrayList, puis on met cette ArrayList de sommet voisin avec le 
-     * sommet dans l'HashMap. Le sommet est la cle tandis que l'ArrayList de sommet voisin et la valeur
+     * Constructeur de Graphe, prend les sommets d'une Arraylist un a un et les compare aux autres pour voir si ils sont voisins grace a
+     * une distance donnee. Si ils sont voisins alors on l'ajoute dans une ArrayList, puis on met cette ArrayList de sommets voisins avec le 
+     * sommet dans l'HashMap. Le sommet est la cle tandis que l'ArrayList de sommets voisins est la valeur
      * @param sommets arraylist de sommet a compare
      * @param dist distance de comparaison, cette distance doit etre superieur au sommet voisin
      */
@@ -42,7 +42,7 @@ public class Graphe{
     
 
     /**
-     * Construteur de Graphe, utilise un HashMap directement en parametre pour l'atribut
+     * Construteur de Graphe, utilise un HashMap directement en parametre pour l'attribut
      * @param somVoisins
      */
     public Graphe (HashMap<Sommet, ArrayList<Sommet>> somVoisins){
@@ -61,8 +61,8 @@ public class Graphe{
 
     
     /**
-     * cherche et renvoie le sommet du graphe avec le même id
-     * @param idSom id du sommet a cherche 
+     * Cherche et renvoie le sommet du graphe avec le même id
+     * @param idSom id du sommet a chercher
      * @return renvoie null si le sommet n'est pas dans le graphe sinon il renvoie le sommet
      */
     public Sommet getSommet(int idSom){
@@ -83,16 +83,16 @@ public class Graphe{
 
 
     /**
-     * cette methode permet de renvoie le nombre de sommet 
-     * @return renvoie la nombre de cle de sommetVoisins
+     * cette methode permet de renvoyer le nombre de sommets
+     * @return renvoie le nombre de cle de sommetVoisins
      */
     public int nbSommets(){
         return sommetVoisins.size();
     }
 
     /**
-     * renvoie le nombre d'arrete du graphe
-     * @return renvoie le nombre d'arret entre les differents sommets du graphe
+     * renvoie le nombre d'arretes du graphe
+     * @return renvoie le nombre d'arretes entre les differents sommets du graphe
      * @version 1.2
      */
     public int nbAretes(){
@@ -105,8 +105,8 @@ public class Graphe{
     }
 
     /**
-     * regarde si un sommet est présent de le graphe
-     * @param idSom id du sommet a cherche 
+     * regarde si un sommet est present de le graphe
+     * @param idSom id du sommet a chercher
      * @return renvoie Vrai si le sommet est bien de le graphe sinon la methode renvoie Faux
      */
     public boolean estDansGraphe(int idSom){
@@ -116,7 +116,7 @@ public class Graphe{
     }
 
     /**
-     * calcul le degre d'un sommet du graphe
+     * calcule le degre d'un sommet du graphe
      * @param idSom id du sommet dont on doit calculer le degre
      * @return renvoie le degre du sommet designe en parametre
      */
@@ -129,8 +129,8 @@ public class Graphe{
 
 
     /**
-     * calcul tout les degres du graphe pour chaque sommet
-     * @return renvoie un HasMap contenent la le sommet(cle) et son degre(valeur)
+     * calcule tous les degres du graphe pour chaque sommet
+     * @return renvoie un HasMap contenent la/le sommet(cle) et son degre(valeur)
      */
     public HashMap<Sommet,Integer> calculeDegres(){
         HashMap<Sommet,Integer> ret= new HashMap<Sommet,Integer>();
@@ -146,10 +146,10 @@ public class Graphe{
 
     
     /**
-     * cherche si deux sommet sont reliers par une arete
+     * cherche si deux sommets sont relies par une arrete
      * @param idSom1 id du premier sommet a chercher 
-     * @param idSom2 id du deuxieme sommet a cherceher
-     * @return renvoie Vrai si les sommets sont relier par une arete, sinon Faux
+     * @param idSom2 id du deuxieme sommet a chercher
+     * @return renvoie Vrai si les sommets sont relies par une arrete, sinon Faux
      */
     public boolean sontVoisins(int idSom1, int idSom2){
         boolean ret=false;
@@ -162,9 +162,9 @@ public class Graphe{
     
 
     /**
-     * chercher si un sommet peut parcourire un chemin d'aretes pour arrive a un autre sommet 
-     * @param idSom1 id du premier sommet a chercher le chemin
-     * @param idSom2 id du deuxieme sommet a chercher le chemin
+     * chercher si un sommet peut parcourir un chemin d'arretes pour arriver a un autre sommet 
+     * @param idSom1 id du premier sommet dont on doit chercher le chemin
+     * @param idSom2 id du deuxieme sommet dont on doit chercher le chemin
      * @return renvoie Vrai si il existe un chemin entre les deux sommets, sinon Faux
      */
     public boolean existeChemin(int idSom1, int idSom2){
@@ -205,9 +205,9 @@ public class Graphe{
     }
 
     /**
-     * revoie la list des voisins du sommet
+     * renvoie la liste des voisins du sommet
      * @param idSom id du sommet 
-     * @return renvoie un ArrayList compose de tout les sommets qui sont relier par une arete avec le sommet dont l'id est passe en parametre
+     * @return renvoie une ArrayList compose de tous les sommets qui sont relies par une arrete avec le sommet dont l'id est passe en parametre
      */
     public ArrayList<Sommet> voisins(int idSom){
         return sommetVoisins.get(this.getSommet(idSom));
@@ -215,10 +215,10 @@ public class Graphe{
 
     
     /**
-     * Ajoute une aretes entre les deux sommet specifier dans les parametre
+     * Ajoute une arrete entre les deux sommets specifiee en parametre
      * @param idSom1 id du premier sommet a relier
      * @param idSom2 id du deuxieme sommet a relier
-     * @return revoie Vrai si l'arete a bien ete ajoute, sinon Faux
+     * @return renvoie Vrai si l'arrete a bien ete ajoutee, sinon Faux
      */
     public boolean ajouteArete(int idSom1, int idSom2){
         boolean ret=false;
@@ -240,10 +240,10 @@ public class Graphe{
 
 
     /**
-     * Retire une aretes entre les deux sommet specifier dans les parametre
+     * Retire une arrete entre les deux sommets specifies dans les parametres
      * @param idSom1 id du premier sommet a retire
      * @param idSom2 id du deuxieme sommet a retire
-     * @return revoie Vrai si l'arete a bien ete retire, sinon Faux
+     * @return renvoie Vrai si l'arrete a bien ete retiree, sinon Faux
      */
     public boolean retireArete(int idSom1, int idSom2){
         boolean ret=false;
@@ -263,7 +263,7 @@ public class Graphe{
 
 
     /**
-     * cree et renvoie la matrice d'adjacence du graphe
+     * creer et renvoie la matrice d'adjacence du graphe
      * @return renvoie une matrice d'adjacence du graphe
      */
     public int[][] matriceAdjacence(){
@@ -286,8 +286,8 @@ public class Graphe{
 
 
     /**
-     * cherche si le graphe est connex
-     * @return renvoie Vrai si le graphe est connex, sinon Faux
+     * cherche si le graphe est connexe
+     * @return renvoie Vrai si le graphe est connexe, sinon Faux
      */
     public boolean estConnexe(){
         boolean ret=true;
@@ -305,8 +305,8 @@ public class Graphe{
 
 
     /**
-     * cherche tout les composantes connexes du graphe et les renvoies dans un Arraylist de graphe
-     * @return renvoie un Arraylist de graphe qui sont toute les composante connexe de celui ci
+     * cherche tous les composantes connexes du graphe et les renvoies dans une Arraylist de graphe
+     * @return renvoie une Arraylist de graphe composee de tout les composants connexes de celui ci
      */
     public ArrayList<Graphe> composanteConnexe(){
         ArrayList<Graphe> ret = new ArrayList<Graphe>();
@@ -351,10 +351,10 @@ public class Graphe{
     } 
 
     /**
-     * chercher et calcul la distance entre deux sommet avec leur id
+     * chercher et calculer la distance entre deux sommets avec leur id
      * @param idSom1 id du premier sommet
      * @param idSom2 id du deuxieme sommet
-     * @return renvoie la distance entre les deux sommets si un chemin existe, sinon si les deux sommets existe il renvoie 0, sinon -1
+     * @return renvoie la distance entre les deux sommets si un chemin existe, si les deux sommets existent il renvoie 0, sinon -1
      */
     public int distAretes(int idSom1,int idSom2){
         int ret=0;
@@ -396,7 +396,7 @@ public class Graphe{
     /**
      * cherche le sommet ayant le plus long chemin par rapport au sommet en parametre 
      * @param idSom id du sommet
-     * @return renvoie le nombre d'arrete du sommet le plus distant 
+     * @return renvoie le nombre d'arretes du sommet le plus distant 
      */
     public int excentricite(int idSom){
         int ret=0;
@@ -416,8 +416,8 @@ public class Graphe{
     }
 
     /**
-     * cherche le diamtre du graphe, soit la distance maximal dans un graphe
-     * @return renvoie le nombre d'arrete entre les deux sommet les plus eloigner si il n'est pas connexe, sinon renvoie -1
+     * cherche le diametre du graphe, soit la distance maximale dans un graphe
+     * @return renvoie le nombre d'arretes entre les deux sommets les plus eloignes si il n'est pas connexe, sinon renvoie -1
      */
     public int diametre(){
         int ret=0;
@@ -431,8 +431,8 @@ public class Graphe{
     }
 
     /**
-     * cherche le rayon du graphe, soit la distance minimal dans un graphe
-     * @return retourne le minimum des excentricites. Si le rayon est calcule sur un graphe non connexe, retourner -1.
+     * cherche le rayon du graphe, soit la distance minimale dans un graphe
+     * @return retourne le minimum des excentricites. Si le rayon est calcule sur un graphe non connexe, retourne -1.
      */
     public int rayon(){
         int ret=0;
