@@ -11,7 +11,7 @@ public class Loader extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         
-        primaryStage.setTitle("FXML TableView Example");
+        primaryStage.setTitle("Page de Connection");
         Pane myPane =(Pane)FXMLLoader.load(getClass().getResource("ConnectionPage.fxml"));
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
