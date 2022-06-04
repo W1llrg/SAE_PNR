@@ -12,7 +12,7 @@ public class Loader extends Application {
     public void start(Stage primaryStage) throws Exception {
         
         primaryStage.setTitle("FXML TableView Example");
-        Pane myPane =(Pane)FXMLLoader.load(getClass().getResource("ConnectionPage.fxml"));
+        Pane myPane =(Pane)FXMLLoader.load(getClass().getResource("HomePage.fxml"));
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
         primaryStage.show();
