@@ -200,28 +200,37 @@ public class Graphe{
         Sommet som2 = this.getSommet(idSom2);
         if(!ret && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
             int[][] s1 = this.matriceAdjacence();
+            
             int i=0;
+            int tab[] = new int[this.sommetVoisins.size()];
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                indSom.put(entry.getKey(),Integer.valueOf(i));
+                tab[i]=entry.getKey().getId();
                 i++;
+            }
+            Arrays.sort(tab);
+            
+            for (int j=0;j<tab.length;j++) {
+                indSom.put(this.getSommet(tab[j]),j);
             }
             
             int[][] s2 = s1;
             int[][] res = s1;
             int nbZero = 0;
-            while(nbZero>=(s1.length*s1[0].length) && !ret){
+            while(nbZero<(res.length*res.length) && !ret){
                 nbZero=0;
                 for(int j=0;j<s1.length;j++){
                     for(int k=0;k<s1.length;k++){
+                        res[j][k+1]=0;
                         for(int u=0;u<s1.length;u++){
-                            res[j][k]+=s1[j][u]*s2[u][k];
+                            res[j][k+1]+=s1[j][u+1]*s2[u][k+1];
                         }
-                        if(res[j][k]==0) nbZero++;
+                        if(res[j][k+1]==0) nbZero++;
                     }
                 }
-                if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=true;
+                if(res[indSom.get(som1)][indSom.get(som2)+1]>=1) ret=true;
                 s2=res;
             }
+            
         }
 
 
@@ -425,23 +434,29 @@ public class Graphe{
         if(ret!=0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
 
             int i=0;
+            int tab[] = new int[this.sommetVoisins.size()];
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                indSom.put(entry.getKey(),Integer.valueOf(i));
+                tab[i]=entry.getKey().getId();
                 i++;
+            }
+            Arrays.sort(tab);
+            
+            for (int j=0;j<tab.length;j++) {
+                indSom.put(this.getSommet(tab[j]),j);
             }
 
             int[][] s1 = this.matriceAdjacence();
             int[][] s2 = s1;
             int[][] res = s1;
             int nbZero = 0;
-            while(nbZero>=(s1.length*s1[0].length) && ret!=0){
+            while(nbZero<(res.length*res.length) && ret!=0){
                 nbZero=0;
                 for(int j=0;j<s1.length;j++){
                     for(int k=0;k<s1.length;k++){
                         for(int u=0;u<s1.length;u++){
-                            res[j][k]+=s1[j][u]*s2[u][k];
+                            res[j][k+1]+=s1[j][u+1]*s2[u][k+1];
                         }
-                        if(res[j][k]==0) nbZero++;
+                        if(res[j][k+1]==0) nbZero++;
                     }
                 }
                 if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=res[indSom.get(som1)][indSom.get(som2)];
@@ -537,14 +552,20 @@ public class Graphe{
             HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
             double[][] s1 = new double[sommetVoisins.size()][sommetVoisins.size()];
             int i=0;
+            int tab[] = new int[this.sommetVoisins.size()];
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                indSom.put(entry.getKey(),Integer.valueOf(i));
+                tab[i]=entry.getKey().getId();
                 i++;
+            }
+            Arrays.sort(tab);
+            
+            for (int j=0;j<tab.length;j++) {
+                indSom.put(this.getSommet(tab[j]),j);
             }
             i=0;
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
                 for(Sommet som : entry.getValue()){
-                    s1[i][indSom.get(som)]+=som.calculeDist(this.getSommetOfIndex(indSom,i));
+                    s1[i][indSom.get(som)+1]+=som.calculeDist(this.getSommetOfIndex(indSom,i));
                 }
                 i++;
             }
@@ -552,14 +573,14 @@ public class Graphe{
             double[][] s2 = s1;
             double[][] res = s1;
             int nbZero = 0;
-            while(nbZero>=(s1.length*s1[0].length) && ret!=0){
+            while(nbZero<(res.length*res.length) && ret!=0){
                 nbZero=0;
                 for(int j=0;j<s1.length;j++){
                     for(int k=0;k<s1.length;k++){
                         for(int u=0;u<s1.length;u++){
-                            res[j][k]+=s1[j][u]*s2[u][k];
+                            res[j][k+1]+=s1[j][u+1]*s2[u][k+1];
                         }
-                        if(res[j][k]==0) nbZero++;
+                        if(res[j][k+1]==0) nbZero++;
                     }
                 }
                 if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=res[indSom.get(som1)][indSom.get(som2)];
@@ -676,11 +697,14 @@ public class Graphe{
         for (int j=0;j<tab.length;j++) {
             indSom.put(this.getSommet(tab[j]),j);
         }
+
+
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-            
-            for(Sommet som : entry.getValue()){
-                ret[i][indSom.get(som)+1]+=som.calculeDist(this.getSommetOfIndex(indSom,i));
-                if(i==0) ret[indSom.get(som)][i]=som.getId();
+            ret[indSom.get(entry.getKey())][0]=entry.getKey().getId();
+            if(entry.getValue()!=null){
+                for(Sommet som : entry.getValue()){
+                    ret[indSom.get(entry.getKey())][indSom.get(som)+1]+=som.calculeDist(this.getSommetOfIndex(indSom,i));
+                }
             }
             i++;
         }

@@ -81,9 +81,30 @@ public class ScenarioTraitement {
         System.out.println("\n\ntest estConnexe()\n" + separator);
         testEstConnexe(g);
 
+        System.out.println("\n\ntest composanteConnexe()\n" + separator);
 
+        System.out.println("\n\ntest distAretes()\n" + separator);
 
+        System.out.println("\n\ntest excentricite()\n" + separator);
 
+        System.out.println("\n\ntest diametre()\n" + separator);
+        testDiametre(g);
+
+        System.out.println("\n\ntest rayon()\n" + separator);
+
+        System.out.println("\n\ntest gCalculeDist()\n" + separator);
+
+        System.out.println("\n\ntest getSommetOfIndex()\n" + separator);
+
+        System.out.println("\n\ntest excentriciteDist()\n" + separator);
+
+        System.out.println("\n\ntest diametreDist()\n" + separator);
+
+        System.out.println("\n\ntest rayonDist()\n" + separator);
+
+        System.out.println("\n\ntest matricePonderation()\n" + separator);
+
+        System.out.println("\n\ntest clotureTransitive()\n" + separator);
         
         // System.out.println("Nombre de sommet :"+g.nbSommets());
         // System.out.println("Nombre d'arret :"+g.nbAretes());
@@ -102,6 +123,10 @@ public class ScenarioTraitement {
         Sommet s4= new Sommet(4,new Lieu(9,3),Date.valueOf("2022-01-16"),EspeceObservee.LOUTRE);
         Sommet s5= new Sommet(5,new Lieu(78,39),Date.valueOf("2022-01-30"),EspeceObservee.LOUTRE);
         Sommet s6= new Sommet(6,new Lieu(23,45),Date.valueOf("2022-01-17"),EspeceObservee.LOUTRE);
+
+        // sommets additionnels pour des tests au niveau de existeChemin()
+        Sommet s7= new Sommet(7,new Lieu(13,25),Date.valueOf("2022-02-17"),EspeceObservee.LOUTRE);
+        Sommet s8= new Sommet(8,new Lieu(56,56),Date.valueOf("2021-02-17"),EspeceObservee.LOUTRE);
         
         ArrayList<Sommet> sommets = new ArrayList<Sommet>();
         sommets.add(s1);
@@ -110,6 +135,8 @@ public class ScenarioTraitement {
         sommets.add(s4);
         sommets.add(s5);
         sommets.add(s6);
+        sommets.add(s7);
+        sommets.add(s8);
 
         return sommets;
     
@@ -144,6 +171,14 @@ public class ScenarioTraitement {
         ArrayList<Sommet> voisins6 = new ArrayList<Sommet>();
         voisins6.add(sommets.get(3));
 
+
+        // sommets additionnels pour des tests au niveau de existeChemin()
+        ArrayList<Sommet> voisins7 = new ArrayList<Sommet>();
+        voisins7.add(sommets.get(7));
+
+        ArrayList<Sommet> voisins8 = new ArrayList<Sommet>();
+        voisins8.add(sommets.get(6));
+
         //Creation du HashMap
         HashMap<Sommet,ArrayList<Sommet>> mapGraph = new HashMap<Sommet,ArrayList<Sommet>>(); 
         mapGraph.put(sommets.get(0), voisins1);
@@ -152,6 +187,8 @@ public class ScenarioTraitement {
         mapGraph.put(sommets.get(3), voisins4);
         mapGraph.put(sommets.get(4), null);
         mapGraph.put(sommets.get(5), voisins6);
+        mapGraph.put(sommets.get(6), voisins7);
+        mapGraph.put(sommets.get(7), voisins8);
 
         return mapGraph;
 
@@ -196,8 +233,8 @@ public class ScenarioTraitement {
         System.out.println("Est-il dans le graphe ? (id = 2): " + t1);
 
         // test false
-        Boolean t2 = g.estDansGraphe(7);
-        System.out.println("Est-il dans le graphe ? (id = 7): " + t2);
+        Boolean t2 = g.estDansGraphe(99);
+        System.out.println("Est-il dans le graphe ? (id = 99): " + t2);
         
     }
 
@@ -211,8 +248,8 @@ public class ScenarioTraitement {
         System.out.println("Resultat test (id = 1): " + t1);
 
         // test false
-        int t2 = g.calculeDegre(7);
-        System.out.println("Resultat test (id = 7): " + t2);
+        int t2 = g.calculeDegre(99);
+        System.out.println("Resultat test (id = 99): " + t2);
         
     }
 
@@ -270,8 +307,8 @@ public class ScenarioTraitement {
         System.out.println("Resultat test (sommet 0 et sommet 0): " + t3);
 
         //test faux
-        boolean t2 = g.sontVoisins(6,7);
-        System.out.println("Resultat test (sommet 6 et sommet 7): " + t2);
+        boolean t2 = g.sontVoisins(6,99);
+        System.out.println("Resultat test (sommet 6 et sommet 99): " + t2);
 
     }
 
@@ -284,13 +321,19 @@ public class ScenarioTraitement {
         boolean t1 = g.existeChemin(1,2);
         System.out.println("Resultat test (sommet 1 et sommet 2): " + t1);
 
+        boolean t4 = g.existeChemin(6,2);
+        System.out.println("Resultat test (sommet 6 et sommet 2): " + t4);
+
+        boolean t5 = g.existeChemin(7,2);
+        System.out.println("Resultat test (sommet 7 et sommet 2): " + t5);
+
         //cas limite
         boolean t3 = g.existeChemin(0,0);
         System.out.println("Resultat test (sommet 0 et sommet 0): " + t3);
 
         //test faux
-        boolean t2 = g.existeChemin(4,7);
-        System.out.println("Resultat test (sommet 4 et sommet 7): " + t2);
+        boolean t2 = g.existeChemin(4,99);
+        System.out.println("Resultat test (sommet 4 et sommet 99): " + t2);
 
     }
 
@@ -414,10 +457,107 @@ public class ScenarioTraitement {
      * @param g un Graphe
      */
     public static void testComposanteConnexe(Graphe g) {
+
         // test avec le graphe donne en parametre
+        ArrayList<Graphe> v1 = g.composanteConnexe();
 
-        ArrayList<Sommet> v1 = g.voisins(1);
+        if (v1 != null) {
+            for (Graphe graph : v1) {
+                int i = 0;
+                Sommet gra = graph.getSommet(i);
+                System.out.print(gra + " ");
+                i++;
 
+            } 
+
+        } else System.out.println("none");
         
     }
+
+    /**
+     * teste la methode distAretes() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testDistAretes(Graphe g) {
+
+
+
+    }
+
+    /**
+     * teste la methode excentricite() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testExcentricite(Graphe g) {
+    
+    
+        
+    }
+
+    /**
+     * teste la methode diametre() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testDiametre(Graphe g) {
+        //test du diametre du graph en parametre
+        int test = g.diametre();
+
+        System.out.println("Le diametre du graphe est de" + test);        
+    }
+
+    /**
+     * teste la methode rayon() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testRayon(Graphe g) {
+    
+    
+        
+    }
+
+    //#region methodes supplementaires
+
+    public static void testGCalculeDist(Graphe g) {
+
+
+
+    }
+
+    public static void testGetSommetOfIndex(Graphe g) {
+
+
+
+    }
+
+    public static void testExcentriciteDist(Graphe g) {
+
+
+
+    }
+
+    public static void testDiametreDist(Graphe g) {
+
+
+
+    }
+
+    public static void testRayonDist(Graphe g) {
+
+
+
+    }
+
+    public static void testMatricePonderation(Graphe g) {
+
+
+
+    }
+
+    public static void testClotureTransitive(Graphe g) {
+
+
+
+    }
+    //#endregion methodes supplementaires
+
 }
