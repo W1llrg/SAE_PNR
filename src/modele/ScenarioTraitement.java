@@ -62,12 +62,26 @@ public class ScenarioTraitement {
 
         System.out.println("\n\ntest nbAretes()\n" + separator);
         testNbAretes(g);        
-
+    
         System.out.println("\n\ntest matriceAdjacence()\n" + separator);
         testMatriceAdjacence(g);
-                    
+
         System.out.println("\n\ntest existeChemin()\n" + separator);
         testExisteChemin(g);
+                    
+        System.out.println("\n\ntest voisins()\n" + separator);
+        testVoisins(g);
+
+        System.out.println("\n\ntest ajouteArete()\n" + separator);
+        testAjouteArete(g);
+
+        System.out.println("\n\ntest retireArete()\n" + separator);
+        testRetireArete(g);
+
+        System.out.println("\n\ntest estConnexe()\n" + separator);
+        testEstConnexe(g);
+
+
 
 
         
@@ -280,6 +294,10 @@ public class ScenarioTraitement {
 
     }
 
+    /**
+     * teste la methode matriceAdjacence() de la classe Graphe
+     * @param g un Graphe
+     */
     public static void testMatriceAdjacence(Graphe g) {
 
         int[][] matrice = g.matriceAdjacence();
@@ -292,5 +310,114 @@ public class ScenarioTraitement {
             System.out.println();
         }
 
+    }
+
+    /**
+     * teste la methode voisins() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testVoisins(Graphe g) {
+
+        System.out.println("\nVoisins du sommet 1 (2 et 4) : ");
+        ArrayList<Sommet> v1 = g.voisins(1);
+        
+        if (v1 != null) {
+            for (Sommet sommet : v1) {
+                    
+                    int s = sommet.getId();
+                    System.out.print(s + " ");
+
+            }
+        } else System.out.println("none");
+
+
+        System.out.println("\nVoisins du sommet 4 (1 2 3 et 6) : ");
+        ArrayList<Sommet> v2 = g.voisins(4);
+
+        if (v2 != null) {
+            for (Sommet sommet : v2) {
+                    
+                    int s = sommet.getId();
+                    System.out.print(s + " ");
+                
+            }
+        } else System.out.println("none");
+
+
+        System.out.println("\nVoisins du sommet 5 (aucun) : ");
+        ArrayList<Sommet> v3 = g.voisins(5);
+
+        if (v3 != null) {
+            for (Sommet sommet : v3) {
+                    
+                    int s = sommet.getId();
+                    System.out.print(s + " ");
+
+            }
+        } else System.out.println("none");
+
+    }
+
+    /**
+     * teste la methode ajouteArete() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testAjouteArete(Graphe g) {
+
+        System.out.println("chemin entre le sommet 4 et 5 (aucun) : ");
+        System.out.println("Existe chemin ? :" + g.existeChemin(4, 5) + "\n");
+
+        // creation d'un chemin
+        g.ajouteArete(4, 5);
+
+        System.out.println("chemin entre le sommet 4 et 5 (doit etre a true) : ");
+        System.out.println("Existe chemin ? :" + g.existeChemin(4, 5) + "\n");
+
+    }
+
+    /**
+     * teste la methode retireArete() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testRetireArete(Graphe g) {
+
+        System.out.println("chemin entre le sommet 4 et 5 (doit etre a true) : ");
+        System.out.println("Existe chemin ? :" + g.existeChemin(4, 5) + "\n");
+
+        // creation d'un chemin
+        g.retireArete(4, 5);
+
+        System.out.println("chemin entre le sommet 4 et 5 (aucun) : ");
+
+        System.out.println("Existe chemin ? :" + g.existeChemin(4, 5) + "\n");
+
+    }
+
+    /**
+     * teste la methode estConnexe() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testEstConnexe(Graphe g) {
+
+        // test avec le graphe donne en parametre
+        System.out.println("Le graphe est-il connexe ? (graphe rempli) : " + g.estConnexe());
+
+        // test avec un graphe vide
+        ArrayList<Sommet> sommets = new ArrayList<Sommet>();
+        Graphe gVide = new Graphe(sommets, 16);
+        System.out.println("Le graphe est-il connexe ? (graphe vide) : " + gVide.estConnexe());
+        
+    }
+
+    /**
+     * teste la methode composanteConnexe() de la classe Graphe
+     * @param g un Graphe
+     */
+    public static void testComposanteConnexe(Graphe g) {
+        // test avec le graphe donne en parametre
+
+        ArrayList<Sommet> v1 = g.voisins(1);
+
+        
     }
 }

@@ -302,26 +302,33 @@ public class Graphe{
      * @return renvoie une matrice d'adjacence du graphe
      */
     public int[][] matriceAdjacence() {
+        
+        int ret[][] = new int[this.sommetVoisins.size()][this.sommetVoisins.size()+1];
+
         HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
-        int[][] ret = new int[sommetVoisins.size()][sommetVoisins.size()];
-            int i=0;
-            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                indSom.put(entry.getKey(),Integer.valueOf(i));
-                i++;
-            }
-            i=0;
-            for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                    
-                if (entry.getValue() != null) {
-                    
-                    for(Sommet som : entry.getValue()){
-                        ret[i][indSom.get(som)]+=1;
-                    }
-                    
+        
+        int i=0;
+        int tab[] = new int[this.sommetVoisins.size()];
+        for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+            tab[i]=entry.getKey().getId();
+            i++;
+        }
+        Arrays.sort(tab);
+        
+        for (int j=0;j<tab.length;j++) {
+            indSom.put(this.getSommet(tab[j]),j);
+        }
+        i=0;
+        for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
+            ret[indSom.get(entry.getKey())][0]=entry.getKey().getId();
+            if(entry.getValue()!=null){
+                for(Sommet som : entry.getValue()){
+                    ret[indSom.get(entry.getKey())][indSom.get(som)+1]+=1;
                 }
-                i++;
-                    
             }
+            i++;
+        }
+        
         return ret;
     }
 
@@ -330,8 +337,8 @@ public class Graphe{
 
 
     /**
-     * cherche si le graphe est connex
-     * @return renvoie Vrai si le graphe est connex, sinon Faux
+     * cherche si le graphe est connexe
+     * @return renvoie Vrai si le graphe est connexe, sinon Faux
      */
     public boolean estConnexe(){
         boolean ret=true;
@@ -667,7 +674,7 @@ public class Graphe{
         Arrays.sort(tab);
         
         for (int j=0;j<tab.length;j++) {
-            indSom.put(this.getSommet(tab[i]),j);
+            indSom.put(this.getSommet(tab[j]),j);
         }
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
             
