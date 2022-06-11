@@ -311,10 +311,16 @@ public class Graphe{
             }
             i=0;
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-                for(Sommet som : entry.getValue()){
-                    ret[i][indSom.get(som)]+=1;
+                    
+                if (entry.getValue() != null) {
+                    
+                    for(Sommet som : entry.getValue()){
+                        ret[i][indSom.get(som)]+=1;
+                    }
+                    
                 }
                 i++;
+                    
             }
         return ret;
     }

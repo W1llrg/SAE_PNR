@@ -72,7 +72,7 @@ public class Sommet {
         double y1=som.coordLieu.getYCoord();
         double x2=this.coordLieu.getXCoord();
         double y2=this.coordLieu.getYCoord();
-        return Math.sqrt(Math.sqrt(y2 - y1) + Math.sqrt(x2 - x1));
+        return Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
     }
 
     /**

@@ -17,13 +17,12 @@ public class ScenarioTraitement {
         
         // creation des sommets
         ArrayList<Sommet> sommets = creationSommets();
-
-        //Creation du HashMap
-        HashMap<Sommet,ArrayList<Sommet>> mapGraph = new HashMap<Sommet,ArrayList<Sommet>>(); 
-        mapGraph.put(sommets.get(0),sommets);
         
+        // creation du HashMap
+        HashMap<Sommet,ArrayList<Sommet>> mapGraph = creationHashMap(sommets);
+
         // creation d'un graphe 
-        Graphe g = new Graphe(sommets,15);
+        Graphe g = new Graphe(mapGraph);
 
         
         // tests Sommet
@@ -39,12 +38,13 @@ public class ScenarioTraitement {
 
         }
 
-        
-        // tests Graphe
-        
         System.out.println("\n\ntest calculeDist()\n" + separator);
         testCalculeDist(sommets);
+        
 
+
+        // tests Graphe
+        
         System.out.println("\n\ntest estDansGraphe()\n" + separator);
         testEstDansGraphe(g);
 
@@ -63,27 +63,13 @@ public class ScenarioTraitement {
         System.out.println("\n\ntest nbAretes()\n" + separator);
         testNbAretes(g);        
 
-        try {
+        System.out.println("\n\ntest matriceAdjacence()\n" + separator);
+        testMatriceAdjacence(g);
+                    
+        System.out.println("\n\ntest existeChemin()\n" + separator);
+        testExisteChemin(g);
 
-            System.out.println("\n\ntest matriceAdjacence()\n" + separator);
-            testMatriceAdjacence(g);
-            
-        } catch (Exception e) {
-            
-            System.err.println(e.getMessage());
-            
-        }
-        
-        try {
-            
-            System.out.println("\n\ntest existeChemin()\n" + separator);
-            testExisteChemin(g);
-            
-        } catch (Exception e) {
-            
-            System.err.println(e.getMessage());
 
-        }
         
         // System.out.println("Nombre de sommet :"+g.nbSommets());
         // System.out.println("Nombre d'arret :"+g.nbAretes());
@@ -101,6 +87,7 @@ public class ScenarioTraitement {
         Sommet s3= new Sommet(3,new Lieu(5,9),Date.valueOf("2022-01-15"),EspeceObservee.LOUTRE);
         Sommet s4= new Sommet(4,new Lieu(9,3),Date.valueOf("2022-01-16"),EspeceObservee.LOUTRE);
         Sommet s5= new Sommet(5,new Lieu(78,39),Date.valueOf("2022-01-30"),EspeceObservee.LOUTRE);
+        Sommet s6= new Sommet(6,new Lieu(23,45),Date.valueOf("2022-01-17"),EspeceObservee.LOUTRE);
         
         ArrayList<Sommet> sommets = new ArrayList<Sommet>();
         sommets.add(s1);
@@ -108,9 +95,52 @@ public class ScenarioTraitement {
         sommets.add(s3);
         sommets.add(s4);
         sommets.add(s5);
+        sommets.add(s6);
 
         return sommets;
     
+    }
+
+
+    /**
+     * crees une HashMap contenant chaque sommet avec leurs voisins respectifs
+     * @param sommets un ArrayList de sommets
+     * @return une HashMap de sommets et de voisins
+     */
+    public static HashMap<Sommet,ArrayList<Sommet>> creationHashMap(ArrayList<Sommet> sommets) {
+
+        // creation des voisins pour chaque sommet
+        ArrayList<Sommet> voisins1 = new ArrayList<Sommet>();
+        voisins1.add(sommets.get(1));
+        voisins1.add(sommets.get(3));
+
+        ArrayList<Sommet> voisins2 = new ArrayList<Sommet>();
+        voisins2.add(sommets.get(0));
+        voisins2.add(sommets.get(3));
+
+        ArrayList<Sommet> voisins3 = new ArrayList<Sommet>();
+        voisins3.add(sommets.get(3));
+
+        ArrayList<Sommet> voisins4 = new ArrayList<Sommet>();
+        voisins4.add(sommets.get(0));
+        voisins4.add(sommets.get(1));
+        voisins4.add(sommets.get(2));
+        voisins4.add(sommets.get(5));
+
+        ArrayList<Sommet> voisins6 = new ArrayList<Sommet>();
+        voisins6.add(sommets.get(3));
+
+        //Creation du HashMap
+        HashMap<Sommet,ArrayList<Sommet>> mapGraph = new HashMap<Sommet,ArrayList<Sommet>>(); 
+        mapGraph.put(sommets.get(0), voisins1);
+        mapGraph.put(sommets.get(1), voisins2);
+        mapGraph.put(sommets.get(2), voisins3);
+        mapGraph.put(sommets.get(3), voisins4);
+        mapGraph.put(sommets.get(4), null);
+        mapGraph.put(sommets.get(5), voisins6);
+
+        return mapGraph;
+
     }
 
     /**
@@ -122,6 +152,7 @@ public class ScenarioTraitement {
         Sommet s = new Sommet(1,new Lieu(15,38),Date.valueOf("2022-01-02"),EspeceObservee.LOUTRE);
 
         System.out.println("\nerreurs :");
+
         // creation d'un sommet invalide
         Sommet wrongS = new Sommet(2,new Lieu(15,38), null,EspeceObservee.LOUTRE);
 
@@ -148,11 +179,11 @@ public class ScenarioTraitement {
 
         // test true
         Boolean t1 = g.estDansGraphe(2);
-        System.out.println("Resultat test (id = 2): " + t1);
+        System.out.println("Est-il dans le graphe ? (id = 2): " + t1);
 
         // test false
-        Boolean t2 = g.estDansGraphe(6);
-        System.out.println("Resultat test (id = 6): " + t2);
+        Boolean t2 = g.estDansGraphe(7);
+        System.out.println("Est-il dans le graphe ? (id = 7): " + t2);
         
     }
 
@@ -251,7 +282,15 @@ public class ScenarioTraitement {
 
     public static void testMatriceAdjacence(Graphe g) {
 
-        g.matriceAdjacence();
+        int[][] matrice = g.matriceAdjacence();
+        System.out.println("Matrice d'adjacence : \n");
+
+        for (int i = 0; i < matrice.length; i++) {
+            for (int j = 0; j < matrice[i].length; j++) {
+                System.out.print(matrice[i][j] + " ");
+            }
+            System.out.println();
+        }
 
     }
 }
