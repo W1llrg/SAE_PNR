@@ -61,8 +61,29 @@ public class ScenarioTraitement {
         testNbSommets(g);
 
         System.out.println("\n\ntest nbAretes()\n" + separator);
-        testNbAretes(g);
+        testNbAretes(g);        
+
+        try {
+
+            System.out.println("\n\ntest matriceAdjacence()\n" + separator);
+            testMatriceAdjacence(g);
+            
+        } catch (Exception e) {
+            
+            System.err.println(e.getMessage());
+            
+        }
         
+        try {
+            
+            System.out.println("\n\ntest existeChemin()\n" + separator);
+            testExisteChemin(g);
+            
+        } catch (Exception e) {
+            
+            System.err.println(e.getMessage());
+
+        }
         
         // System.out.println("Nombre de sommet :"+g.nbSommets());
         // System.out.println("Nombre d'arret :"+g.nbAretes());
@@ -206,6 +227,31 @@ public class ScenarioTraitement {
         //test faux
         boolean t2 = g.sontVoisins(6,7);
         System.out.println("Resultat test (sommet 6 et sommet 7): " + t2);
+
+    }
+
+    /**
+     * test de la methode existeChemin()
+     */
+    public static void testExisteChemin(Graphe g) {
+
+        //test valide
+        boolean t1 = g.existeChemin(1,2);
+        System.out.println("Resultat test (sommet 1 et sommet 2): " + t1);
+
+        //cas limite
+        boolean t3 = g.existeChemin(0,0);
+        System.out.println("Resultat test (sommet 0 et sommet 0): " + t3);
+
+        //test faux
+        boolean t2 = g.existeChemin(4,7);
+        System.out.println("Resultat test (sommet 4 et sommet 7): " + t2);
+
+    }
+
+    public static void testMatriceAdjacence(Graphe g) {
+
+        g.matriceAdjacence();
 
     }
 }

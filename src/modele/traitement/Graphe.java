@@ -301,7 +301,7 @@ public class Graphe{
      * cree et renvoie la matrice d'adjacence du graphe
      * @return renvoie une matrice d'adjacence du graphe
      */
-    public int[][] matriceAdjacence(){
+    public int[][] matriceAdjacence() {
         HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
         int[][] ret = new int[sommetVoisins.size()][sommetVoisins.size()];
             int i=0;
