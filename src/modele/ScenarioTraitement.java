@@ -85,8 +85,6 @@ public class ScenarioTraitement {
         System.out.println("\n\ntest composanteConnexe()\n" + separator);
         testComposanteConnexe(g);
 
-        // note : nous n'arrivons pas a debugger la methode composanteConnexe()
-
         System.out.println("\n\ntest distAretes()\n" + separator);
         testDistAretes(g);
 
