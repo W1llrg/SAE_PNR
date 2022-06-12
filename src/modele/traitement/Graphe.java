@@ -149,8 +149,8 @@ public class Graphe{
 
 
     /**
-     * calcul tout les degres du graphe pour chaque sommet
-     * @return renvoie un HasMap contenent la le sommet(cle) et son degre(valeur)
+     * calcule tout les degres du graphe pour chaque sommet
+     * @return renvoie un HashMap contenant le sommet(cle) et son degre(valeur)
      */
     public HashMap<Sommet,Integer> calculeDegres(){
         HashMap<Sommet,Integer> ret= new HashMap<Sommet,Integer>();
@@ -357,7 +357,7 @@ public class Graphe{
             Sommet som1 = entry.getKey();
             while (it.hasNext() && ret) {
                 entry = (Map.Entry) it.next();
-                ret = this.existeChemin(som1.getId(),entry.getKey().getId());
+                if(som1!=entry.getKey()) ret = this.existeChemin(som1.getId(),entry.getKey().getId());
             }
         }
         return ret;
@@ -431,7 +431,7 @@ public class Graphe{
 
         Sommet som1 = this.getSommet(idSom1);
         Sommet som2 = this.getSommet(idSom2);
-        if(ret!=0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
+        if(ret==0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
 
             int i=0;
             int tab[] = new int[this.sommetVoisins.size()];
@@ -449,20 +449,24 @@ public class Graphe{
             int[][] s2 = s1;
             int[][] res = s1;
             int nbZero = 0;
-            while(nbZero<(res.length*res.length) && ret!=0){
+            boolean trouve=false;
+            while(nbZero<(res.length*res.length) && ret==0){
                 nbZero=0;
                 for(int j=0;j<s1.length;j++){
                     for(int k=0;k<s1.length;k++){
+                        res[j][k + 1] = 0;
                         for(int u=0;u<s1.length;u++){
-                            res[j][k+1]+=s1[j][u+1]*s2[u][k+1];
+                            res[j][k+1]+=s2[j][u+1]*s1[u][k+1];
                         }
                         if(res[j][k+1]==0) nbZero++;
                     }
                 }
-                if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=res[indSom.get(som1)][indSom.get(som2)];
+                if(res[indSom.get(som1)][indSom.get(som2)+1]>=1 && !trouve) ret=res[indSom.get(som1)][indSom.get(som2)+1];
+                else if(res[indSom.get(som1)][indSom.get(som2)+1]>0 && res[indSom.get(som1)][indSom.get(som2)+1]< ret) ret=res[indSom.get(som1)][indSom.get(som2)+1];
                 s2=res;
             }
         }else if(som1==null || som2==null) ret=-1;
+
         return ret;
     }
 
@@ -479,11 +483,14 @@ public class Graphe{
         int ret=0;
 
         Sommet som = this.getSommet(idSom);
-        if(this.estConnexe() && ret!=0 && som!=null && this.sommetVoisins.get(som)!=null){
 
+        if(this.estConnexe() && som!=null && this.sommetVoisins.get(som)!=null){
             for (Map.Entry<Sommet, ArrayList<Sommet>> entry : this.sommetVoisins.entrySet()) {
-                if(entry.getKey()!=som && this.distAretes(som.getId(),entry.getKey().getId())>ret){
-                    ret = this.distAretes(som.getId(),entry.getKey().getId());
+                if(entry.getKey()!=som){
+                    int res = this.distAretes(som.getId(),entry.getKey().getId());
+                    if(res>=ret){
+                        ret = res;
+                    }
                 } 
             }      
             
@@ -547,7 +554,7 @@ public class Graphe{
         if(sontVoisins(idSom1,idSom2)) ret= som1.calculeDist(som2);
 
         
-        if(ret!=0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
+        if(ret==0 && som1!=null && som2!=null && sommetVoisins.get(som1)!=null && sommetVoisins.get(som2)!=null){
 
             HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
             double[][] s1 = new double[sommetVoisins.size()][sommetVoisins.size()];
@@ -577,13 +584,14 @@ public class Graphe{
                 nbZero=0;
                 for(int j=0;j<s1.length;j++){
                     for(int k=0;k<s1.length;k++){
+                        res[j][k+1]=0;
                         for(int u=0;u<s1.length;u++){
                             res[j][k+1]+=s1[j][u+1]*s2[u][k+1];
                         }
                         if(res[j][k+1]==0) nbZero++;
                     }
                 }
-                if(res[indSom.get(som1)][indSom.get(som2)]>=1) ret=res[indSom.get(som1)][indSom.get(som2)];
+                if(res[indSom.get(som1)][indSom.get(som2)+1]>=1) ret=res[indSom.get(som1)][indSom.get(som2)+1];
                 s2=res;
             }
         }else if(som1==null || som2==null) ret=-1;
@@ -597,7 +605,7 @@ public class Graphe{
 
     /**
      * cherche la cle(sommet) correspondant a la valeur(index)
-     * @param indSom hasmap qui assosie des sommets a un index
+     * @param indSom hashmap qui assosie des sommets a un index
      * @param i valeur de la cle a chercher
      * @return renvoie la cle correspondant a la valeur
      */

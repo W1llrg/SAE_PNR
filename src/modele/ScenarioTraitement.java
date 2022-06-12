@@ -82,17 +82,24 @@ public class ScenarioTraitement {
         testEstConnexe(g);
 
         System.out.println("\n\ntest composanteConnexe()\n" + separator);
+        // testComposanteConnexe(g);
 
         System.out.println("\n\ntest distAretes()\n" + separator);
+        testDistAretes(g);
 
         System.out.println("\n\ntest excentricite()\n" + separator);
+        testExcentricite(g);
 
         System.out.println("\n\ntest diametre()\n" + separator);
         testDiametre(g);
 
         System.out.println("\n\ntest rayon()\n" + separator);
+        testRayon(g);
+
+        //#region methodes supplementaires
 
         System.out.println("\n\ntest gCalculeDist()\n" + separator);
+        testGCalculeDist(g);
 
         System.out.println("\n\ntest getSommetOfIndex()\n" + separator);
 
@@ -106,8 +113,7 @@ public class ScenarioTraitement {
 
         System.out.println("\n\ntest clotureTransitive()\n" + separator);
         
-        // System.out.println("Nombre de sommet :"+g.nbSommets());
-        // System.out.println("Nombre d'arret :"+g.nbAretes());
+        //#endregion methodes supplementaires
 
     }
 
@@ -219,7 +225,7 @@ public class ScenarioTraitement {
         Sommet s2 = s.get(4);
         
         double distance = s1.calculeDist(s2);
-        System.out.println("Distance calculee : " + distance);
+        System.out.println("Distance calculee entre 2 et 4 : " + distance);
         
     }
     
@@ -259,7 +265,13 @@ public class ScenarioTraitement {
     public static void testCalculeDegres(Graphe g) {
 
         HashMap<Sommet,Integer> t1 = g.calculeDegres(); 
-        //test pas fini, faudrais afficher le hashmap qu'on obtient mais je sais pas faire mdrrr
+        
+        for (Sommet s : t1.keySet()) {
+            
+            System.out.println("id du sommet : " + s.getId());
+            System.out.println("degre du sommet : " + t1.get(s));
+
+        }
     }
 
     /**
@@ -310,6 +322,13 @@ public class ScenarioTraitement {
         boolean t2 = g.sontVoisins(6,99);
         System.out.println("Resultat test (sommet 6 et sommet 99): " + t2);
 
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        boolean t4 = gConnexe.sontVoisins(1,4);
+        System.out.println("Resultat test (sommet 1 et sommet 4): " + t4);
+
     }
 
     /**
@@ -317,6 +336,7 @@ public class ScenarioTraitement {
      */
     public static void testExisteChemin(Graphe g) {
 
+        System.out.println("Graphe en parametre : \n\n");
         //test valide
         boolean t1 = g.existeChemin(1,2);
         System.out.println("Resultat test (sommet 1 et sommet 2): " + t1);
@@ -334,6 +354,13 @@ public class ScenarioTraitement {
         //test faux
         boolean t2 = g.existeChemin(4,99);
         System.out.println("Resultat test (sommet 4 et sommet 99): " + t2);
+        
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        boolean t6 = gConnexe.existeChemin(1, 4);
+        System.out.println("Resultat test (sommet 1 et sommet 4): " + t6);
 
     }
 
@@ -349,6 +376,21 @@ public class ScenarioTraitement {
         for (int i = 0; i < matrice.length; i++) {
             for (int j = 0; j < matrice[i].length; j++) {
                 System.out.print(matrice[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+
+        int[][] matrice2 = gConnexe.matriceAdjacence();
+        System.out.println("Matrice d'adjacence : \n");
+
+        for (int i = 0; i < matrice2.length; i++) {
+            for (int j = 0; j < matrice2[i].length; j++) {
+                System.out.print(matrice2[i][j] + " ");
             }
             System.out.println();
         }
@@ -399,6 +441,24 @@ public class ScenarioTraitement {
             }
         } else System.out.println("none");
 
+
+        // test avec un graphe connexe
+        System.out.println("\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+
+        System.out.println("\nVoisins du sommet 1 dans le graphe connexe (2 et 3) : ");
+        ArrayList<Sommet> v4 = gConnexe.voisins(1);
+
+        if (v4 != null) {
+            for (Sommet sommet : v4) {
+                    
+                    int s = sommet.getId();
+                    System.out.print(s + " ");
+
+            }
+        } else System.out.println("none");
+
     }
 
     /**
@@ -420,6 +480,8 @@ public class ScenarioTraitement {
 
     /**
      * teste la methode retireArete() de la classe Graphe
+     * note : cette methode fonctionne si la methode testAjouteArete() a ete executee juste avant. C'est pour eviter d'avoir des problemes avec les autres
+     * tests qui utilisent le sommet 5 en tant que sommet null 
      * @param g un Graphe
      */
     public static void testRetireArete(Graphe g) {
@@ -443,13 +505,61 @@ public class ScenarioTraitement {
     public static void testEstConnexe(Graphe g) {
 
         // test avec le graphe donne en parametre
-        System.out.println("Le graphe est-il connexe ? (graphe rempli) : " + g.estConnexe());
+        System.out.println("Le graphe est-il connexe ? (graphe donne en parametre) : " + g.estConnexe());
+
+        // test avec un graphe connexe
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        System.out.println("Le graphe est-il connexe ? (graphe rempli) : " + gConnexe.estConnexe());
 
         // test avec un graphe vide
         ArrayList<Sommet> sommets = new ArrayList<Sommet>();
         Graphe gVide = new Graphe(sommets, 16);
         System.out.println("Le graphe est-il connexe ? (graphe vide) : " + gVide.estConnexe());
         
+    }
+
+    /**
+     * initialise des sommets qui sont tous voisins
+     * @return un HashMap contenant chaque sommet avec la liste de ses voisins
+     */
+    public static HashMap<Sommet,ArrayList<Sommet>> creationGrapheConnexe() {
+
+        // creation de sommets
+        Sommet s1= new Sommet(1,new Lieu(15,38),Date.valueOf("2022-01-02"),EspeceObservee.LOUTRE);
+        Sommet s2= new Sommet(2,new Lieu(21,8),Date.valueOf("2022-01-07"),EspeceObservee.LOUTRE);
+        Sommet s3= new Sommet(3,new Lieu(5,9),Date.valueOf("2022-01-15"),EspeceObservee.LOUTRE);
+        Sommet s4= new Sommet(4,new Lieu(5,10),Date.valueOf("2022-02-15"),EspeceObservee.LOUTRE);
+
+        ArrayList<Sommet> sommets = new ArrayList<Sommet>();
+        sommets.add(s1) ; sommets.add(s2) ; sommets.add(s3); sommets.add(s4);
+
+        // creation des voisins pour chaque sommet
+        ArrayList<Sommet> v1 = new ArrayList<Sommet>();
+        v1.add(sommets.get(1));
+        v1.add(sommets.get(2));
+
+        ArrayList<Sommet> v2 = new ArrayList<Sommet>();
+        v2.add(sommets.get(0));
+        v2.add(sommets.get(2));
+
+        ArrayList<Sommet> v3 = new ArrayList<Sommet>();
+        v3.add(sommets.get(0));
+        v3.add(sommets.get(1));
+        v3.add(sommets.get(3));
+
+        ArrayList<Sommet> v4 = new ArrayList<Sommet>();
+        v4.add(sommets.get(2));
+
+        // creation du HashMap
+        HashMap<Sommet,ArrayList<Sommet>> mapGraph = new HashMap<Sommet,ArrayList<Sommet>>(); 
+        mapGraph.put(sommets.get(0), v1);
+        mapGraph.put(sommets.get(1), v2);
+        mapGraph.put(sommets.get(2), v3);
+        mapGraph.put(sommets.get(3), v4);
+
+        return mapGraph;
+
     }
 
     /**
@@ -462,11 +572,9 @@ public class ScenarioTraitement {
         ArrayList<Graphe> v1 = g.composanteConnexe();
 
         if (v1 != null) {
-            for (Graphe graph : v1) {
-                int i = 0;
-                Sommet gra = graph.getSommet(i);
-                System.out.print(gra + " ");
-                i++;
+            for (Graphe elem : v1) {
+                
+                elem.toString();
 
             } 
 
@@ -480,7 +588,23 @@ public class ScenarioTraitement {
      */
     public static void testDistAretes(Graphe g) {
 
+        // entre 1 et 4, ils sont voisins et la distance devrait etre de 1
+        System.out.println("distance entre 1 et 4 (doit etre 1) : " + g.distAretes(1, 4));
 
+        // entre 1 et 6, ils ne sont pas voisins, mais un chemin existe en passant par 4. La distance devrait etre de 2
+        System.out.println("distance entre 1 et 6 (doit etre 2) : " + g.distAretes(1, 6));
+
+        // entre 2 et 5, ils ne sont pas voisins et n'ont pas de chemin les connectant. Le resultat devrait etre 0
+        System.out.println("distance entre 2 et 5 (doit etre 0) : " + g.distAretes(2, 5));
+
+        // entre 1 et 99, 99 n'existe pas. Le resultat devrait etre -1
+        System.out.println("distance entre 1 et 99 (doit etre -1) : " + g.distAretes(1, 99));
+
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        System.out.println("distance entre 1 et 4 (doit etre 2) : " + gConnexe.distAretes(1, 4));
 
     }
 
@@ -490,7 +614,26 @@ public class ScenarioTraitement {
      */
     public static void testExcentricite(Graphe g) {
     
-    
+        System.out.println("Graphe en parametre : \n\n");
+        // test avec un sommet qui a plusieurs sommets a la meme distance maximale
+        System.out.println("distance du sommet le plus distant de 1 (doit etre 0) : " + g.excentricite(1));
+
+        // test avec un sommet qui a n'a aucun degre
+        System.out.println("distance du sommet le plus distant de 5 (doit etre 0) : " + g.excentricite(5));
+
+        // test avec un sommet qui a n'existe pas
+        System.out.println("distance du sommet le plus distant de 99 (doit etre -1) : " + g.excentricite(99));
+
+        // test avec le sommet 8 connecte au reste du graphe. Sa distance par rapport au sommet 1 devrait etre de 4
+        g.ajouteArete(6, 7); System.out.println("\n>>>>>ajoute d'un lien entre le sommet 6 et 7");
+        System.out.println("distance du sommet le plus distant de 1 (doit etre 0) : " + g.excentricite(1));
+        g.retireArete(6, 7); System.out.println(">>>>>suppression du lien");
+
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        System.out.println("distance du sommet le plus distant de 1 (doit etre 2) : " + gConnexe.excentricite(1));
         
     }
 
@@ -499,10 +642,15 @@ public class ScenarioTraitement {
      * @param g un Graphe
      */
     public static void testDiametre(Graphe g) {
-        //test du diametre du graph en parametre
-        int test = g.diametre();
-
-        System.out.println("Le diametre du graphe est de" + test);        
+        
+        //test du diametre du graphe en parametre
+        System.out.println("Le diametre du graphe est de : " + g.diametre());
+        
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        System.out.println("Le diametre du graphe est de : " + gConnexe.diametre());
     }
 
     /**
@@ -511,15 +659,27 @@ public class ScenarioTraitement {
      */
     public static void testRayon(Graphe g) {
     
-    
+        //test du diametre du graphe en parametre
+        System.out.println("Le rayon du graphe est de : " + g.rayon());
+        
+        // test avec un graphe connexe
+        System.out.println("\n\nGraphe connexe : \n\n");
+        HashMap<Sommet,ArrayList<Sommet>> mapConnexe = creationGrapheConnexe();
+        Graphe gConnexe = new Graphe(mapConnexe);
+        System.out.println("Le rayon du graphe est de : " + gConnexe.rayon());
         
     }
 
     //#region methodes supplementaires
 
+    /**
+     * teste la methode calculeDist() de la classe Graphe
+     * @param g un Graphe
+     */
     public static void testGCalculeDist(Graphe g) {
 
-
+        double distance = g.calculeDist(2, 4);
+        System.out.println("Distance calculee entre 2 et 4 : " + distance);
 
     }
 
