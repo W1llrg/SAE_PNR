@@ -222,7 +222,7 @@ public class Graphe{
                     for(int k=0;k<s1.length;k++){
                         res[j][k+1]=0;
                         for(int u=0;u<s1.length;u++){
-                            res[j][k+1]+=s1[j][u+1]*s2[u][k+1];
+                            res[j][k+1]+=s2[j][u+1]*s1[u][k+1];
                         }
                         if(res[j][k+1]==0) nbZero++;
                     }
@@ -327,7 +327,7 @@ public class Graphe{
         for (int j=0;j<tab.length;j++) {
             indSom.put(this.getSommet(tab[j]),j);
         }
-        i=0;
+
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
             ret[indSom.get(entry.getKey())][0]=entry.getKey().getId();
             if(entry.getValue()!=null){
@@ -335,7 +335,6 @@ public class Graphe{
                     ret[indSom.get(entry.getKey())][indSom.get(som)+1]+=1;
                 }
             }
-            i++;
         }
         
         return ret;
@@ -350,15 +349,22 @@ public class Graphe{
      * @return renvoie Vrai si le graphe est connexe, sinon Faux
      */
     public boolean estConnexe(){
+        
         boolean ret=true;
-        if(sommetVoisins.size()>0){
+        if(sommetVoisins.size()>1) {
+
             Iterator it = sommetVoisins.entrySet().iterator();
             Map.Entry<Sommet, ArrayList<Sommet>> entry = (Map.Entry) it.next();
             Sommet som1 = entry.getKey();
+
             while (it.hasNext() && ret) {
+
                 entry = (Map.Entry) it.next();
-                if(som1!=entry.getKey()) ret = this.existeChemin(som1.getId(),entry.getKey().getId());
+                ret = this.existeChemin(som1.getId(),entry.getKey().getId());
+                
+
             }
+
         }
         return ret;
     }
@@ -371,10 +377,12 @@ public class Graphe{
      * cherche tout les composantes connexes du graphe et les renvoies dans un Arraylist de graphe
      * @return renvoie un Arraylist de graphe qui sont toute les composante connexe de celui ci
      */
-    public ArrayList<Graphe> composanteConnexe(){
+    public ArrayList<Graphe> composanteConnexe() {
+        
         ArrayList<Graphe> ret = new ArrayList<Graphe>();
+
         if(this.estConnexe()) ret.add(new Graphe(this));
-        else{
+        else {
             HashMap<Sommet,ArrayList<Sommet>> sommets=new HashMap<Sommet,ArrayList<Sommet>>();
             Graphe graphe=new Graphe(this);
 
@@ -449,7 +457,6 @@ public class Graphe{
             int[][] s2 = s1;
             int[][] res = s1;
             int nbZero = 0;
-            boolean trouve=false;
             while(nbZero<(res.length*res.length) && ret==0){
                 nbZero=0;
                 for(int j=0;j<s1.length;j++){
@@ -461,8 +468,7 @@ public class Graphe{
                         if(res[j][k+1]==0) nbZero++;
                     }
                 }
-                if(res[indSom.get(som1)][indSom.get(som2)+1]>=1 && !trouve) ret=res[indSom.get(som1)][indSom.get(som2)+1];
-                else if(res[indSom.get(som1)][indSom.get(som2)+1]>0 && res[indSom.get(som1)][indSom.get(som2)+1]< ret) ret=res[indSom.get(som1)][indSom.get(som2)+1];
+                if(res[indSom.get(som1)][indSom.get(som2)+1]>=1) ret=res[indSom.get(som1)][indSom.get(som2)+1];
                 s2=res;
             }
         }else if(som1==null || som2==null) ret=-1;
@@ -691,6 +697,7 @@ public class Graphe{
      * return ret;}
      */
     public double[][] matricePonderation(){
+       
         double ret[][] = new double[this.sommetVoisins.size()][this.sommetVoisins.size()+1];
 
         HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
@@ -699,23 +706,24 @@ public class Graphe{
         int tab[] = new int[this.sommetVoisins.size()];
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
             tab[i]=entry.getKey().getId();
+            i++;
         }
         Arrays.sort(tab);
         
         for (int j=0;j<tab.length;j++) {
             indSom.put(this.getSommet(tab[j]),j);
         }
-
-
+        i=0;
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
-            ret[indSom.get(entry.getKey())][0]=entry.getKey().getId();
-            if(entry.getValue()!=null){
+          ret[indSom.get(entry.getKey())][0]=entry.getKey().getId();
+            if(entry.getValue()!=null && entry.getKey()!=null){
                 for(Sommet som : entry.getValue()){
                     ret[indSom.get(entry.getKey())][indSom.get(som)+1]+=som.calculeDist(this.getSommetOfIndex(indSom,i));
                 }
             }
             i++;
         }
+        
         return ret;
     }
 
