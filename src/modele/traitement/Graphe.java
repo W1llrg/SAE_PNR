@@ -316,6 +316,7 @@ public class Graphe{
 
         HashMap<Sommet,Integer> indSom = new HashMap<Sommet,Integer>();
         
+        
         int i=0;
         int tab[] = new int[this.sommetVoisins.size()];
         for (Map.Entry<Sommet, ArrayList<Sommet>> entry : sommetVoisins.entrySet()) {
@@ -332,7 +333,9 @@ public class Graphe{
             ret[indSom.get(entry.getKey())][0]=entry.getKey().getId();
             if(entry.getValue()!=null){
                 for(Sommet som : entry.getValue()){
-                    ret[indSom.get(entry.getKey())][indSom.get(som)+1]+=1;
+                    if(indSom.get(som)!=null){
+                        ret[indSom.get(entry.getKey())][indSom.get(som)+1]+=1;
+                    }
                 }
             }
         }
@@ -361,7 +364,6 @@ public class Graphe{
 
                 entry = (Map.Entry) it.next();
                 ret = this.existeChemin(som1.getId(),entry.getKey().getId());
-                
 
             }
 
