@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxcontroller.HomeController.java">
    <children>
       <Rectangle arcHeight="88.0" arcWidth="88.0" fill="#008f71" height="378.0" layoutX="99.0" layoutY="-108.0" stroke="#008f71" strokeType="INSIDE" width="1280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-100.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd952" height="180.0" layoutX="-113.0" layoutY="680.0" rotate="45.0" stroke="#ccd952" strokeType="INSIDE" width="320.0" />
@@ -28,11 +28,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="144.0" prefWidth="105.0" style="-fx-background-image: url(C:/Users/Lucas/Documents/Pro/IUT/Semestre_2/SAE/ParcNaturel/Java/Icons/newEntry.png); -fx-background-color: transparent;" text="Nouvelle entrée" textAlignment="CENTER">
+            <Button fx:id="newEntryButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="144.0" prefWidth="105.0" style="-fx-background-image: url(C:/Users/Lucas/Documents/Pro/IUT/Semestre_2/SAE/ParcNaturel/Java/Icons/newEntry.png); -fx-background-color: transparent;" text="Nouvelle entrée">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/entrée.PNG" />
+                        <Image url="@../../ws/Icons/entrée.PNG" />
                      </image>
                   </ImageView>
                </graphic>
@@ -43,23 +43,23 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.columnIndex="1">
+            <Button fx:id="visualizeButton" contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/visuel.png" />
+                        <Image url="@../../ws/Icons/visuel.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.columnIndex="2">
+            <Button fx:id="settingsButton" contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.columnIndex="2">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/parametre.PNG" />
+                        <Image url="@../../ws/Icons/parametre.PNG" />
                      </image>
                   </ImageView>
                </graphic>
@@ -67,14 +67,14 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.columnIndex="3">
+            <Button fx:id="accountButton" contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.columnIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/compte.PNG" />
+                        <Image url="@../../ws/Icons/compte.PNG" />
                      </image>
                   </ImageView>
                </graphic>

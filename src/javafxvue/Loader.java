@@ -12,7 +12,7 @@ public class Loader extends Application {
     public void start(Stage primaryStage) throws Exception {
         
         primaryStage.setTitle("Page de Connection");
-        Pane myPane =(Pane)FXMLLoader.load(getClass().getResource("ConnectionPage.fxml"));
+        Pane myPane =(Pane)FXMLLoader.load(Loader.class.getResource("ConnectionPage.fxml"));
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
         primaryStage.show();
@@ -27,3 +27,4 @@ public class Loader extends Application {
     
 
 }
+
