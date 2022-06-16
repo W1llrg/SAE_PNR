@@ -1,4 +1,4 @@
-package javafxcontroller;
+package controller;
 
 public class HomeController {
     

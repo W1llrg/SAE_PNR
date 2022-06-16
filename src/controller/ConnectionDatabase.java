@@ -1,4 +1,4 @@
-package javafxcontroller;
+package controller;
 
 import java.sql.*;
 

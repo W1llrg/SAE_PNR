@@ -33,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/entrée.PNG" />
+                        <Image url="@../../ws/Icons/entrée.PNG" />
                      </image>
                   </ImageView>
                </graphic>
@@ -51,7 +51,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/visuel.png" />
+                        <Image url="@../../ws/Icons/visuel.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -63,7 +63,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/parametre.PNG" />
+                        <Image url="@../../ws/Icons/parametre.PNG" />
                      </image>
                   </ImageView>
                </graphic>
@@ -75,7 +75,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Icons/compte.PNG" />
+                        <Image url="@../../ws/Icons/compte.PNG" />
                      </image>
                   </ImageView>
                </graphic>
