@@ -32,7 +32,8 @@ public class ConnectionController {
     private Stage stage;
     private Parent root;
 
-    public void login() {
+    @FXML
+    private void login(ActionEvent event) throws IOException {
 
         String user = this.username.getText();
         String passwd = this.password.getText();
@@ -44,15 +45,8 @@ public class ConnectionController {
             this.statusLabel.setText("connexion reussie");
 
             // changement de page
-            try {
-                
-                switchScene(new ActionEvent());
-
-            } catch (Exception e) {
-                
-                System.err.println(e.getMessage());
-
-            }
+            switchScene(event);
+            
 
         } else {
             
@@ -61,13 +55,18 @@ public class ConnectionController {
         }
     }
 
-    public void switchScene(ActionEvent e) throws IOException {
+    /**
+     * change la page affichee a l'ecran
+     * @param event ActionEvent qui recupere l'appui sur le bouton
+     */
+    public void switchScene(ActionEvent event) throws IOException {
 
-        this.root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
-        this.stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../javafxvue/HomePage.fxml"));
+        this.root = loader.load();
+
+        this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         this.scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
 }
