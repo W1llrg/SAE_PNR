@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * une classe qui permet la connexion a la base de donnees du pnr
  * @author William, Evah
- * @version 1.0
+ * @version 1.1
  */
 public class ConnectionDatabase {
     
