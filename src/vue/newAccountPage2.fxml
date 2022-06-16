@@ -84,51 +84,19 @@
             </Button>
          </children>
       </GridPane>
-      <ImageView fitHeight="213.0" fitWidth="249.0" layoutX="215.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="200.0" fitWidth="250.0" layoutX="217.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Icons/étoile.png" />
          </image>
       </ImageView>
-      <Pane layoutX="347.0" layoutY="93.0" prefHeight="378.0" prefWidth="882.0" style="-fx-background-color: #008f71;">
-         <children>
-            <Label layoutX="21.0" layoutY="14.0" text="Caractéristiques" textFill="WHITE">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <Line endX="728.5999755859375" layoutX="122.0" layoutY="67.0" startX="-100.0" stroke="WHITE" />
-            <GridPane layoutX="21.0" layoutY="80.0" prefHeight="286.0" prefWidth="813.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TextField prefHeight="39.0" prefWidth="459.0" promptText="Lieu dit">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField prefHeight="39.0" prefWidth="459.0" promptText="Commune" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField prefHeight="39.0" prefWidth="459.0" promptText="Indice" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-               </children>
-            </GridPane>
-         </children>
-      </Pane>
-      <Button layoutX="909.0" layoutY="589.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
+      <Label layoutX="296.0" layoutY="34.0" text="Nouveau compte" textFill="WHITE">
          <font>
-            <Font size="36.0" />
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <Button layoutX="581.0" layoutY="504.0" mnemonicParsing="false" prefHeight="116.0" prefWidth="407.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Créer ">
+         <font>
+            <Font size="48.0" />
          </font>
          <effect>
             <DropShadow height="0.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
@@ -138,11 +106,25 @@
             </DropShadow>
          </effect>
       </Button>
-      <Label layoutX="310.0" layoutY="14.0" text="Nouvelle entrée Hippocampe " textFill="WHITE">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Line endX="778.7999267578125" endY="-0.40000152587890625" layoutX="458.0" layoutY="78.0" startX="-147.0" startY="-0.40000152587890625" stroke="WHITE" strokeWidth="2.0" />
+      <Pane layoutX="279.0" layoutY="118.0" prefHeight="404.0" prefWidth="994.0">
+         <children>
+            <TextField layoutX="29.0" layoutY="91.0" prefHeight="54.0" prefWidth="428.0" promptText="Identifiant" style="-fx-background-radius: 13;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="537.0" layoutY="91.0" prefHeight="54.0" prefWidth="428.0" promptText="Mot de passe" style="-fx-background-radius: 13;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="29.0" layoutY="241.0" prefHeight="54.0" prefWidth="936.0" promptText="E-Mail" style="-fx-background-radius: 13;">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+      <Line endX="788.6666259765625" layoutX="438.0" layoutY="103.0" startX="-138.933349609375" stroke="WHITE" strokeWidth="2.5" />
    </children>
 </AnchorPane>

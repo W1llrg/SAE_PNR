@@ -35,7 +35,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/ws/Icons/entrée.PNG" />
+                        <Image url="@Icons/entrée.PNG" />
                      </image>
                   </ImageView>
                </graphic>
@@ -53,7 +53,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/ws/Icons/visuel.png" />
+                        <Image url="@Icons/visuel.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -62,7 +62,7 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/ws/Icons/parametre.PNG" />
+                        <Image url="@Icons/parametre.PNG" />
                      </image>
                   </ImageView>
                </graphic>
@@ -77,21 +77,16 @@
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/ws/Icons/compte.PNG" />
+                        <Image url="@Icons/compte.PNG" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
          </children>
       </GridPane>
-      <ImageView fitHeight="200.0" fitWidth="250.0" layoutX="217.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/src/Icons/étoile.png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="213.0" fitWidth="249.0" layoutX="215.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/ws/Icons/étoile.png" />
+            <Image url="@Icons/étoile.png" />
          </image>
       </ImageView>
       <Button layoutX="340.0" layoutY="69.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Ajouter une nouvelle espèce" textAlignment="CENTER" wrapText="true">
@@ -122,7 +117,7 @@
          <effect>
             <DropShadow height="1.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
                <color>
-                  <Color red="0.8274509906768799" green="0.7411764860153198" blue="0.2862745225429535" />
+                  <Color red="0.800000011920929" green="0.8509804010391235" blue="0.32156863808631897" />
                </color>
             </DropShadow>
          </effect>
@@ -137,13 +132,19 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField layoutX="23.0" layoutY="141.0" prefHeight="35.0" prefWidth="317.0" promptText="utilisateur" />
+            <TextField layoutX="23.0" layoutY="141.0" prefHeight="35.0" prefWidth="317.0" promptText="Utilisateur">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
             <Text layoutX="23.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail :">
                <font>
                   <Font size="20.0" />
                </font>
             </Text>
-            <TextField layoutX="25.0" layoutY="244.0" prefHeight="35.0" prefWidth="317.0" promptText="mail" />
+            <TextField layoutX="25.0" layoutY="244.0" prefHeight="35.0" prefWidth="317.0" promptText="E-Mail">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
             <Text layoutX="23.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Statut :">
                <font>
                   <Font size="20.0" />
