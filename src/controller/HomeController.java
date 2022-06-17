@@ -14,16 +14,16 @@ import javafx.stage.Stage;
 public class HomeController {
     
     @FXML
-    private Button newEntryButton;
+    Button newEntryButton;
 
     @FXML
-    private Button visualizeButton;
+    Button visualizeButton;
 
     @FXML
-    private Button settingsButton;
+    Button settingsButton;
 
     @FXML
-    private Button accountButton;
+    Button accountButton;
     
     private Scene scene;
     private Stage stage;

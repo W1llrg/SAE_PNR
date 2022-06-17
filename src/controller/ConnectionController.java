@@ -44,7 +44,7 @@ public class ConnectionController {
             this.statusLabel.setText("connexion reussie");
 
             // changement de page
-            switchScene(event, "../vue/HomePage.fxml");
+            switchScene(event, "../vue/NewEntry.fxml");
             
 
         } else {
