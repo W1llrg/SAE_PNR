@@ -1,17 +1,16 @@
 package controller;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ConnectionController {
@@ -45,7 +44,7 @@ public class ConnectionController {
             this.statusLabel.setText("connexion reussie");
 
             // changement de page
-            switchScene(event);
+            switchScene(event, "../vue/HomePage.fxml");
             
 
         } else {
@@ -59,14 +58,15 @@ public class ConnectionController {
      * change la page affichee a l'ecran
      * @param event ActionEvent qui recupere l'appui sur le bouton
      */
-    public void switchScene(ActionEvent event) throws IOException {
+    public void switchScene(ActionEvent event, String path) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../javafxvue/HomePage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         this.root = loader.load();
-
+        
         this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         this.scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
     }
 }
