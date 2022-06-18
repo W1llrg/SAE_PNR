@@ -2,53 +2,18 @@ package controller;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 
-public class HomeController {
-    
-    @FXML
-    Button newEntryButton;
+/**
+ * controller pour la page HomePage.fxml
+ * @author William
+ */
+public class HomeController extends NavigationControls {
 
-    @FXML
-    Button visualizeButton;
+    public void logout(ActionEvent event) throws IOException {
 
-    @FXML
-    Button settingsButton;
-
-    @FXML
-    Button accountButton;
-    
-    private Scene scene;
-    private Stage stage;
-    private Parent root;
-
-
-    public void goToNewEntry(ActionEvent event) throws IOException {
-
-        switchScene(event, "../vue/NewEntry.fxml");
+        switchScene(event, "../vue/ConnectionPage.fxml");
 
     }
 
-    /**
-     * change la page affichee a l'ecran
-     * @param event ActionEvent qui recupere l'appui sur le bouton
-     */
-    public void switchScene(ActionEvent event, String path) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-        this.root = loader.load();
-        
-        this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        this.scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-    }
 }

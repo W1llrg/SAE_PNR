@@ -13,6 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * controller pour la page ConnectionPage.fxml
+ * @author William
+ * @version 1.0
+ */
 public class ConnectionController {
 
     @FXML
@@ -31,6 +36,11 @@ public class ConnectionController {
     private Stage stage;
     private Parent root;
 
+    /**
+     * teste la connexion a la BDD et passe a la page suivante si la connexion est valide. Sinon, affiche un message de refus de connexion
+     * @param event recupere le signal envoye par le bouton de connexion
+     * @throws IOException
+     */
     @FXML
     private void login(ActionEvent event) throws IOException {
 
@@ -44,19 +54,21 @@ public class ConnectionController {
             this.statusLabel.setText("connexion reussie");
 
             // changement de page
-            switchScene(event, "../vue/NewEntry.fxml");
+            switchScene(event, "../vue/HomePage.fxml");
             
-
         } else {
             
             this.statusLabel.setText("Connexion refusee");
+
+            // debug
+            switchScene(event, "../vue/HomePage.fxml");
 
         }
     }
 
     /**
      * change la page affichee a l'ecran
-     * @param event ActionEvent qui recupere l'appui sur le bouton
+     * @param event ActionEvent qui recupere un signal qui correspond a l'appui sur un bouton
      */
     public void switchScene(ActionEvent event, String path) throws IOException {
 

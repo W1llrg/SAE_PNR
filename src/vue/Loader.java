@@ -6,6 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * une classe qui permet de lancer l'application en javaFX avec une page initiale
+ * @author William
+ * @version 2.0
+ */
 public class Loader extends Application {
 
     @Override

@@ -28,13 +28,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="newEntryButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="144.0" prefWidth="105.0" style="-fx-background-image: url(C:/Users/Lucas/Documents/Pro/IUT/Semestre_2/SAE/ParcNaturel/Java/Icons/newEntry.png); -fx-background-color: transparent;" text="Nouvelle entrée">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNewEntry" prefHeight="144.0" prefWidth="105.0" style="-fx-background-color: transparent;" text="Nouvelle entrée">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="entryImg" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Icons/entrée.PNG" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                </graphic>
                <font>
                   <Font size="18.0" />
@@ -43,40 +42,37 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button fx:id="visualizeButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.columnIndex="1">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToVisualize" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="visualizeImg" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Icons/visuel.png" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                </graphic>
             </Button>
-            <Button fx:id="settingsButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.columnIndex="2">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToSettings" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.columnIndex="2">
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="gearImg" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Icons/parametre.PNG" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                </graphic>
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="accountButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.columnIndex="3">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToAccount" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.columnIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="accountImg" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@Icons/compte.PNG" />
-                     </image>
-                  </ImageView>
+                     </image></ImageView>
                </graphic>
             </Button>
          </children>
@@ -86,10 +82,10 @@
             <Font size="96.0" />
          </font>
       </Label>
-      <ImageView fitHeight="200.0" fitWidth="250.0" layoutX="527.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="520.0" AnchorPane.rightAnchor="520.0">
-         <image>
-            <Image url="@../Icons/étoile.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="546.0" layoutY="627.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #942932;" text="Déconnexion" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -1,5 +1,7 @@
 package controller;
 
-public class NewEntryController {
+
+public class NewEntryController extends NavigationControls {
+    
     
 }

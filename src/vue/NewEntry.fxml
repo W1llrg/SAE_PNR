@@ -28,7 +28,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="144.0" prefWidth="105.0" style="-fx-background-image: url(C:/Users/Lucas/Documents/Pro/IUT/Semestre_2/SAE/ParcNaturel/Java/Icons/newEntry.png); -fx-background-color: transparent;" text="Nouvelle entrée" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNewEntry" prefHeight="144.0" prefWidth="105.0" style="-fx-background-color: transparent;" text="Nouvelle entrée" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -43,7 +43,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToVisualize" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -55,7 +55,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToSettings" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -67,7 +67,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToAccount" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -81,21 +81,11 @@
             </Button>
          </children>
       </GridPane>
-      <ImageView fitHeight="200.0" fitWidth="250.0" layoutX="217.0" layoutY="520.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/src/Icons/étoile.png" />
-         </image>
-      </ImageView>
       <Label layoutX="672.0" layoutY="16.0" prefHeight="105.0" prefWidth="237.0" text="Espèce" textFill="WHITE">
          <font>
             <Font name="System Bold" size="72.0" />
          </font>
       </Label>
-      <ImageView fitHeight="213.0" fitWidth="249.0" layoutX="215.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@IUT/R2.01/SAE_PNR/SAE_PNR/ws/Icons/étoile.png" />
-         </image>
-      </ImageView>
       <Button layoutX="324.0" layoutY="161.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Batracien">
          <font>
             <Font size="36.0" />
