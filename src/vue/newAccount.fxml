@@ -96,7 +96,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefWidth="325.0" style="-fx-background-radius: 15;" text="Utilisateur" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#goToUser" prefWidth="325.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Utilisateur" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
@@ -108,7 +108,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button mnemonicParsing="false" prefWidth="325.0" style="-fx-background-radius: 15;" text="Administrateur" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#goToAdmin" prefWidth="325.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Administrateur" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>

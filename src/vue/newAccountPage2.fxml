@@ -31,7 +31,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="144.0" prefWidth="105.0" style="-fx-background-image: url(C:/Users/Lucas/Documents/Pro/IUT/Semestre_2/SAE/ParcNaturel/Java/Icons/newEntry.png); -fx-background-color: transparent;" text="Nouvelle entrée" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNewEntry" prefHeight="144.0" prefWidth="105.0" style="-fx-background-color: transparent;" text="Nouvelle entrée" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToVisualize" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -58,7 +58,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToSettings" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <graphic>
                   <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -70,7 +70,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseDragOver="#Button" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToAccount" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>

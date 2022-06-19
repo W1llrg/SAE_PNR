@@ -84,26 +84,26 @@
             </Button>
          </children>
       </GridPane>
-      <Button layoutX="340.0" layoutY="69.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Ajouter une nouvelle espèce" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="340.0" layoutY="69.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-background-color: #787878;" text="Ajouter une nouvelle espèce" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="26.0" />
          </font>
          <effect>
-            <DropShadow height="0.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
+            <DropShadow height="1.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
                <color>
-                  <Color red="0.800000011920929" green="0.8509804010391235" blue="0.32156863808631897" />
+                  <Color red="0.3529411852359772" green="0.3803921639919281" blue="0.054901961237192154" />
                </color>
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="340.0" layoutY="325.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Ajouter un nouvel attribut pour une espèce existante" textAlignment="CENTER" wrapText="true">
+      <Button layoutX="340.0" layoutY="325.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="394.0" style="-fx-background-radius: 15; -fx-background-color: #787878;" text="Ajouter un nouvel attribut pour une espèce existante" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="26.0" />
          </font>
          <effect>
-            <DropShadow height="0.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
+            <DropShadow height="1.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
                <color>
-                  <Color red="0.800000011920929" green="0.8509804010391235" blue="0.32156863808631897" />
+                  <Color red="0.3529411852359772" green="0.3803921639919281" blue="0.054901961237192154" />
                </color>
             </DropShadow>
          </effect>
@@ -150,7 +150,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button layoutX="25.0" layoutY="393.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="317.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 12;" text="Changer le mot de passe">
+            <Button layoutX="25.0" layoutY="393.0" mnemonicParsing="false" onAction="#goToChangePassword" prefHeight="35.0" prefWidth="317.0" style="-fx-background-color: #f4f4f4; -fx-background-radius: 12;" text="Changer le mot de passe">
                <font>
                   <Font size="18.0" />
                </font>

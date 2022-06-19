@@ -86,7 +86,7 @@
             <Font name="System Bold" size="72.0" />
          </font>
       </Label>
-      <Button layoutX="324.0" layoutY="161.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Batracien">
+      <Button layoutX="324.0" layoutY="161.0" mnemonicParsing="false" onAction="#goToBatracien" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Batracien">
          <font>
             <Font size="36.0" />
          </font>
@@ -98,7 +98,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="857.0" layoutY="164.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Loutre">
+      <Button layoutX="857.0" layoutY="164.0" mnemonicParsing="false" onAction="#goToLoutre" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Loutre">
          <font>
             <Font size="36.0" />
          </font>
@@ -110,7 +110,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="321.0" layoutY="334.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Hippocampe">
+      <Button layoutX="321.0" layoutY="334.0" mnemonicParsing="false" onAction="#goToHippocampe" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Hippocampe">
          <font>
             <Font size="36.0" />
          </font>
@@ -122,7 +122,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="854.0" layoutY="337.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Chouette">
+      <Button layoutX="854.0" layoutY="337.0" mnemonicParsing="false" onAction="#goToChouette" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Chouette">
          <font>
             <Font size="36.0" />
          </font>
@@ -134,7 +134,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button layoutX="581.0" layoutY="515.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="GCI">
+      <Button layoutX="581.0" layoutY="515.0" mnemonicParsing="false" onAction="#goToGCI" prefHeight="90.0" prefWidth="385.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="GCI">
          <font>
             <Font size="36.0" />
          </font>
