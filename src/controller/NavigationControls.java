@@ -61,4 +61,15 @@ public class NavigationControls {
 
     }
 
+    /**
+     * renvoi l'utilisateur sur la page de connexion
+     * @param e signal d'appui sur un bouton de deconnexion
+     * @throws IOException
+     */
+    public void logout(ActionEvent e) throws IOException {
+
+        switchScene(e, "../vue/ConnectionPage.fxml");
+
+    }
+
 }

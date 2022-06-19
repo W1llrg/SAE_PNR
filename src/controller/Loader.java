@@ -1,4 +1,4 @@
-package vue;
+package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,7 @@ public class Loader extends Application {
         
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("ConnectionPage.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../vue/ConnectionPage.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();

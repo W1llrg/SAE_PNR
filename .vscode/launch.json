@@ -8,14 +8,14 @@
             "type": "java",
             "name": "Launch Loader",
             "request": "launch",
-            "mainClass": "vue.Loader",
+            "mainClass": "controller.Loader",
             "projectName": "SAE_PNR_d87108a6"
         },
         {
             "type": "java",
             "name": "Launch Current File",
             "request": "launch",
-            "mainClass": "vue.Loader",
+            "mainClass": "controller.Loader",
             "vmArgs": "--module-path \"C:/Program Files/Java/javafx-sdk-18.0.1/lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
