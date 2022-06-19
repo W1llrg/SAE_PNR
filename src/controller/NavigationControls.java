@@ -41,7 +41,7 @@ public class NavigationControls {
 
     public void goToAccount(ActionEvent event) throws IOException {
 
-        switchScene(event, "../vue/NewAccount.fxml");
+        switchScene(event, "../vue/newAccount.fxml");
             
     }
 

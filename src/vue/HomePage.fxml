@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -41,6 +42,9 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToVisualize" prefHeight="86.0" prefWidth="174.0" style="-fx-background-color: transparent;" text="Visualiser" GridPane.columnIndex="1">
                <font>
@@ -52,6 +56,9 @@
                         <Image url="@Icons/visuel.png" />
                      </image></ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToSettings" prefHeight="122.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Paramètres" textAlignment="CENTER" GridPane.columnIndex="2">
                <graphic>
@@ -63,6 +70,9 @@
                <font>
                   <Font size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToAccount" prefHeight="144.0" prefWidth="159.0" style="-fx-background-color: transparent;" text="Créer un compte" textAlignment="CENTER" GridPane.columnIndex="3">
                <font>
@@ -74,6 +84,9 @@
                         <Image url="@Icons/compte.PNG" />
                      </image></ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </GridPane>
@@ -86,6 +99,9 @@
          <font>
             <Font name="System Bold" size="25.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>
