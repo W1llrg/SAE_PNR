@@ -11,14 +11,18 @@ import javafx.stage.Stage;
 
 /**
  * une classe qui contient plusieurs methodes de navigation utiles a toutes les pages
+ * ainsi que la connexion a la base de donnees
  * @author William
- * @version 1.0
+ * @version 1.1
  */
 public class NavigationControls {
     
     private Parent root;
     private Stage stage;
     private Scene scene;
+
+    /** connexion a la BDD */
+    private ConnectionDatabase connect;
 
 
     public void goToNewEntry(ActionEvent event) throws IOException {
@@ -58,6 +62,26 @@ public class NavigationControls {
         this.scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    /**
+     * connecte l'application avec la base de donnees
+     * @param c la connexion vers la base de donnees souhaitee
+     */
+    public void setConnection(ConnectionDatabase c) {
+
+        if (c == null) throw new IllegalArgumentException("Erreur : aucune connexion a la base de donnees");
+        else this.connect = c;
+
+    }
+
+    /**
+     * @return la connexion actuelle a la base de donnees
+     */
+    public ConnectionDatabase getConnection() {
+
+        return this.connect;
 
     }
 

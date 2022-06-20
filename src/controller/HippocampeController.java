@@ -1,17 +1,10 @@
 package controller;
 
-import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 
 /**
  * controller pour la page Hippocampe.fxml
@@ -41,7 +34,6 @@ public class HippocampeController extends NavigationControls {
 
     @FXML
     Button ajoutDonneButton;
-
 
     /**
      * Ajoute les donnees saisie dans la base de donne

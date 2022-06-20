@@ -5,5 +5,5 @@ package controller;
  */
 public class BatracienController extends NavigationControls {
     
-    
+
 }
