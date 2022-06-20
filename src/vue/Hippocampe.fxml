@@ -108,7 +108,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Espèce">
+                  <TextField fx:id="espece" prefHeight="36.0" prefWidth="224.0" promptText="Espèce">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -116,7 +116,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Sexe" GridPane.columnIndex="1">
+                  <TextField fx:id="sexe" prefHeight="36.0" prefWidth="224.0" promptText="Sexe" GridPane.columnIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -124,7 +124,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Type de pêche" GridPane.rowIndex="1">
+                  <TextField fx:id="typePeche" prefHeight="36.0" prefWidth="224.0" promptText="Type de pêche" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -132,7 +132,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Taille" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="taille" prefHeight="36.0" prefWidth="224.0" promptText="Taille" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -140,7 +140,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Gestant" GridPane.rowIndex="2">
+                  <TextField fx:id="gestant" prefHeight="36.0" prefWidth="224.0" promptText="Gestant" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -148,7 +148,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Température de l'eau" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="temperature" prefHeight="36.0" prefWidth="224.0" promptText="Température de l'eau" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -166,7 +166,7 @@
          </font>
       </Label>
       <Line endX="797.5999755859375" endY="-0.40000152587890625" layoutX="448.0" layoutY="68.0" startX="-147.0" startY="-0.40000152587890625" stroke="WHITE" strokeWidth="2.0" />
-      <Button layoutX="900.0" layoutY="589.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
+      <Button fx:id="ajoutDonneButton" layoutX="900.0" layoutY="589.0" mnemonicParsing="false" onAction="#ajoutDonne" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
          <font>
             <Font size="36.0" />
          </font>
