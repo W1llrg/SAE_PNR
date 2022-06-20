@@ -34,7 +34,7 @@ public class NewEntryController extends NavigationControls {
      */
     public void goToHippocampe(ActionEvent e) throws IOException {
 
-        switchScene(e, "../vue/Hippocampe.fxml");
+        switchScene(e, "../vue/HippocampeLieu.fxml");
 
     }
 
