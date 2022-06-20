@@ -1,9 +1,14 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,15 +20,14 @@ import javafx.stage.Stage;
  * @author William
  * @version 1.1
  */
-public class NavigationControls {
+public class NavigationControls implements Initializable {
     
     private Parent root;
     private Stage stage;
     private Scene scene;
-
-    /** connexion a la BDD */
-    private ConnectionDatabase connect;
-
+    
+    private Connection c;
+    
 
     public void goToNewEntry(ActionEvent event) throws IOException {
 
@@ -66,26 +70,6 @@ public class NavigationControls {
     }
 
     /**
-     * connecte l'application avec la base de donnees
-     * @param c la connexion vers la base de donnees souhaitee
-     */
-    public void setConnection(ConnectionDatabase c) {
-
-        if (c == null) throw new IllegalArgumentException("Erreur : aucune connexion a la base de donnees");
-        else this.connect = c;
-
-    }
-
-    /**
-     * @return la connexion actuelle a la base de donnees
-     */
-    public ConnectionDatabase getConnection() {
-
-        return this.connect;
-
-    }
-
-    /**
      * renvoi l'utilisateur sur la page de connexion
      * @param e signal d'appui sur un bouton de deconnexion
      * @throws IOException
@@ -94,6 +78,21 @@ public class NavigationControls {
 
         switchScene(e, "../vue/ConnectionPage.fxml");
 
+    }
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        
+        try {
+            
+            this.c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", "admin", "admin");
+
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+
+        }
+        
     }
 
 }
