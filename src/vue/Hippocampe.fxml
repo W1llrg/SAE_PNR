@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -108,30 +109,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="espece" prefHeight="36.0" prefWidth="224.0" promptText="Espèce">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="sexe" prefHeight="36.0" prefWidth="224.0" promptText="Sexe" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="typePeche" prefHeight="36.0" prefWidth="224.0" promptText="Type de pêche" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
+                  <ComboBox fx:id="espece" prefHeight="42.0" prefWidth="343.0" promptText="Espèce" />
+                  <ComboBox prefHeight="43.0" prefWidth="355.0" promptText="Sexe" GridPane.columnIndex="1" />
                   <TextField fx:id="taille" prefHeight="36.0" prefWidth="224.0" promptText="Taille" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
@@ -156,6 +135,8 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
+                  <ComboBox fx:id="typePeche" prefHeight="41.0" prefWidth="346.0" promptText="Type de pêche" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="gestant" prefHeight="38.0" prefWidth="345.0" promptText="Gestant" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>
