@@ -167,13 +167,25 @@ public class LoutreController extends NavigationControls {
             Statement stmt = c.createStatement();
 
             // insertion dans Lieu
-            String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
-            int i =  stmt.executeUpdate(sql1);
-            if (i > 0) {
-                System.out.println("data insérée");
-            } else {
-                System.out.println("data non insérée");
-            }
+            String sql0="SELECT * FROM Lieu WHERE coord_Lambert_X=" + this.x + " AND coord_Lambert_Y=" + this.y;
+                ResultSet resLieu =  stmt.executeQuery(sql0);
+                boolean lieuExitePas =true;
+
+                if(resLieu.next()) lieuExitePas=false;
+
+                int i;
+
+                if(lieuExitePas) {
+
+                    String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
+                    i =  stmt.executeUpdate(sql1);
+                    if (i > 0) {
+                        System.out.println("data insérée");
+                    } else {
+                        System.out.println("data non insérée");
+                    }
+
+                }
 
             // selection de l'idObs a mettre pour l'observation
             String sql2 = "SELECT MAX(idObs) FROM Observation;";
