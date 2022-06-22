@@ -37,11 +37,11 @@ public class LoutreController extends NavigationControls {
             ObsLoutre obs = createObs(IndiceLoutre.POSITIF);
 
             // insertion dans lieu
-            String insertLieu = "INSERT INTO Lieu VALUES (" + obs.getLieuObs().getXCoord() + ", " + obs.getLieuObs().getYCoord() + "); ";
-            stmt.executeUpdate(insertLieu);
+            // String insertLieu = "INSERT INTO Lieu VALUES (" + obs.getLieuObs().getXCoord() + ", " + obs.getLieuObs().getYCoord() + "); ";
+            // stmt.executeUpdate(insertLieu);
 
             // insertion dans observation
-            String insertObservation = "INSERT INTO Observation VALUES (" + obs.getIdObs() + ", " + obs.getDateObs() + ", " + obs.getHeureObs() + ", " 
+            String insertObservation = "INSERT INTO Observation VALUES (" + obs.getIdObs() + ", '" + obs.getDateObs() + "', '" + obs.getHeureObs() + "', " 
             + obs.getLieuObs().getXCoord() + ", " + obs.getLieuObs().getYCoord() + "); ";
             stmt.executeUpdate(insertObservation);
 
@@ -56,13 +56,13 @@ public class LoutreController extends NavigationControls {
             // insertion dans observateur
             for (Observateur observateur : obs.getLesObservateurs()) {
 
-                String insertObservateur = "INSERT INTO Observateur VALUES (" + observateur.getNom() + ", " + observateur.prenom() + "); ";
+                String insertObservateur = "INSERT INTO Observateur VALUES ('" + observateur.getNom() + "', '" + observateur.prenom() + "'); ";
                 stmt.executeUpdate(insertObservateur);
                 
             }
 
             // insertion dans ObsLoutre
-            String insertLoutre = "INSERT INTO ObsLoutre VALUES (" + obs.getIdObs() + ", " + this.commune + ", " + this.lieuDit + ", " + obs.getIndice() + "); ";
+            String insertLoutre = "INSERT INTO ObsLoutre VALUES (" + obs.getIdObs() + ", '" + this.commune + "', '" + this.lieuDit + "', '" + obs.getIndice() + "'); ";
             stmt.executeUpdate(insertLoutre);
 
         } catch (Exception e) {
@@ -82,7 +82,7 @@ public class LoutreController extends NavigationControls {
         Date date = Date.valueOf("2022-02-18");
         Time heure =new Time(System.currentTimeMillis());
 
-        ObsLoutre obs = new ObsLoutre(2, date, heure, new Lieu(121212, 121212121), al, ind);
+        ObsLoutre obs = new ObsLoutre(3, date, heure, new Lieu(121212, 121212121), al, ind);
 
         return obs;
 
