@@ -45,7 +45,7 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="username" layoutX="40.0" layoutY="228.0" prefHeight="51.0" prefWidth="408.0" promptText="Entrez votre nom d'utilisateur">
+                  <TextField fx:id="username" layoutX="40.0" layoutY="228.0" prefHeight="51.0" prefWidth="408.0" promptText="Entrez votre nom d'utilisateur" text="pnr">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -60,7 +60,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Button>
-                  <PasswordField fx:id="password" layoutX="39.0" layoutY="344.0" prefHeight="51.0" prefWidth="408.0" promptText="Entrez votre mot de passe">
+                  <PasswordField fx:id="password" layoutX="39.0" layoutY="344.0" prefHeight="51.0" prefWidth="408.0" promptText="Entrez votre mot de passe" text="mdp_pnr">
                      <font>
                         <Font size="18.0" />
                      </font>
