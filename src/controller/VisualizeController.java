@@ -4,7 +4,9 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 
 /**
- * controller de la page Visualize.fxml
+ * Classe controller de la page Visualize.fxml
+ * @author William
+ * @vesion 1.0
  */
 public class VisualizeController extends NavigationControls {
     
