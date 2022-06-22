@@ -3,6 +3,11 @@ package controller;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 
+/**
+ * une classe controller de la page nouvelle entree
+ * @author William, Theo
+ * @version 1.1
+ */
 public class NewEntryController extends NavigationControls {
     
     /**

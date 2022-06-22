@@ -27,7 +27,7 @@ import java.util.ArrayList;
 /**
  * controller pour la page Hippocampe.fxml
  * @author Tristan, Theo 
- * @version 1.0
+ * @version 1.1
  */
 public class HippocampeController extends NavigationControls {
 
@@ -36,92 +36,171 @@ public class HippocampeController extends NavigationControls {
     private Stage stage;
     private Scene scene;
 
-    //page Hippocampe
+    //page hippocampe
+    /**
+     * Combobox contenant la liste des espece d'hippocampe
+     */
     @FXML
     private ComboBox<String> espece;
+
+    /**
+     * Liste des espece d'hippocampe 
+     */
     private ObservableList<String> e = FXCollections.observableArrayList("Syngnathus acus", "Hippocampus guttulatus", "Hippocampus Hippocampus", "Entelurus aequoreus");
 
-    //page sexe
+    /**
+     * Combox contenant les type de sex
+     */
     @FXML
     private ComboBox<String> sexe;
+
+    /**
+     * Liste des types de sex
+     */
     private ObservableList<String> s = FXCollections.observableArrayList("Male", "Femelle", "Inconnu");
 
-    //page type de peche 
+    /**
+     * Combobox contenant les types de peche
+     */
     @FXML
     private ComboBox<String> typePeche;
+
+    /**
+     * Liste des types de peches 
+     */
     private ObservableList<String> tp = FXCollections.observableArrayList("casierCrevettes", "casierMorgates", "PetitFilet", "verveuxAnguilles");
 
-    //page de la taille
+    /**
+     * TextField de la taille
+     */
     @FXML
     private TextField taille;
 
-    //page gestant
+    /**
+     * Combox des types de gestant
+     */
     @FXML
     private ComboBox<Integer> gestant;
+
+    /**
+     * Liste des gestant
+     */
     private ObservableList<Integer> g =FXCollections.observableArrayList(0,1);
 
-    //page de la temperature
+    /**
+     * Zone de texte pour la temperature
+     */
     @FXML
     private TextField temperature;
 
-    //page du bouton ajouter 
+    /**
+     * Bouton pour l'ajout de donnee 
+     */
     @FXML
     private Button ajoutDonneButton;
 
-    //page d'erreur de la mauvaise taille et du lieu 
+    /** 
+     * Label d'erreur de la mauvaise taille et de lieu 
+     */ 
     @FXML
     private Label errTailleEtLieu;
 
-    // page Hippocampe Lieu
+    // page Hippocampe Lieu 
+    /**
+     * Bouton suivant pour le lieu
+     */
     @FXML
     private Button suivantLieu;
 
-    //page d'erreur du lieu
+    /**
+     * Label d'erreur du mauvais lieu 
+     */
     @FXML
     private Label errLieu;
 
-    //page de la coordonee X
+    /**
+     * Zone de texte pour la coordonee X
+     */
     @FXML
     private TextField coordX;
+
+    /**
+     * coordonee X en Double
+     */
     private double x;
 
-    //page de la coordonee Y
+    /**
+     * Zone de texte de la coordonee Y
+     */
     @FXML
     private TextField coordY;
+
+    /**
+     * coordonee Y en Double
+     */
     private double y;
 
-    //page de l'erreur de la date
+    /**
+     * Label de l'erreur de la mauvaise date
+     */
     @FXML
     private Label errDate;
 
-    //page de la date
+    /**
+     * Zone de texte de la date
+     */
     @FXML
     private TextField date;
+
+    /**
+     * String de la date
+     */
     private String d;
 
-    //page de l'heure
+    /**
+     * Zone de texte de l'heure
+     */
     @FXML
     private TextField heure;
+
+    /**
+     * String de l'heure
+     */
     private String h;
 
     // page Hippocampe Observateur
+    /**
+     * Bouton suivant de la page observateur
+     */
     @FXML
     private Button suivantObservateur;
 
-    //page de l'ajout d'observateur
+    /**
+     * Bouton d'ajout d'observateur 
+     */
     @FXML 
     private Button addObs;
 
-    //page du nom de l'observateur
+    /**
+     * Zone de texte du nom de l'observateur
+     */
     @FXML
     private TextField nom;
+
+    /**
+     * Liste des observateur
+     */
     private ArrayList<Integer> observateur;
 
-    //page du prenom de l'observateur
+    /**
+     * Zone de texte du prenom de l'observateur
+     */
     @FXML
     private TextField prenom;
 
-    //page de l'erreur de l'ajout d'un observateur
+    /**
+     * Label d'erreur de l'ajout d'un observateur erronee 
+     */
     @FXML
     private Label errAddObs;
 
@@ -418,6 +497,11 @@ public class HippocampeController extends NavigationControls {
         this.typePeche.setItems(this.tp);
     }
 
+    /**
+     * Methode pour verifier si un String est un Double
+     * @param str un String
+     * @return ret un boolean true si str n'est pas un Double, false dans le contraire
+     */
     public static boolean valideDouble(String str) {
         boolean ret =true;
 		try {

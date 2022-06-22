@@ -16,20 +16,32 @@ import javafx.stage.Stage;
 
 /**
  * controller pour la page ConnectionPage.fxml
- * @author William
- * @version 1.0
+ * @author William; Theo
+ * @version 1.1
  */
 public class ConnectionController {
 
+    /**
+     * Label des status 
+     */
     @FXML
     Label statusLabel;
 
+    /**
+     * Bouton de connexion
+     */
     @FXML
     Button loginButton;
 
+    /**
+     * Zone de texte du nom d'utilisateur
+     */
     @FXML
     TextField username;
 
+    /**
+     * Zone de texte du mot de passe, le mot de passe dans la zone de texte est cachee 
+     */
     @FXML
     PasswordField password;
 
@@ -77,13 +89,20 @@ public class ConnectionController {
         }
     }
 
+    /**
+     * Getter du nom d'utilisateur en String
+     * @return un String du nom de l'utilisateur
+     */
     public String getUser() {
 
         return this.validUser;
 
     }
 
-    
+    /**
+     * Getter du mot de passe
+     * @return le String du mot de passe
+     */
     public String getPassword() {
 
         return this.validPasswd;

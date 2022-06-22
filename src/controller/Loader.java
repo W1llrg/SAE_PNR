@@ -8,11 +8,16 @@ import javafx.stage.Stage;
 
 /**
  * une classe qui permet de lancer l'application en javaFX avec une page initiale
- * @author William
- * @version 2.0
+ * @author William, Theo
+ * @version 2.1
  */
 public class Loader extends Application {
 
+    /**
+     * Methode pour lancer l'application
+     * @param stage Un Stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
         
@@ -32,6 +37,10 @@ public class Loader extends Application {
         
     }
 
+    /**
+     * Methode principal
+     * @param args un tableau de String
+     */
     public static void main(String[] args) {
         
         launch(args);
