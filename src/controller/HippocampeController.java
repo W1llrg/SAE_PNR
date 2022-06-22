@@ -49,13 +49,13 @@ public class HippocampeController extends NavigationControls {
     private ObservableList<String> e = FXCollections.observableArrayList("Syngnathus acus", "Hippocampus guttulatus", "Hippocampus Hippocampus", "Entelurus aequoreus");
 
     /**
-     * Combox contenant les type de sex
+     * Combox contenant les type de sexe
      */
     @FXML
     private ComboBox<String> sexe;
 
     /**
-     * Liste des types de sex
+     * Liste des types de sexe
      */
     private ObservableList<String> s = FXCollections.observableArrayList("Male", "Femelle", "Inconnu");
 
