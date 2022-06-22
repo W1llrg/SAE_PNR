@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 /**
  * controller pour la page Hippocampe.fxml
- * @author Tristan
+ * @author Tristan, Theo 
  * @version 1.0
  */
 public class HippocampeController extends NavigationControls {
@@ -41,27 +41,34 @@ public class HippocampeController extends NavigationControls {
     private ComboBox<String> espece;
     private ObservableList<String> e = FXCollections.observableArrayList("Syngnathus acus", "Hippocampus guttulatus", "Hippocampus Hippocampus", "Entelurus aequoreus");
 
+    //page sexe
     @FXML
     private ComboBox<String> sexe;
     private ObservableList<String> s = FXCollections.observableArrayList("Male", "Femelle", "Inconnu");
 
+    //page type de peche 
     @FXML
     private ComboBox<String> typePeche;
     private ObservableList<String> tp = FXCollections.observableArrayList("casierCrevettes", "casierMorgates", "PetitFilet", "verveuxAnguilles");
 
+    //page de la taille
     @FXML
     private TextField taille;
 
+    //page gestant
     @FXML
     private ComboBox<Integer> gestant;
     private ObservableList<Integer> g =FXCollections.observableArrayList(0,1);
 
+    //page de la temperature
     @FXML
     private TextField temperature;
 
+    //page du bouton ajouter 
     @FXML
     private Button ajoutDonneButton;
 
+    //page d'erreur de la mauvaise taille et du lieu 
     @FXML
     private Label errTailleEtLieu;
 
@@ -69,24 +76,30 @@ public class HippocampeController extends NavigationControls {
     @FXML
     private Button suivantLieu;
 
+    //page d'erreur du lieu
     @FXML
     private Label errLieu;
 
+    //page de la coordonee X
     @FXML
     private TextField coordX;
     private double x;
 
+    //page de la coordonee Y
     @FXML
     private TextField coordY;
     private double y;
 
+    //page de l'erreur de la date
     @FXML
     private Label errDate;
 
+    //page de la date
     @FXML
     private TextField date;
     private String d;
 
+    //page de l'heure
     @FXML
     private TextField heure;
     private String h;
@@ -95,16 +108,20 @@ public class HippocampeController extends NavigationControls {
     @FXML
     private Button suivantObservateur;
 
+    //page de l'ajout d'observateur
     @FXML 
     private Button addObs;
 
+    //page du nom de l'observateur
     @FXML
     private TextField nom;
     private ArrayList<Integer> observateur;
 
+    //page du prenom de l'observateur
     @FXML
     private TextField prenom;
 
+    //page de l'erreur de l'ajout d'un observateur
     @FXML
     private Label errAddObs;
 
@@ -112,7 +129,7 @@ public class HippocampeController extends NavigationControls {
 
     /**
      * Ajoute les donnees saisie dans la base de donne
-     * @param e
+     * @param event un actionEvent 
      */
     @FXML
     private void ajoutDonne(ActionEvent event)throws IOException{
@@ -231,8 +248,8 @@ public class HippocampeController extends NavigationControls {
     
 
     /**
-     * 
-     * @param event
+     * methode permetant de changer de page et de sauvegarder les donnée saisie dans la prochaine page 
+     * @param event un ActionEvent
      */
     @FXML
     private void nextPageLieu(ActionEvent event) throws IOException{
@@ -296,11 +313,11 @@ public class HippocampeController extends NavigationControls {
 
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param d
-     * @param h
+     * Setter de lieu 
+     * @param x un Double de la coordonée X
+     * @param y un Double de la coordonée Y
+     * @param d un String de la Date
+     * @param h un String de l'heure
      */
     private void setDataLieu(double x,double y,String d, String h) {
         this.x=x;
@@ -314,8 +331,8 @@ public class HippocampeController extends NavigationControls {
 
 
     /**
-     * 
-     * @param event
+     * methode pour ajouter un observateur
+     * @param event un ActionEvent 
      */
     @FXML
     private void addObs(ActionEvent event){
@@ -363,8 +380,8 @@ public class HippocampeController extends NavigationControls {
 
 
     /**
-     * 
-     * @param event
+     * methode permetant de changer de page tout en sauvegardant les donnée saisi pour l'observateur
+     * @param event un ActionEvent
      */
     @FXML
     private void nextPageObservateur(ActionEvent event) throws IOException {
@@ -382,12 +399,12 @@ public class HippocampeController extends NavigationControls {
 
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param d
-     * @param h
-     * @param obs
+     * Setter d'observateur
+     * @param x un Double de la coordonée X
+     * @param y un Double de la coordonée Y
+     * @param d un String de la Date
+     * @param h un String de l'heure
+     * @param obs une ArrayList de Int contenant des observateur
      */
     private void setDataObservateur(double x,double y,String d, String h,ArrayList<Integer> obs) {
         this.x=x;
