@@ -28,7 +28,7 @@ public class NewEntryController extends NavigationControls {
      */
     public void goToLoutre(ActionEvent e) throws IOException {
 
-        switchScene(e, "../vue/Loutre.fxml");
+        switchScene(e, "../vue/LoutreLieu.fxml");
 
     }
 
