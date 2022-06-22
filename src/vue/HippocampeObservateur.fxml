@@ -149,7 +149,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="addObs" layoutX="561.0" layoutY="589.0" mnemonicParsing="false" onAction="#addObs" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="ajoute">
+      <Button fx:id="addObs" layoutX="561.0" layoutY="589.0" mnemonicParsing="false" onAction="#addObs" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="ajouter">
          <font>
             <Font size="36.0" />
          </font>

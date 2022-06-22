@@ -120,7 +120,7 @@ public class HippocampeController extends NavigationControls {
         
         try{
 
-            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", "pnr", "mdp_pnr");
+            Connection c = ConnectionDatabase.getConnection();
             Statement stmt = c.createStatement();
             String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
             int i =  stmt.executeUpdate(sql1);
@@ -130,21 +130,21 @@ public class HippocampeController extends NavigationControls {
                 System.out.println("data non insérer");
             }
 
-            String sql2 = "SELECT idObs FROM Observation GROUP BY idObs HAVING COUNT(*) = ( SELECT MAX(mycount) FROM( SELECT COUNT(idObs) mycount FROM  Observation GROUP BY idObs ) o );";
+            String sql2 = "SELECT MAX(idObs) FROM Observation;";
             ResultSet res = stmt.executeQuery(sql2);
             int idObs =0;
-            if(res.next()) idObs = res.getInt("idObs")+1;
+            if(res.next()) idObs = res.getInt("MAX(idObs)")+1;
 
             String sql3;
 
             if(d.equals("") && h.equals("")){
-                sql3 = "INSERT Observation VALUES("+idObs+",'"+null+"','"+null+"'',"+this.x+", "+this.y+");";
+                sql3 = "INSERT Observation VALUES("+idObs+","+null+","+null+","+this.x+", "+this.y+");";
             }else if(d.equals("")){
-                sql3 = "INSERT Observation VALUES("+idObs+",'"+null+"','"+this.h+"'',"+this.x+", "+this.y+");";
+                sql3 = "INSERT Observation VALUES("+idObs+","+null+",'"+this.h+"',"+this.x+", "+this.y+");";
             }else if(h.equals("")){
-                sql3 = "INSERT Observation VALUES("+idObs+",'"+this.d+"','"+null+"'',"+this.x+", "+this.y+");";
+                sql3 = "INSERT Observation VALUES("+idObs+",'"+this.d+"',"+null+","+this.x+", "+this.y+");";
             }else{
-                sql3 = "INSERT Observation VALUES("+idObs+",'"+this.d+"','"+this.h+"'',"+this.x+", "+this.y+");";
+                sql3 = "INSERT Observation VALUES("+idObs+",'"+this.d+"','"+this.h+"',"+this.x+", "+this.y+");";
             }
             
             i= stmt.executeUpdate(sql3);
@@ -155,17 +155,7 @@ public class HippocampeController extends NavigationControls {
             }
 
             String sql4="";    
-            if(this.espece.getValue()!=null && this.sexe.getValue()!=null && this.typePeche.getValue()!=null && this.gestant.getValue()!=null && !this.taille.getText().equals("") && !this.temperature.getText().equals("") && HippocampeController.valideDouble(this.temperature.getText()) && HippocampeController.valideDouble(this.taille.getText())){
-                String espece = (String) this.espece.getValue();
-                String sexe = (String) this.sexe.getValue();
-                String typePeche = (String) this.typePeche.getValue();
-                String taille = this.taille.getText();
-                int gestant = (int) this.gestant.getValue();
-                String temp = this.temperature.getText();
-    
-                sql4 = "INSERT Obs_Hippocampe VALUES("+idObs+",'"+espece+"','"+sexe+"',"+ Double.parseDouble(temp)+", '"+typePeche+"',"+ Double.parseDouble(taille)+",'"+ gestant+"');";    
-            }
-
+            
             if(this.espece.getValue()==null){
                 sql4+="INSERT Obs_Hippocampe VALUES("+idObs+",null,";
             }else {
@@ -180,13 +170,13 @@ public class HippocampeController extends NavigationControls {
                  sql4+="'"+sexe+"',";
             }
 
-            if(this.temperature.getText().equals("") && HippocampeController.valideDouble(this.temperature.getText())){
+            if(this.temperature.getText().equals("")){
                 sql4+="null,";
             }else if(!this.temperature.getText().equals("") && !HippocampeController.valideDouble(this.temperature.getText())){
                 this.errTailleEtLieu.setText("Erreur - temperature invalide");
             }else {
                 String temp = this.temperature.getText();
-                sql4+=""+Double.parseDouble(temp)+",";
+                sql4+=temp+",";
             }
 
 
@@ -197,18 +187,18 @@ public class HippocampeController extends NavigationControls {
                 sql4+="'"+typePeche+"',";
             }
 
-            if(this.taille.getText().equals("") && HippocampeController.valideDouble(this.taille.getText())){
+            if(this.taille.getText().equals("")){
                 sql4+="null,";
             }else if(!this.taille.getText().equals("") && !HippocampeController.valideDouble(this.taille.getText())){
                 this.errTailleEtLieu.setText("Erreur - taille invalide");
             }else{
                 String taille = this.taille.getText();
-                sql4+=Double.parseDouble(taille)+",";
+                sql4+=taille+",";
             }
 
 
             if(this.gestant.getValue()==null){
-                sql4+="null,);";
+                sql4+="null);";
             }else{
                 int gestant = (int) this.gestant.getValue();
                 sql4+="'"+ gestant+"');";
@@ -230,15 +220,13 @@ public class HippocampeController extends NavigationControls {
                     System.out.println("data non insérer");
                 }
             }
-            String sqlRes="SELECT * FROM Observateur, Observation , AObserver, Obs_Hippocampe WHERE idObservateur = lobservateur AND idObs = lobservation AND idObs = obsH";
-            System.out.println("valeur :\n"+stmt.executeQuery(sqlRes));
 
         } catch (Exception e) {
             
             e.printStackTrace();
         }
 
-        switchScene(event, "../vue/Hippocampe.fxml");
+        switchScene(event, "../vue/HippocampeLieu.fxml");
     }
     
 
@@ -256,17 +244,27 @@ public class HippocampeController extends NavigationControls {
 
             boolean dateConforme= true;
             String str=this.date.getText();
-            if(str.length()!=10) dateConforme=false;
-            else if(!Character.isDigit(str.charAt(0)) || !Character.isDigit(str.charAt(1)) || !Character.isDigit(str.charAt(2)) || !Character.isDigit(str.charAt(3)) || str.charAt(4)!='-' || !Character.isDigit(str.charAt(5)) || !Character.isDigit(str.charAt(6)) || str.charAt(7)!='-' || !Character.isDigit(str.charAt(8)) || !Character.isDigit(str.charAt(9)) || Integer.parseInt(str.charAt(5)+str.charAt(6)+"")>12 && Integer.parseInt(str.charAt(5)+str.charAt(6)+"")>HippocampeController.NBMOIS[Integer.parseInt(str.charAt(5)+str.charAt(6)+"")-1]){
-                dateConforme=false;
+            if(!this.date.getText().equals("")){
+                if(str.length()!=10) dateConforme=false;
+                else if(!Character.isDigit(str.charAt(0)) || !Character.isDigit(str.charAt(1)) || !Character.isDigit(str.charAt(2)) || !Character.isDigit(str.charAt(3)) || str.charAt(4)!='-' || !Character.isDigit(str.charAt(5)) || !Character.isDigit(str.charAt(6)) || str.charAt(7)!='-' || !Character.isDigit(str.charAt(8)) || !Character.isDigit(str.charAt(9))){
+                    String[] res = str.split("-");
+                    if(Integer.parseInt(res[1])>12 || Integer.parseInt(res[1])<=0 || Integer.parseInt(res[3])>HippocampeController.NBMOIS[Integer.parseInt(res[1])-1] || Integer.parseInt(res[3])<=0){
+                        dateConforme=false;
+                    }
+                }
             }
 
 
             str=this.heure.getText();
             boolean heureConforme= true;
-            if(str.length()!=8) heureConforme=false;
-            else if(!Character.isDigit(str.charAt(0)) || !Character.isDigit(str.charAt(1)) || str.charAt(2)!=':' || !Character.isDigit(str.charAt(3)) || !Character.isDigit(str.charAt(4)) || str.charAt(5)!=':' || !Character.isDigit(str.charAt(6)) || !Character.isDigit(str.charAt(7)) || Integer.parseInt(str.charAt(0)+str.charAt(1)+"")>=24 || Integer.parseInt(str.charAt(3)+str.charAt(4)+"")>=60 && Integer.parseInt(str.charAt(5)+str.charAt(6)+"")>=60){
-                heureConforme=false;
+            if(!this.heure.getText().equals("")){
+                if(str.length()!=8) heureConforme=false;
+                else if(!Character.isDigit(str.charAt(0)) || !Character.isDigit(str.charAt(1)) || str.charAt(2)!=':' || !Character.isDigit(str.charAt(3)) || !Character.isDigit(str.charAt(4)) || str.charAt(5)!=':' || !Character.isDigit(str.charAt(6)) || !Character.isDigit(str.charAt(7))){
+                    String[] res = str.split(":");
+                    if(Integer.parseInt(res[0])>23 || Integer.parseInt(res[1])>59 || Integer.parseInt(res[3])>59 || Integer.parseInt(res[0])<0 || Integer.parseInt(res[1])<0 || Integer.parseInt(res[3])<0){
+                        heureConforme=false;
+                    }
+                }
             }
             
             
@@ -323,8 +321,8 @@ public class HippocampeController extends NavigationControls {
     private void addObs(ActionEvent event){
         if(!this.nom.getText().equals("") && !this.prenom.getText().equals("")){
             try {
-                
-                Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", "pnr", "mdp_pnr");
+                this.errAddObs.setText("");
+                Connection c = ConnectionDatabase.getConnection();
                 Statement stmt = c.createStatement();
                 String sql1 = "SELECT idObservateur, UPPER(nom) FROM Observateur;";
                 ResultSet res =  stmt.executeQuery(sql1);
