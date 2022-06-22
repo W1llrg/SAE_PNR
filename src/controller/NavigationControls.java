@@ -17,8 +17,8 @@ import javafx.stage.Stage;
 /**
  * une classe qui contient plusieurs methodes de navigation utiles a toutes les pages
  * ainsi que la connexion a la base de donnees
- * @author William
- * @version 1.1
+ * @author William, Theo
+ * @version 1.2
  */
 public class NavigationControls implements Initializable {
     
@@ -28,25 +28,44 @@ public class NavigationControls implements Initializable {
     
     private Connection c;
     
-
+    /**
+     * Methode de changement de page pour allez dans la page "Nouvelle entree"
+     * @param event un ActionEvent
+     * @throws IOException
+     */
     public void goToNewEntry(ActionEvent event) throws IOException {
 
         switchScene(event, "../vue/NewEntry.fxml");
             
     }
 
+    /**
+     * Methode de changement de page pour allez dans la page "Visualiser"
+     * @param event un ActionEvent
+     * @throws IOException
+     */
     public void goToVisualize(ActionEvent event) throws IOException {
 
         switchScene(event, "../vue/Visualize.fxml");
             
     }
 
+    /**
+     * Methode de changement de page pour allez dans la page "Parametres"
+     * @param event un ActionEvent
+     * @throws IOException
+     */
     public void goToSettings(ActionEvent event) throws IOException {
 
         switchScene(event, "../vue/Settings.fxml");
             
     }
 
+    /**
+     * Methode de changement de page pour allez dans la page "Cree un compte"
+     * @param event un ActionEvent
+     * @throws IOException
+     */
     public void goToAccount(ActionEvent event) throws IOException {
 
         switchScene(event, "../vue/newAccount.fxml");
@@ -95,7 +114,8 @@ public class NavigationControls implements Initializable {
     }
 
     /**
-    * @return la connexion vers la BDD
+     * Getter de la connection
+     * @return la connexion vers la BDD
      */
     public Connection getConnection() {
 
@@ -103,6 +123,9 @@ public class NavigationControls implements Initializable {
 
     }
 
+    /**
+     * Methode d'initialization de la connection a la base de donnee
+     */
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
