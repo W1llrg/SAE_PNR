@@ -5,7 +5,9 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 
 /**
- * SettingsController
+ * Classe controler de la page Parametre
+ * @author William
+ * @version 1.0
  */
 public class SettingsController extends NavigationControls {
 

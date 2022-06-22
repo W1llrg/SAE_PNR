@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('../WCManoNegraBta.ttf');
+}
+
+.label {
+    -fx-font-family: 'Avenir';
+    -fx-font-size: 96;
+}
+
