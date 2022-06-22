@@ -120,11 +120,11 @@ public class ChouetteController extends NavigationControls {
             if(heureConforme && dateConforme){
                 this.d=this.date.getText();
                 this.h=this.heure.getText();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/HippocampeObservateur.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/ChouetteObservateur.fxml"));
                 this.root = loader.load();
                 
-                HippocampeController hippo = loader.getController();
-                this.setDataLieu(this.x,this.y,this.d,this.h);
+                ChouetteController chouette = loader.getController();
+                chouette.setDataLieu(this.x,this.y,this.d,this.h);
     
                 this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 this.scene = new Scene(root);
@@ -217,11 +217,11 @@ public class ChouetteController extends NavigationControls {
      */
     @FXML
     private void nextPageObservateur(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/Hippocampe.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../vue/Chouette.fxml"));
         this.root = loader.load();
         
-        HippocampeController hippo = loader.getController();
-        this.setDataObservateur(this.x,this.y,this.d,this.h,this.observateur);
+        ChouetteController chouette = loader.getController();
+        chouette.setDataObservateur(this.x,this.y,this.d,this.h,this.observateur);
 
         this.stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         this.scene = new Scene(root);
@@ -246,6 +246,11 @@ public class ChouetteController extends NavigationControls {
         this.observateur=obs;
     }
 
+    /**
+     * 
+     * @param str
+     * @return
+     */
     public static boolean valideDouble(String str) {
         boolean ret =true;
 		try {
