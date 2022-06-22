@@ -110,21 +110,13 @@
               </rowConstraints>
                <children>
                   <ComboBox fx:id="espece" prefHeight="42.0" prefWidth="343.0" promptText="Espèce" />
-                  <ComboBox prefHeight="43.0" prefWidth="355.0" promptText="Sexe" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="sexe" prefHeight="43.0" prefWidth="355.0" promptText="Sexe" GridPane.columnIndex="1" />
                   <TextField fx:id="taille" prefHeight="36.0" prefWidth="224.0" promptText="Taille" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <GridPane.margin>
                         <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="gestant" prefHeight="36.0" prefWidth="224.0" promptText="Gestant" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
                   <TextField fx:id="temperature" prefHeight="36.0" prefWidth="224.0" promptText="Température de l'eau" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -159,5 +151,10 @@
             </DropShadow>
          </effect>
       </Button>
+      <Label fx:id="errTailleEtLieu" layoutX="464.0" layoutY="438.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

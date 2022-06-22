@@ -124,6 +124,11 @@
                   </TextField>
                </children>
             </GridPane>
+            <Label fx:id="errAddObs" layoutX="27.0" layoutY="149.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Label layoutX="300.0" layoutY="14.0" text="Nouvelle entrée Hippocampe " textFill="WHITE">

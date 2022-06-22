@@ -72,7 +72,7 @@ public class ConnectionController {
             this.statusLabel.setText("Connexion refusee");
 
             // debug
-            // switchScene(event, "../vue/HomePage.fxml");
+            switchScene(event, "../vue/HomePage.fxml");
 
         }
     }
