@@ -107,17 +107,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="39.0" prefWidth="459.0" promptText="Lieu dit">
+                  <TextField fx:id="lieuDit" prefHeight="39.0" prefWidth="459.0" promptText="Lieu dit">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="39.0" prefWidth="459.0" promptText="Commune" GridPane.rowIndex="1">
+                  <TextField fx:id="commune" prefHeight="39.0" prefWidth="459.0" promptText="Commune" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="39.0" prefWidth="459.0" promptText="Indice" GridPane.rowIndex="2">
+                  <TextField fx:id="indice" prefHeight="39.0" prefWidth="459.0" promptText="Indice" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -126,7 +126,7 @@
             </GridPane>
          </children>
       </Pane>
-      <Button layoutX="909.0" layoutY="589.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
+      <Button layoutX="909.0" layoutY="589.0" mnemonicParsing="false" onAction="#ajoutDonnees" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
          <font>
             <Font size="36.0" />
          </font>
