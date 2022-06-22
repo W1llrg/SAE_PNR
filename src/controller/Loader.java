@@ -18,7 +18,7 @@ public class Loader extends Application {
         
         try {
 
-            stage.setTitle("Administration base de donnees PNR");
+            stage.setTitle("Hippoad PNR");
             Parent root = FXMLLoader.load(getClass().getResource("../vue/ConnectionPage.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);

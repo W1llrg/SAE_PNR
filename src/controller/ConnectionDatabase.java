@@ -5,12 +5,12 @@ import java.sql.*;
 /**
  * une classe qui permet la connexion a la base de donnees du pnr
  * @author William, Evah
- * @version 1.1
+ * @version 1.2
  */
 public class ConnectionDatabase {
     
     /* la connexion a la base de donnees */
-    Connection c;
+    static Connection c = null;
 
     /* verification de la connexion */
     boolean isConnected = true;
@@ -22,11 +22,7 @@ public class ConnectionDatabase {
 
         try {
             
-            this.c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", user, password);
-
-            //consulter bdd 
-            //Statement stmt = c.createStatement();
-            //ResultSet res = stmt.executeQuery("commande sql");
+            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", user, password);
 
         } catch (SQLException e) {
             
@@ -44,9 +40,9 @@ public class ConnectionDatabase {
     /**
      * @return la connexion a la bdd
      */
-    public Connection getConnection(){
+    public static Connection getConnection(){
 
-        return this.c;
+        return c;
 
     }
 
@@ -57,7 +53,7 @@ public class ConnectionDatabase {
     public void setConnection(Connection e){
 
         if (e == null) System.err.println("Erreur : ConnectionDatabase : setConnection() : parametre invalide");
-        else this.c = e;
+        else c = e;
 
     }
 }

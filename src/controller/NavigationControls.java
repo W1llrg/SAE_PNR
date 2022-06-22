@@ -80,12 +80,30 @@ public class NavigationControls implements Initializable {
 
     }
 
+    /**
+     * une methode qui teste la connexion vers la base de donnees
+     * debug
+     */
+    public void isCNull() {
+
+        if (this.c == null) {
+            
+            System.out.println("pas de connexion");
+
+        } else System.out.println("connexion etablie!");
+
+    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
         try {
             
-            this.c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", "admin", "admin");
+            // DEBUG
+            // this.c = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_pnr", "pnr", "mdp_pnr");
+
+            this.c = ConnectionDatabase.getConnection();
+            isCNull();
 
         } catch (Exception e) {
             
