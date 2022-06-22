@@ -94,6 +94,15 @@ public class NavigationControls implements Initializable {
 
     }
 
+    /**
+    * @return la connexion vers la BDD
+     */
+    public Connection getConnection() {
+
+        return this.c;
+
+    }
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         
