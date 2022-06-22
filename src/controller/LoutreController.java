@@ -19,7 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * controller pour la page Loutre.fxml
+ * Class controller pour la page Loutre.fxml
+ * @author William, Theo 
+ * @vesion 1.1
  */
 public class LoutreController extends NavigationControls {
 
