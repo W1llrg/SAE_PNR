@@ -32,7 +32,28 @@ public class ChouetteController extends NavigationControls {
     private Stage stage;
     private Scene scene;
 
-    // page Hippocampe Lieu
+    // page Chouette
+    @FXML
+    private Label erreur;
+
+    @FXML
+    private ComboBox<String> espece;
+    private ObservableList<String> e = FXCollections.observableArrayList("EFFRAIE","CHEVECHE","HULOTTE");
+
+    @FXML
+    private ComboBox<String> sexe;
+    private ObservableList<String> s = FXCollections.observableArrayList("MALE","FEMELLE","INCONNU");
+
+    @FXML
+    private ComboBox<Integer> protocole;
+    private ObservableList<Integer> p = FXCollections.observableArrayList(1,0);
+
+    @FXML
+    private ComboBox<String> typeObservation;
+    private ObservableList<String> to = FXCollections.observableArrayList("SONORE","VISUEL","SONORE ET VISUEL");
+
+
+    // page Chouette Lieu
     @FXML
     private Button suivantLieu;
 
@@ -75,7 +96,137 @@ public class ChouetteController extends NavigationControls {
     @FXML
     private Label errAddObs;
 
+    /**
+     * Ajoute les donnees saisie dans la base de donne
+     * @param event un actionEvent 
+     */
+    @FXML
+    private void ajoutDonne(ActionEvent event)throws IOException{
+        
+        if(this.sexe.getValue()!=null){
+            try{
 
+                Connection c = ConnectionDatabase.getConnection();
+                Statement stmt = c.createStatement();
+
+                String sql0="SELECT * FROM Lieu WHERE coord_Lambert_X="+this.x+" AND coord_Lambert_Y="+this.y;
+                ResultSet resLieu =  stmt.executeQuery(sql0);
+                boolean lieuExitePas =true;
+
+                if(resLieu.next()) lieuExitePas=false;
+
+                int i;
+
+                if(lieuExitePas) {
+                    String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
+                    i =  stmt.executeUpdate(sql1);
+                    if (i > 0) {
+                        System.out.println("data insérer");
+                    } else {
+                        System.out.println("data non insérer");
+                    }
+                }
+                
+                
+
+                String sql2 = "SELECT MAX(idObs) FROM Observation;";
+                ResultSet res = stmt.executeQuery(sql2);
+                int idObs =0;
+                if(res.next()) idObs = res.getInt("MAX(idObs)")+1;
+
+                String sql3;
+
+                if(d.equals("") && h.equals("")){
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+","+null+","+null+","+this.x+", "+this.y+");";
+                }else if(d.equals("")){
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+","+null+",'"+this.h+"',"+this.x+", "+this.y+");";
+                }else if(h.equals("")){
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+",'"+this.d+"',"+null+","+this.x+", "+this.y+");";
+                }else{
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+",'"+this.d+"','"+this.h+"',"+this.x+", "+this.y+");";
+                }
+                
+                i= stmt.executeUpdate(sql3);
+                if (i > 0) {
+                    System.out.println("data insérer");
+                } else {
+                    System.out.println("data non insérer");
+                }
+
+                String sql4="SELECT numIndividu FROM Chouette;";
+                ResultSet res2 = stmt.executeQuery(sql4);
+                String num="0-1";
+                while(res2.next()){
+                    int resNum =0;
+                    String[] numInd = res2.getString("numIndividu").split("-");
+                    if(resNum<Integer.parseInt(numInd[0]) ){
+                        resNum=Integer.parseInt(numInd[0])+1;
+                        num=resNum+"-1";
+                    }
+                }
+                   
+                
+                String sql5 = "INSERT INTO Chouette VALUES('"+num+"',";
+
+                if(this.espece.getValue()==null){
+                    String sexe = (String) this.sexe.getValue();
+                    sql5+="null,'"+sexe+"');";
+                }else {
+                    String espece = (String) this.espece.getValue();
+                    String sexe = (String) this.sexe.getValue();
+                    sql5+="'"+espece+"','"+sexe+"');";
+                }
+               
+                i= stmt.executeUpdate(sql5);
+                if (i > 0) {
+                    System.out.println("data insérer");
+                } else {
+                    System.out.println("data non insérer");
+                }
+
+                String sql6 = "";
+                if(this.protocole.getValue()==null){
+                    sql6+="INSERT INTO Obs_Chouette VALUES(null,";
+                }else{
+                    Integer p = this.protocole.getValue();
+                    sql6+="INSERT INTO Obs_Chouette VALUES("+Integer.valueOf(p)+",";
+                }
+                
+                if(this.typeObservation.getValue()==null){
+                    sql6+="null,'"+num+"',"+idObs+");";
+                }else{
+                    String t= this.typeObservation.getValue();
+                    sql6+="'"+t+"','"+num+"',"+idObs+");";
+                }
+
+                i= stmt.executeUpdate(sql6);
+
+
+                if (i > 0) {
+                    System.out.println("data insérer");
+                } else {
+                    System.out.println("data non insérer");
+                }
+
+                for(Integer o : this.observateur){
+                    String sql7 = "INSERT AObserve VALUES("+o.intValue()+","+idObs+");";
+                    i=stmt.executeUpdate(sql7);
+                    if (i > 0) {
+                        System.out.println("data insérer");
+                    } else {
+                        System.out.println("data non insérer");
+                    }
+                }
+
+            } catch (Exception e) {
+                
+                e.printStackTrace();
+            }
+
+            switchScene(event, "../vue/ChouetteLieu.fxml");
+        }else this.erreur.setText("Erreur - sexe non saisie");
+    }
+    
 
 
     
@@ -244,6 +395,10 @@ public class ChouetteController extends NavigationControls {
         this.d=d;
         this.h=h;
         this.observateur=obs;
+        this.espece.setItems(this.e);
+        this.sexe.setItems(this.s);
+        this.typeObservation.setItems(this.to);
+        this.protocole.setItems(this.p);
     }
 
     /**

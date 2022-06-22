@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -108,28 +109,22 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Protocole" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Espèce">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
+                  <ComboBox fx:id="espece" prefHeight="41.0" prefWidth="690.0" promptText="Espèce" />
+                  <ComboBox fx:id="sexe" prefHeight="41.0" prefWidth="691.0" promptText="Sexe" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="protocole" prefHeight="41.0" prefWidth="695.0" promptText="Protocole" GridPane.rowIndex="2" />
                   <TextField prefHeight="36.0" prefWidth="224.0" promptText="Type de l'observation" GridPane.rowIndex="3">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </TextField>
-                  <TextField prefHeight="36.0" prefWidth="224.0" promptText="Sexe" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
+                  <ComboBox fx:id="typeObservation" prefHeight="38.0" prefWidth="699.0" promptText="Type de l'observation" GridPane.rowIndex="3" />
                </children>
             </GridPane>
+            <Label fx:id="erreur" layoutX="295.0" layoutY="50.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Label layoutX="293.0" layoutY="14.0" text="Nouvelle entrée Chouette " textFill="WHITE">
@@ -138,7 +133,7 @@
          </font>
       </Label>
       <Line endX="805.4000244140625" endY="-0.40000152587890625" layoutX="441.0" layoutY="68.0" startX="-147.0" startY="-0.40000152587890625" stroke="WHITE" strokeWidth="2.0" />
-      <Button layoutX="866.0" layoutY="599.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
+      <Button layoutX="866.0" layoutY="599.0" mnemonicParsing="false" onAction="#ajoutDonne" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
          <font>
             <Font size="36.0" />
          </font>
