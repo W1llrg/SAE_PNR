@@ -4,7 +4,9 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 
 /**
- * controller pour la page newAccount.fxml
+ * Class controller pour la page newAccount.fxml
+ * @author William 
+ * @version 1.0
  */
 public class AccountController extends NavigationControls {
     
