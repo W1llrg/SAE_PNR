@@ -8,12 +8,22 @@ import javafx.event.ActionEvent;
  */
 public class AccountController extends NavigationControls {
     
+    /**
+     * Methode pour mettre en mode utilisateur
+     * @param e un ActionEvent
+     * @throws IOException
+     */
     public void goToUser(ActionEvent e) throws IOException {
 
         switchScene(e, "../vue/newAccountPage2.fxml");
 
     }
 
+    /**
+     * Methode pour mettre en mode admin 
+     * @param e un ActionEvent
+     * @throws IOException
+     */
     public void goToAdmin(ActionEvent e) throws IOException {
 
         switchScene(e, "../vue/newAccountPage2.fxml");
