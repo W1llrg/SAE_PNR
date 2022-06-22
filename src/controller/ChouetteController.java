@@ -23,7 +23,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 /**
- * controller pour la page Chouette.fxml
+ * class controller pour la page Chouette.fxml
+ * @author Tristan, Theo
+ * @version 1.1
  */
 public class ChouetteController extends NavigationControls {
     
@@ -33,66 +35,153 @@ public class ChouetteController extends NavigationControls {
     private Scene scene;
 
     // page Chouette
+    /**
+     * Label d'erreur 
+     */
     @FXML
     private Label erreur;
 
+    /**
+     * Combobox des types d'especes
+     */
     @FXML
     private ComboBox<String> espece;
+    
+    /**
+     * Liste des types d'especes
+     */
     private ObservableList<String> e = FXCollections.observableArrayList("EFFRAIE","CHEVECHE","HULOTTE");
 
+    /**
+     * Combobox des sexes
+     */
     @FXML
     private ComboBox<String> sexe;
+
+    /**
+     * Liste des sexes
+     */
     private ObservableList<String> s = FXCollections.observableArrayList("MALE","FEMELLE","INCONNU");
 
+    /**
+     * Combobox des types de protocoles
+     */
     @FXML
     private ComboBox<Integer> protocole;
+
+    /**
+     * Liste des types de protocoles
+     */
     private ObservableList<Integer> p = FXCollections.observableArrayList(1,0);
 
+    /**
+     * Combobox des types d'observation
+     */
     @FXML
     private ComboBox<String> typeObservation;
+
+    /**
+     * Liste des types d'observation
+     */
     private ObservableList<String> to = FXCollections.observableArrayList("SONORE","VISUEL","SONORE ET VISUEL");
 
 
     // page Chouette Lieu
+    /**
+     * Bouton de changement de page
+     */
     @FXML
     private Button suivantLieu;
 
+    /**
+     * Label d'erreur d'un mauvais lieu
+     */
     @FXML
     private Label errLieu;
 
+    /**
+     * Zone de texte des coordonées X
+     */
     @FXML
     private TextField coordX;
+
+    /**
+     * Double des coordonées X
+     */
     private double x;
 
+    /**
+     * Zone de texte des coordonées Y
+     */
     @FXML
     private TextField coordY;
+    
+    /**
+     * Double des coordonées Y
+     */
     private double y;
 
+    /**
+     * Label d'erreur de la mauvaise date
+     */
     @FXML
     private Label errDate;
 
+    /**
+     * Zone de texte de la date 
+     */
     @FXML
     private TextField date;
+
+    /**
+     * String de la date
+     */
     private String d;
 
+    /**
+     * Zone de texte de l'heure
+     */
     @FXML
     private TextField heure;
+    
+    /**
+     * String de l'heure
+     */
     private String h;
 
     // page Hippocampe Observateur
+    /**
+     * Bouton de changement de page
+     */
     @FXML
     private Button suivantObservateur;
 
+    /**
+     * Bouton d'ajout d'un observateur
+     */
     @FXML 
     private Button addObs;
 
+    /**
+     * Zone de texte du nom de l'observateur
+     */
     @FXML
     private TextField nom;
+
+    /**
+     * Liste d'observateur
+     */
     private ArrayList<Integer> observateur;
 
+    /**
+     * Zone de texte du prenom de l'observateur
+     */
     @FXML
     private TextField prenom;
 
+    /**
+     * Label d'erreur d'un mauvais ajout d'observateur
+     */
     @FXML
     private Label errAddObs;
 
@@ -231,8 +320,8 @@ public class ChouetteController extends NavigationControls {
 
     
     /**
-     * 
-     * @param event
+     * methode permetant de changer de page et de sauvegarder les donnée saisie dans la prochaine page 
+     * @param event un ActionEvent
      */
     @FXML
     private void nextPageLieu(ActionEvent event) throws IOException{
@@ -296,11 +385,11 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param d
-     * @param h
+     * Setter de lieu 
+     * @param x un Double de la coordonée X
+     * @param y un Double de la coordonée Y
+     * @param d un String de la Date
+     * @param h un String de l'heure
      */
     private void setDataLieu(double x,double y,String d, String h) {
         this.x=x;
@@ -314,8 +403,8 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param event
+     * methode pour ajouter un observateur
+     * @param event un ActionEvent 
      */
     @FXML
     private void addObs(ActionEvent event){
@@ -363,8 +452,8 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param event
+     * methode permetant de changer de page tout en sauvegardant les donnée saisi pour l'observateur
+     * @param event un ActionEvent
      */
     @FXML
     private void nextPageObservateur(ActionEvent event) throws IOException {
@@ -382,12 +471,12 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param d
-     * @param h
-     * @param obs
+     * Setter d'observateur
+     * @param x un Double de la coordonée X
+     * @param y un Double de la coordonée Y
+     * @param d un String de la Date
+     * @param h un String de l'heure
+     * @param obs une ArrayList de Int contenant des observateur
      */
     private void setDataObservateur(double x,double y,String d, String h,ArrayList<Integer> obs) {
         this.x=x;
@@ -402,9 +491,9 @@ public class ChouetteController extends NavigationControls {
     }
 
     /**
-     * 
-     * @param str
-     * @return
+     * Methode pour verifier si un String est un Double
+     * @param str un String
+     * @return ret un boolean true si str n'est pas un Double, false dans le contraire
      */
     public static boolean valideDouble(String str) {
         boolean ret =true;
