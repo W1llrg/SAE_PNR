@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 /**
  * controller pour la page ConnectionPage.fxml
- * @author William; Thep
+ * @author William; Theo
  * @version 1.1
  */
 public class ConnectionController {
