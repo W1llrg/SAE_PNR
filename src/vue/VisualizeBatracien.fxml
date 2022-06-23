@@ -110,7 +110,7 @@
             <ComboBox layoutX="132.0" layoutY="22.0" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-radius: 5;" />
          </children>
       </Pane>
-      <ScrollPane layoutX="294.0" layoutY="224.0" prefHeight="482.0" prefWidth="970.0">
+      <ScrollPane layoutX="294.0" layoutY="224.0" prefHeight="491.0" prefWidth="1139.0">
          <content>
             <TableView fx:id="tableview" prefHeight="477.0" prefWidth="965.0">
                <columns>
@@ -119,6 +119,31 @@
                   <TableColumn prefWidth="125.0" text="HEURE" />
                   <TableColumn prefWidth="150.0" text="COORDONNEE_X" />
                   <TableColumn minWidth="0.0" prefWidth="172.0" text="COORDONNEE_Y" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="ID observateur" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="Nom observateur" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="Prenom Observateur" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="ID Vegetation" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="Nature Vegetation" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="Vegetation" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="Descript Lieu Vege" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="ID Zhone Humide" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="zh_temporaire" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="zh_profondeur" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="zh_surface" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="zh_typeMare" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="zh_pente" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="zh_ouverture" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="obsB" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="espece" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="nombreAdultes" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="nombreAmplexus" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="nombrePonte" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="nombreTetard" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="temperature" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="meteo_ciel" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="meteo_temp" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="meteo_vent" />
+                  <TableColumn minWidth="0.0" prefWidth="172.0" text="meteo_pluie" />
                </columns>
             </TableView>
          </content>

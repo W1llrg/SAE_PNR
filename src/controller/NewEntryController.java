@@ -61,7 +61,7 @@ public class NewEntryController extends NavigationControls {
      */
     public void goToChouette(ActionEvent e) throws IOException {
 
-        switchScene(e, "../vue/Chouette.fxml");
+        switchScene(e, "../vue/ChouetteLieu.fxml");
 
     }
 }

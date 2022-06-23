@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+
 
 
 /**
@@ -24,11 +26,13 @@ public class VisualizeEspeceController extends NavigationControls {
     private TableView<String> tableView;
 
 
-    public void buildData(Database db, String query) {
+    public void buildData(Connection db, String query) {
         data = FXCollections.observableArrayList();
+        query="SELECT idObs,dateObs,heureObs,lieu_Lambert_X,lieu_Lambert_Y,idObservateur,nom,prenom,idVege,natureVege,vegetation,decrit_LieuVege,zh_id,zh_temporaire,zh_profondeur,zh_surface,zh_typeMare,zh_pente,zh_ouverture,obsB,espece,nombreAdultes,nombreAmplexus,nombrePonte,nombreTetard,temperature,meteo_ciel,meteo_temp,meteo_vent,meteo_pluie FROM Observation, Observateur, AObserver , Vegetation, ZoneHumide, Obs_Batracien WHERE idObservateur=lobservateur AND idObs= lobservation AND obsB=idObs AND concerne_ZH=zh_id AND concernes_vege=idVege";
         try{
           //ResultSet
-          ResultSet rs = db.ExecuteQuery(query);
+          Statement stmt = db.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
 
 
           for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
@@ -53,10 +57,10 @@ public class VisualizeEspeceController extends NavigationControls {
                 } 
 
                 row.add(result);
-                
+                System.out.println(row);
                   
               }
-              data.add(row);
+              data.addAll(row);
 
           }
 

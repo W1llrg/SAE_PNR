@@ -23,7 +23,9 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 
 /**
- * controller pour la page Chouette.fxml
+ * class controller pour la page Chouette.fxml
+ * @author Tristan, Theo
+ * @version 1.1
  */
 public class ChouetteController extends NavigationControls {
     
@@ -32,60 +34,298 @@ public class ChouetteController extends NavigationControls {
     private Stage stage;
     private Scene scene;
 
-    // page Hippocampe Lieu
+    // page Chouette
+    /**
+     * Label d'erreur 
+     */
+    @FXML
+    private Label erreur;
+
+    /**
+     * Combobox des types d'especes
+     */
+    @FXML
+    private ComboBox<String> espece;
+    
+    /**
+     * Liste des types d'especes
+     */
+    private ObservableList<String> e = FXCollections.observableArrayList("EFFRAIE","CHEVECHE","HULOTTE");
+
+    /**
+     * Combobox des sexes
+     */
+    @FXML
+    private ComboBox<String> sexe;
+
+    /**
+     * Liste des sexes
+     */
+    private ObservableList<String> s = FXCollections.observableArrayList("MALE","FEMELLE","INCONNU");
+
+    /**
+     * Combobox des types de protocoles
+     */
+    @FXML
+    private ComboBox<Integer> protocole;
+
+    /**
+     * Liste des types de protocoles
+     */
+    private ObservableList<Integer> p = FXCollections.observableArrayList(1,0);
+
+    /**
+     * Combobox des types d'observation
+     */
+    @FXML
+    private ComboBox<String> typeObservation;
+
+    /**
+     * Liste des types d'observation
+     */
+    private ObservableList<String> to = FXCollections.observableArrayList("SONORE","VISUEL","SONORE ET VISUEL");
+
+
+    // page Chouette Lieu
+    /**
+     * Bouton de changement de page
+     */
     @FXML
     private Button suivantLieu;
 
+    /**
+     * Label d'erreur d'un mauvais lieu
+     */
     @FXML
     private Label errLieu;
 
+    /**
+     * Zone de texte des coordonées X
+     */
     @FXML
     private TextField coordX;
+
+    /**
+     * Double des coordonées X
+     */
     private double x;
 
+    /**
+     * Zone de texte des coordonées Y
+     */
     @FXML
     private TextField coordY;
+    
+    /**
+     * Double des coordonées Y
+     */
     private double y;
 
+    /**
+     * Label d'erreur de la mauvaise date
+     */
     @FXML
     private Label errDate;
 
+    /**
+     * Zone de texte de la date 
+     */
     @FXML
     private TextField date;
+
+    /**
+     * String de la date
+     */
     private String d;
 
+    /**
+     * Zone de texte de l'heure
+     */
     @FXML
     private TextField heure;
+    
+    /**
+     * String de l'heure
+     */
     private String h;
 
-    // page Hippocampe Observateur
+    // page Chouette Observateur
+    /**
+     * Bouton de changement de page
+     */
     @FXML
     private Button suivantObservateur;
 
+    /**
+     * Bouton d'ajout d'un observateur
+     */
     @FXML 
     private Button addObs;
 
+    /**
+     * Zone de texte du nom de l'observateur
+     */
     @FXML
     private TextField nom;
+
+    /**
+     * Liste d'observateur
+     */
     private ArrayList<Integer> observateur;
 
+    /**
+     * Zone de texte du prenom de l'observateur
+     */
     @FXML
     private TextField prenom;
 
+    /**
+     * Label d'erreur d'un mauvais ajout d'observateur
+     */
     @FXML
     private Label errAddObs;
 
+    /**
+     * Ajoute les donnees saisie dans la base de donne
+     * @param event un actionEvent 
+     */
+    @FXML
+    private void ajoutDonne(ActionEvent event)throws IOException{
+        
+        if(this.sexe.getValue()!=null){
+            try{
 
+                Connection c = ConnectionDatabase.getConnection();
+                Statement stmt = c.createStatement();
+
+                String sql0="SELECT * FROM Lieu WHERE coord_Lambert_X="+this.x+" AND coord_Lambert_Y="+this.y;
+                ResultSet resLieu =  stmt.executeQuery(sql0);
+                boolean lieuExitePas =true;
+
+                if(resLieu.next()) lieuExitePas=false;
+
+                int i;
+
+                if(lieuExitePas) {
+                    String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
+                    i =  stmt.executeUpdate(sql1);
+                    if (i > 0) {
+                        System.out.println("data insérer");
+                    } else {
+                        System.out.println("data non insérer");
+                    }
+                }
+                
+                
+
+                String sql2 = "SELECT MAX(idObs) FROM Observation;";
+                ResultSet res = stmt.executeQuery(sql2);
+                int idObs =0;
+                if(res.next()) idObs = res.getInt("MAX(idObs)")+1;
+
+                String sql3;
+
+                if(d.equals("") && h.equals("")){
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+","+null+","+null+","+this.x+", "+this.y+");";
+                }else if(d.equals("")){
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+","+null+",'"+this.h+"',"+this.x+", "+this.y+");";
+                }else if(h.equals("")){
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+",'"+this.d+"',"+null+","+this.x+", "+this.y+");";
+                }else{
+                    sql3 = "INSERT INTO Observation VALUES("+idObs+",'"+this.d+"','"+this.h+"',"+this.x+", "+this.y+");";
+                }
+                
+                i= stmt.executeUpdate(sql3);
+                if (i > 0) {
+                    System.out.println("data insérer");
+                } else {
+                    System.out.println("data non insérer");
+                }
+
+                String sql4="SELECT numIndividu FROM Chouette;";
+                ResultSet res2 = stmt.executeQuery(sql4);
+                String num="0-1";
+                while(res2.next()){
+                    int resNum =0;
+                    String[] numInd = res2.getString("numIndividu").split("-");
+                    if(resNum<Integer.parseInt(numInd[0]) ){
+                        resNum=Integer.parseInt(numInd[0])+1;
+                        num=resNum+"-1";
+                    }
+                }
+                   
+                
+                String sql5 = "INSERT INTO Chouette VALUES('"+num+"',";
+
+                if(this.espece.getValue()==null){
+                    String sexe = (String) this.sexe.getValue();
+                    sql5+="null,'"+sexe+"');";
+                }else {
+                    String espece = (String) this.espece.getValue();
+                    String sexe = (String) this.sexe.getValue();
+                    sql5+="'"+espece+"','"+sexe+"');";
+                }
+               
+                i= stmt.executeUpdate(sql5);
+                if (i > 0) {
+                    System.out.println("data insérer");
+                } else {
+                    System.out.println("data non insérer");
+                }
+
+                String sql6 = "";
+                if(this.protocole.getValue()==null){
+                    sql6+="INSERT INTO Obs_Chouette VALUES(null,";
+                }else{
+                    Integer p = this.protocole.getValue();
+                    sql6+="INSERT INTO Obs_Chouette VALUES("+Integer.valueOf(p)+",";
+                }
+                
+                if(this.typeObservation.getValue()==null){
+                    sql6+="null,'"+num+"',"+idObs+");";
+                }else{
+                    String t= this.typeObservation.getValue();
+                    sql6+="'"+t+"','"+num+"',"+idObs+");";
+                }
+
+                i= stmt.executeUpdate(sql6);
+
+
+                if (i > 0) {
+                    System.out.println("data insérer");
+                } else {
+                    System.out.println("data non insérer");
+                }
+
+                for(Integer o : this.observateur){
+                    String sql7 = "INSERT AObserve VALUES("+o.intValue()+","+idObs+");";
+                    i=stmt.executeUpdate(sql7);
+                    if (i > 0) {
+                        System.out.println("data insérer");
+                    } else {
+                        System.out.println("data non insérer");
+                    }
+                }
+
+            } catch (Exception e) {
+                
+                e.printStackTrace();
+            }
+
+            switchScene(event, "../vue/ChouetteLieu.fxml");
+        }else this.erreur.setText("Erreur - sexe non saisie");
+    }
+    
 
 
     
     /**
-     * 
-     * @param event
+     * methode permetant de changer de page et de sauvegarder les donnée saisie dans la prochaine page 
+     * @param event un ActionEvent
      */
     @FXML
     private void nextPageLieu(ActionEvent event) throws IOException{
-        if(HippocampeController.valideDouble(this.coordX.getText()) && HippocampeController.valideDouble(this.coordY.getText())){
+        if(ChouetteController.valideDouble(this.coordX.getText()) && ChouetteController.valideDouble(this.coordY.getText())){
             this.errLieu.setText("");
             this.errDate.setText("");
             this.x = Double.parseDouble(this.coordX.getText());
@@ -145,11 +385,11 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param d
-     * @param h
+     * Setter de lieu 
+     * @param x un Double de la coordonée X
+     * @param y un Double de la coordonée Y
+     * @param d un String de la Date
+     * @param h un String de l'heure
      */
     private void setDataLieu(double x,double y,String d, String h) {
         this.x=x;
@@ -163,8 +403,8 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param event
+     * methode pour ajouter un observateur
+     * @param event un ActionEvent 
      */
     @FXML
     private void addObs(ActionEvent event){
@@ -212,8 +452,8 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param event
+     * methode permetant de changer de page tout en sauvegardant les donnée saisi pour l'observateur
+     * @param event un ActionEvent
      */
     @FXML
     private void nextPageObservateur(ActionEvent event) throws IOException {
@@ -231,12 +471,12 @@ public class ChouetteController extends NavigationControls {
 
 
     /**
-     * 
-     * @param x
-     * @param y
-     * @param d
-     * @param h
-     * @param obs
+     * Setter d'observateur
+     * @param x un Double de la coordonée X
+     * @param y un Double de la coordonée Y
+     * @param d un String de la Date
+     * @param h un String de l'heure
+     * @param obs une ArrayList de Int contenant des observateur
      */
     private void setDataObservateur(double x,double y,String d, String h,ArrayList<Integer> obs) {
         this.x=x;
@@ -244,12 +484,16 @@ public class ChouetteController extends NavigationControls {
         this.d=d;
         this.h=h;
         this.observateur=obs;
+        this.espece.setItems(this.e);
+        this.sexe.setItems(this.s);
+        this.typeObservation.setItems(this.to);
+        this.protocole.setItems(this.p);
     }
 
     /**
-     * 
-     * @param str
-     * @return
+     * Methode pour verifier si un String est un Double
+     * @param str un String
+     * @return ret un boolean true si str n'est pas un Double, false dans le contraire
      */
     public static boolean valideDouble(String str) {
         boolean ret =true;
