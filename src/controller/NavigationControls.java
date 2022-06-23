@@ -20,9 +20,9 @@ import javafx.stage.Stage;
  * @author William, Theo
  * @version 1.2
  */
-public class NavigationControls implements Initializable {
+public class NavigationControls implements Initializable{
     
-    private Parent root;
+    protected Parent root;
     private Stage stage;
     private Scene scene;
     
