@@ -149,7 +149,7 @@ public class ChouetteController extends NavigationControls {
      */
     private String h;
 
-    // page Hippocampe Observateur
+    // page Chouette Observateur
     /**
      * Bouton de changement de page
      */
@@ -325,7 +325,7 @@ public class ChouetteController extends NavigationControls {
      */
     @FXML
     private void nextPageLieu(ActionEvent event) throws IOException{
-        if(HippocampeController.valideDouble(this.coordX.getText()) && HippocampeController.valideDouble(this.coordY.getText())){
+        if(ChouetteController.valideDouble(this.coordX.getText()) && ChouetteController.valideDouble(this.coordY.getText())){
             this.errLieu.setText("");
             this.errDate.setText("");
             this.x = Double.parseDouble(this.coordX.getText());

@@ -2,6 +2,7 @@ package controller;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+
 
 
 /**
@@ -24,11 +26,12 @@ public class VisualizeEspeceController extends NavigationControls {
     private TableView<String> tableView;
 
 
-    public void buildData(Database db, String query) {
+    public void buildData(Connection db, String query) {
         data = FXCollections.observableArrayList();
         try{
           //ResultSet
-          ResultSet rs = db.ExecuteQuery(query);
+          Statement stmt = db.createStatement();
+          ResultSet rs = stmt.executeQuery(query);
 
 
           for(int i=0 ; i<rs.getMetaData().getColumnCount(); i++){
@@ -56,7 +59,7 @@ public class VisualizeEspeceController extends NavigationControls {
                 
                   
               }
-              data.add(row);
+              data.addAll(row);
 
           }
 
