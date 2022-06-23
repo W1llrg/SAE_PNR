@@ -50,7 +50,7 @@ public class NewEntryController extends NavigationControls {
      */
     public void goToGCI(ActionEvent e) throws IOException {
 
-        switchScene(e, "../vue/GCI.fxml");
+        switchScene(e, "../vue/GCILieu.fxml");
 
     }
 
