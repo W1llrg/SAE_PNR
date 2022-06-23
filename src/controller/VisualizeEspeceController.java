@@ -28,6 +28,7 @@ public class VisualizeEspeceController extends NavigationControls {
 
     public void buildData(Connection db, String query) {
         data = FXCollections.observableArrayList();
+        query="SELECT idObs,dateObs,heureObs,lieu_Lambert_X,lieu_Lambert_Y,idObservateur,nom,prenom,idVege,natureVege,vegetation,decrit_LieuVege,zh_id,zh_temporaire,zh_profondeur,zh_surface,zh_typeMare,zh_pente,zh_ouverture,obsB,espece,nombreAdultes,nombreAmplexus,nombrePonte,nombreTetard,temperature,meteo_ciel,meteo_temp,meteo_vent,meteo_pluie FROM Observation, Observateur, AObserver , Vegetation, ZoneHumide, Obs_Batracien WHERE idObservateur=lobservateur AND idObs= lobservation AND obsB=idObs AND concerne_ZH=zh_id AND concernes_vege=idVege";
         try{
           //ResultSet
           Statement stmt = db.createStatement();
@@ -56,7 +57,7 @@ public class VisualizeEspeceController extends NavigationControls {
                 } 
 
                 row.add(result);
-                
+                System.out.println(row);
                   
               }
               data.addAll(row);
