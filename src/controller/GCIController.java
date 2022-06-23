@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -41,51 +40,54 @@ public class GCIController extends NavigationControls {
     private Label erreur;
 
     /**
-     * Combobox des types d'especes
+     * Combobox des raisons d'arret d'observation
      */
     @FXML
-    private ComboBox<String> espece;
+    private ComboBox<String> raisonArret;
     
     /**
-     * Liste des types d'especes
+     * Liste des raisons d'arret d'observation
      */
-    private ObservableList<String> e = FXCollections.observableArrayList("EFFRAIE","CHEVECHE","HULOTTE");
+    private ObservableList<String> listeRaisons = FXCollections.observableArrayList("Envol", "Inconnu", "Maree", "Pietinement", "Prédation");
 
     /**
-     * Combobox des sexes
+     * Combobox des natures
      */
     @FXML
-    private ComboBox<String> sexe;
+    private ComboBox<String> nature;
 
     /**
-     * Liste des sexes
+     * Liste des types de natures
      */
-    private ObservableList<String> s = FXCollections.observableArrayList("MALE","FEMELLE","INCONNU");
+    private ObservableList<String> listeNature = FXCollections.observableArrayList("Oeuf", "Poussin", "Nid");
 
     /**
-     * Combobox des types de protocoles
-     */
-    @FXML
-    private ComboBox<Integer> protocole;
-
-    /**
-     * Liste des types de protocoles
-     */
-    private ObservableList<Integer> p = FXCollections.observableArrayList(1,0);
-
-    /**
-     * Combobox des types d'observation
+     * noms de la plage
      */
     @FXML
-    private ComboBox<String> typeObservation;
+    private TextField nomPlage;
 
-    /**
-     * Liste des types d'observation
-     */
-    private ObservableList<String> to = FXCollections.observableArrayList("SONORE","VISUEL","SONORE ET VISUEL");
+    @FXML
+    private TextField nbEnvol;
+
+    @FXML
+    private TextField bagueM;
+
+    @FXML
+    private TextField bagueF;
+
+    @FXML
+    private TextField protege;
+
+    @FXML
+    private TextField nombre;
+
+    @FXML
+    private TextField nonObs;
 
 
     // page GCI Lieu
+
     /**
      * Bouton de changement de page
      */
@@ -183,21 +185,20 @@ public class GCIController extends NavigationControls {
      */
     @FXML
     private Label errAddObs;
-
+        
     /**
      * Ajoute les donnees saisie dans la base de donne
      * @param event un actionEvent 
      */
     @FXML
-    private void ajoutDonne(ActionEvent event)throws IOException{
+    private void ajoutDonnees(ActionEvent event) throws IOException {
         
-        if(this.sexe.getValue()!=null){
-            try{
+        
+        try{
 
-                Connection c = ConnectionDatabase.getConnection();
-                Statement stmt = c.createStatement();
-
-                String sql0="SELECT * FROM Lieu WHERE coord_Lambert_X="+this.x+" AND coord_Lambert_Y="+this.y;
+            Connection c = ConnectionDatabase.getConnection();
+            Statement stmt = c.createStatement();
+            String sql0="SELECT * FROM Lieu WHERE coord_Lambert_X=" + this.x + " AND coord_Lambert_Y=" + this.y;
                 ResultSet resLieu =  stmt.executeQuery(sql0);
                 boolean lieuExitePas =true;
 
@@ -206,113 +207,55 @@ public class GCIController extends NavigationControls {
                 int i;
 
                 if(lieuExitePas) {
+
                     String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
                     i =  stmt.executeUpdate(sql1);
                     if (i > 0) {
-                        System.out.println("data insérer");
+                        System.out.println("data insérée");
                     } else {
-                        System.out.println("data non insérer");
+                        System.out.println("data non insérée");
                     }
-                }
-                
-                
 
-                String sql2 = "SELECT MAX(idObs) FROM Observation;";
-                ResultSet res = stmt.executeQuery(sql2);
-                int idObs =0;
-                if(res.next()) idObs = res.getInt("MAX(idObs)")+1;
-
-                String sql3;
-
-                if(d.equals("") && h.equals("")){
-                    sql3 = "INSERT INTO Observation VALUES("+idObs+","+null+","+null+","+this.x+", "+this.y+");";
-                }else if(d.equals("")){
-                    sql3 = "INSERT INTO Observation VALUES("+idObs+","+null+",'"+this.h+"',"+this.x+", "+this.y+");";
-                }else if(h.equals("")){
-                    sql3 = "INSERT INTO Observation VALUES("+idObs+",'"+this.d+"',"+null+","+this.x+", "+this.y+");";
-                }else{
-                    sql3 = "INSERT INTO Observation VALUES("+idObs+",'"+this.d+"','"+this.h+"',"+this.x+", "+this.y+");";
-                }
-                
-                i= stmt.executeUpdate(sql3);
-                if (i > 0) {
-                    System.out.println("data insérer");
-                } else {
-                    System.out.println("data non insérer");
                 }
 
-                String sql4="SELECT numIndividu FROM GCI;";
-                ResultSet res2 = stmt.executeQuery(sql4);
-                String num="0-1";
-                while(res2.next()){
-                    int resNum =0;
-                    String[] numInd = res2.getString("numIndividu").split("-");
-                    if(resNum<Integer.parseInt(numInd[0]) ){
-                        resNum=Integer.parseInt(numInd[0])+1;
-                        num=resNum+"-1";
-                    }
-                }
-                   
-                
-                String sql5 = "INSERT INTO GCI VALUES('"+num+"',";
+            String sql2 = "SELECT MAX(idObs) FROM Observation;";
+            ResultSet res = stmt.executeQuery(sql2);
+            int idObs =0;
+            if(res.next()) idObs = res.getInt("MAX(idObs)")+1;
 
-                if(this.espece.getValue()==null){
-                    String sexe = (String) this.sexe.getValue();
-                    sql5+="null,'"+sexe+"');";
-                }else {
-                    String espece = (String) this.espece.getValue();
-                    String sexe = (String) this.sexe.getValue();
-                    sql5+="'"+espece+"','"+sexe+"');";
-                }
-               
-                i= stmt.executeUpdate(sql5);
-                if (i > 0) {
-                    System.out.println("data insérer");
-                } else {
-                    System.out.println("data non insérer");
-                }
+            String sql3;
 
-                String sql6 = "";
-                if(this.protocole.getValue()==null){
-                    sql6+="INSERT INTO Obs_GCI VALUES(null,";
-                }else{
-                    Integer p = this.protocole.getValue();
-                    sql6+="INSERT INTO Obs_GCI VALUES("+Integer.valueOf(p)+",";
-                }
-                
-                if(this.typeObservation.getValue()==null){
-                    sql6+="null,'"+num+"',"+idObs+");";
-                }else{
-                    String t= this.typeObservation.getValue();
-                    sql6+="'"+t+"','"+num+"',"+idObs+");";
-                }
-
-                i= stmt.executeUpdate(sql6);
-
-
-                if (i > 0) {
-                    System.out.println("data insérer");
-                } else {
-                    System.out.println("data non insérer");
-                }
-
-                for(Integer o : this.observateur){
-                    String sql7 = "INSERT AObserve VALUES("+o.intValue()+","+idObs+");";
-                    i=stmt.executeUpdate(sql7);
-                    if (i > 0) {
-                        System.out.println("data insérer");
-                    } else {
-                        System.out.println("data non insérer");
-                    }
-                }
-
-            } catch (Exception e) {
-                
-                e.printStackTrace();
+            if(d.equals("") && h.equals("")){
+                sql3 = "INSERT Observation VALUES("+idObs+","+null+","+null+","+this.x+", "+this.y+");";
+            }else if(d.equals("")){
+                sql3 = "INSERT Observation VALUES("+idObs+","+null+",'"+this.h+"',"+this.x+", "+this.y+");";
+            }else if(h.equals("")){
+                sql3 = "INSERT Observation VALUES("+idObs+",'"+this.d+"',"+null+","+this.x+", "+this.y+");";
+            }else{
+                sql3 = "INSERT Observation VALUES("+idObs+",'"+this.d+"','"+this.h+"',"+this.x+", "+this.y+");";
+            }
+            
+            i= stmt.executeUpdate(sql3);
+            if (i > 0) {
+                System.out.println("data insérée");
+            } else {
+                System.out.println("data non insérée");
             }
 
-            switchScene(event, "../vue/GCILieu.fxml"); 
-        }else this.erreur.setText("Erreur - sexe non saisie");
+            String sql4="";    
+            
+
+            // GCI NON FONCTIONNEL
+
+
+
+
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+        }
+
+        switchScene(event, "../vue/NewEntry.fxml");
     }
     
 
@@ -483,10 +426,8 @@ public class GCIController extends NavigationControls {
         this.d=d;
         this.h=h;
         this.observateur=obs;
-        this.espece.setItems(this.e);
-        this.sexe.setItems(this.s);
-        this.typeObservation.setItems(this.to);
-        this.protocole.setItems(this.p);
+        this.raisonArret.setItems(this.listeRaisons);
+        this.nature.setItems(this.listeNature);
     }
 
     /**
@@ -498,6 +439,21 @@ public class GCIController extends NavigationControls {
         boolean ret =true;
 		try {
 			Double.parseDouble(str);
+		} catch (NumberFormatException nfe) {
+			ret = false;
+		}
+		return ret;		
+	}
+
+    /**
+     * Methode pour verifier si un String est un int
+     * @param str un String
+     * @return ret un boolean true si str n'est pas un Double, false dans le contraire
+     */
+    public static boolean valideInt(String str) {
+        boolean ret =true;
+		try {
+			Integer.parseInt(str);
 		} catch (NumberFormatException nfe) {
 			ret = false;
 		}

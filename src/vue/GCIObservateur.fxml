@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -18,7 +17,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #008f71;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GCIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #008f71;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BatracienController">
    <children>
       <Rectangle arcHeight="88.0" arcWidth="88.0" fill="WHITE" height="720.0" layoutX="-89.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-100.0" AnchorPane.rightAnchor="1030.0" AnchorPane.topAnchor="0.0" />
       <GridPane alignment="CENTER" layoutX="44.0" layoutY="48.0" prefHeight="614.0" prefWidth="165.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="1070.0" AnchorPane.topAnchor="53.0">
@@ -90,26 +89,24 @@
             <Image url="@Icons/étoile.png" />
          </image>
       </ImageView>
-      <Pane layoutX="365.0" layoutY="83.0" prefHeight="326.0" prefWidth="622.0" style="-fx-background-color: #008f71;">
+      <Pane layoutX="427.0" layoutY="139.0" prefHeight="297.0" prefWidth="756.0" style="-fx-background-color: #008f71;">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Nid" textFill="WHITE">
+            <Label layoutX="21.0" layoutY="14.0" text="Observateur" textFill="WHITE">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Line endX="487.39990234375" layoutX="121.0" layoutY="68.0" startX="-108.4000244140625" stroke="WHITE" />
-            <GridPane layoutX="15.0" layoutY="78.0" prefHeight="235.0" prefWidth="580.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <Line endX="621.7999267578125" layoutX="120.0" layoutY="67.0" startX="-100.0" stroke="WHITE" />
+            <GridPane layoutX="21.0" layoutY="79.0" prefHeight="78.0" prefWidth="709.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <TextField fx:id="nomPlage" prefHeight="36.0" prefWidth="224.0" promptText="Nom de la plage">
+                  <TextField fx:id="nom" prefHeight="36.0" prefWidth="224.0" promptText="Nom">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -117,7 +114,7 @@
                         <Insets right="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="nbEnvol" prefHeight="36.0" prefWidth="224.0" promptText="Nombre d'envols" GridPane.columnIndex="1">
+                  <TextField fx:id="prenom" prefHeight="36.0" prefWidth="224.0" promptText="Prenom" GridPane.columnIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -125,75 +122,34 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="bagueM" prefHeight="36.0" prefWidth="224.0" promptText="Bague de mâle" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="bagueF" prefHeight="36.0" prefWidth="224.0" promptText="Bague de femelle" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="protege" prefHeight="36.0" prefWidth="224.0" promptText="Protégé" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <GridPane.margin>
-                        <Insets right="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <ComboBox fx:id="raisonArret" prefHeight="38.0" prefWidth="280.0" promptText="Raison Arrêt Observation" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-         </children>
-      </Pane>
-      <Pane layoutX="507.0" layoutY="391.0" prefHeight="302.0" prefWidth="339.0" style="-fx-background-color: #008f71;">
-         <children>
-            <Label layoutX="9.0" layoutY="14.0" text="Caractéristiques" textFill="WHITE">
+            <Label fx:id="errAddObs" layoutX="27.0" layoutY="149.0" textFill="RED">
                <font>
-                  <Font size="36.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Line endX="201.0" layoutX="121.0" layoutY="68.0" startX="-111.79998779296875" stroke="WHITE" />
-            <GridPane layoutX="15.0" layoutY="78.0" prefHeight="200.0" prefWidth="295.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TextField fx:id="nombre" prefHeight="36.0" prefWidth="224.0" promptText="Nombre" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="nonObs" prefHeight="36.0" prefWidth="224.0" promptText="GCI non observé(s)" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <ComboBox fx:id="nature" prefHeight="39.0" prefWidth="295.0" promptText="Nature" />
-               </children>
-            </GridPane>
          </children>
       </Pane>
-      <Label layoutX="290.0" layoutY="14.0" text="Nouvelle entrée GCI " textFill="WHITE">
+      <Label layoutX="300.0" layoutY="14.0" text="Nouvelle entrée GCI " textFill="WHITE">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <Line endX="806.800048828125" endY="-0.40000152587890625" layoutX="438.0" layoutY="67.0" startX="-147.0" startY="-0.40000152587890625" stroke="WHITE" strokeWidth="2.0" />
-      <Button layoutX="886.0" layoutY="600.0" mnemonicParsing="false" onAction="#ajoutDonnees" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="Terminé">
+      <Line endX="797.5999755859375" endY="-0.40000152587890625" layoutX="448.0" layoutY="68.0" startX="-147.0" startY="-0.40000152587890625" stroke="WHITE" strokeWidth="2.0" />
+      <Button fx:id="suivantObservateur" layoutX="900.0" layoutY="589.0" mnemonicParsing="false" onAction="#nextPageObservateur" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="suivant">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <effect>
+            <DropShadow height="0.0" offsetX="10.0" offsetY="10.0" radius="0.0" width="0.0">
+               <color>
+                  <Color red="0.800000011920929" green="0.8509804010391235" blue="0.32156863808631897" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="addObs" layoutX="561.0" layoutY="589.0" mnemonicParsing="false" onAction="#addObs" prefHeight="75.0" prefWidth="320.0" style="-fx-background-radius: 15; -fx-background-color: #FFFFFF;" text="ajouter">
          <font>
             <Font size="36.0" />
          </font>
