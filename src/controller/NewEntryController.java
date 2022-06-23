@@ -17,7 +17,7 @@ public class NewEntryController extends NavigationControls {
      */
     public void goToBatracien(ActionEvent e) throws IOException {
 
-        switchScene(e, "../vue/Batracien.fxml");
+        switchScene(e, "../vue/BatracienLieu.fxml");
 
     }
 

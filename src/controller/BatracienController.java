@@ -90,11 +90,100 @@ public class BatracienController extends NavigationControls {
      */
     private ObservableList<String> listPluie= FXCollections.observableArrayList("non", "légère", "moyenne", "forte");
 
+    
     /**
-     * Zone de texte pour la temperature
+     * Zone de texte pour le nombre de tetards
      */
     @FXML
-    private TextField temperature;
+    private TextField nbTetard;
+
+    /**
+     * Zone de texte pour le nombre de pontes
+     */
+    @FXML
+    private TextField nbPontes;
+    
+    /**
+     * Zone de texte pour le nombre d'amplexus
+     */
+    @FXML
+    private TextField nbAmplexus;
+    
+    /**
+     * Zone de texte pour le nombre d'adultes
+     */
+    @FXML
+    private TextField nbAdultes;
+    
+    /**
+     * Zone de texte pour la temperature de l'eau
+     */
+    @FXML
+    private TextField tempEau;
+
+    /**
+     * Zone de texte pour la zone temporaire
+     */
+    @FXML
+    private TextField zoneTmp;
+
+    /**
+     * Zone de texte pour la profondeur
+     */
+    @FXML
+    private TextField profondeur;
+
+    /**
+     * Zone de texte pour la surface
+     */
+    @FXML
+    private TextField surface;
+
+    /**
+     * Zone de texte pour le type de la mare
+     */
+    @FXML
+    private TextField typeMare;
+
+    /**
+     * Zone de texte pour l'ouverture
+     */
+    @FXML
+    private ComboBox<String> ouverture;
+
+    /**
+     * Liste des types d'ouvertures
+     */
+    private ObservableList<String> listOuvertures = FXCollections.observableArrayList("Abritée", "Ouverte");
+
+    /**
+     * Zone de texte pour la pente
+     */
+    @FXML
+    private ComboBox<String> pente;
+
+    /**
+     * Liste des types de pentes
+     */
+    private ObservableList<String> listPentes = FXCollections.observableArrayList("Raide", "Abrupte", "Douce");
+
+    /**
+     * zone de texte pour le lieuVege decrit
+     */
+    @FXML
+    private TextField lieuVege;
+
+    /**
+     * zone de texte pour le lieuVege decrit
+     */
+    @FXML
+    private TextField nomVegetation;
+
+    /**
+     * zone de texte pour le lieuVege decrit
+     */
+    @FXML
+    private TextField natureVegetation;
 
     /**
      * Bouton pour l'ajout de donnee 
@@ -103,10 +192,10 @@ public class BatracienController extends NavigationControls {
     private Button ajoutDonneButton;
 
     /** 
-     * Label d'erreur de la mauvaise taille et de lieu 
+     * Label d'erreur 
      */ 
     @FXML
-    private Label errTailleEtLieu;
+    private Label errLabel;
 
     // page Batracien Lieu 
     /**
@@ -220,13 +309,25 @@ public class BatracienController extends NavigationControls {
 
             Connection c = ConnectionDatabase.getConnection();
             Statement stmt = c.createStatement();
-            String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
-            int i =  stmt.executeUpdate(sql1);
-            if (i > 0) {
-                System.out.println("data insérer");
-            } else {
-                System.out.println("data non insérer");
-            }
+            String sql0="SELECT * FROM Lieu WHERE coord_Lambert_X=" + this.x + " AND coord_Lambert_Y=" + this.y;
+                ResultSet resLieu =  stmt.executeQuery(sql0);
+                boolean lieuExitePas =true;
+
+                if(resLieu.next()) lieuExitePas=false;
+
+                int i;
+
+                if(lieuExitePas) {
+
+                    String sql1 = "INSERT INTO Lieu VALUES("+this.x+", "+this.y+");";
+                    i =  stmt.executeUpdate(sql1);
+                    if (i > 0) {
+                        System.out.println("data insérée");
+                    } else {
+                        System.out.println("data non insérée");
+                    }
+
+                } System.out.println("data non insérer");
 
             String sql2 = "SELECT MAX(idObs) FROM Observation;";
             ResultSet res = stmt.executeQuery(sql2);
@@ -254,77 +355,317 @@ public class BatracienController extends NavigationControls {
 
             String sql4="";    
             
+            // insertion espece
             if(this.espece.getValue()==null){
-                sql4+="INSERT Obs_Hippocampe VALUES("+idObs+",null,";
+                sql4+="INSERT Obs_Batracien VALUES("+idObs+",null,";
             }else {
                 String espece = (String) this.espece.getValue();
-                sql4 +="INSERT Obs_Hippocampe VALUES("+idObs+",'"+espece+"'," ;
+                sql4 +="INSERT Obs_Batracien VALUES("+idObs+",'"+espece+"'," ;
             }
 
-            if(this.sexe.getValue()==null){
-                sql4+="null,";
-            }else{
-                String sexe = (String) this.sexe.getValue();
-                 sql4+="'"+sexe+"',";
+            // insertion nbAdultes
+            if(this.nbAdultes.getText() == null) {
+                sql4 += "null,";
+            } 
+            else if(!this.nbAdultes.getText().equals("") && !BatracienController.valideInt(this.nbAdultes.getText())) {
+
+                this.errLabel.setText("Erreur - nombre d'adultes invalide");
+
+            }
+            else {
+
+                String nbAdultes = (String) this.nbAdultes.getText();
+                 sql4+= nbAdultes + ",";
+
             }
 
-            if(this.temperature.getText().equals("")){
-                sql4+="null,";
-            }else if(!this.temperature.getText().equals("") && !HippocampeController.valideDouble(this.temperature.getText())){
-                this.errTailleEtLieu.setText("Erreur - temperature invalide");
+            // insertion nbAmplexus
+            if(this.nbAmplexus.getText() == null) {
+                sql4 += "null,";
+            } 
+            else if(!this.nbAmplexus.getText().equals("") && !BatracienController.valideInt(this.nbAmplexus.getText())) {
+
+                this.errLabel.setText("Erreur - nombre d'adultes invalide");
+
+            }
+            else {
+
+                String nbAmplexus = (String) this.nbAmplexus.getText();
+                 sql4 += nbAmplexus + ",";
+
+            }
+
+            // insertion nbPontes
+            if(this.nbPontes.getText() == null) {
+                sql4 += "null,";
+            } 
+            else if(!this.nbPontes.getText().equals("") && !BatracienController.valideInt(this.nbPontes.getText())) {
+
+                this.errLabel.setText("Erreur - nombre de pontes invalide");
+
+            }
+            else {
+
+                String nbPontes = (String) this.nbPontes.getText();
+                 sql4+= nbPontes + ",";
+
+            }
+
+            // insertion nbTetard
+            if(this.nbTetard.getText() == null) {
+                sql4 += "null,";
+            } 
+            else if(!this.nbTetard.getText().equals("") && !BatracienController.valideInt(this.nbTetard.getText())) {
+
+                this.errLabel.setText("Erreur - nombre de tetards invalide");
+
+            }
+            else {
+
+                String nbTetard = (String) this.nbTetard.getText();
+                 sql4 += nbTetard + ",";
+
+            }
+
+            // insertion temperature eau
+            if(this.tempEau.getText() == null) {
+                sql4 += "null,";
+            } 
+            else if(!this.tempEau.getText().equals("") && !BatracienController.valideDouble(this.tempEau.getText())) {
+
+                this.errLabel.setText("Erreur - temperature de l'eau invalide");
+
+            }
+            else {
+
+                String tempEau = (String) this.tempEau.getText();
+                 sql4 += tempEau + ",";
+
+            }
+
+            // insertion meteo_ciel
+            if(this.ciel.getValue() == null) {
+                sql4 += "null,";
             }else {
-                String temp = this.temperature.getText();
-                sql4+=temp+",";
+                String ciel = (String) this.ciel.getValue();
+                sql4+="'" + ciel + "',";
             }
 
-
-            if(this.typePeche.getValue()==null){
-                sql4+="null,";
-            }else{
-                String typePeche = (String) this.typePeche.getValue();
-                sql4+="'"+typePeche+"',";
+            // insertion meteo_temp
+            if(this.temp.getValue() == null) {
+                sql4 += "null,";
+            }else {
+                String temp = (String) this.temp.getValue();
+                sql4+="'" + temp + "',";
             }
 
-            if(this.taille.getText().equals("")){
-                sql4+="null,";
-            }else if(!this.taille.getText().equals("") && !HippocampeController.valideDouble(this.taille.getText())){
-                this.errTailleEtLieu.setText("Erreur - taille invalide");
-            }else{
-                String taille = this.taille.getText();
-                sql4+=taille+",";
+            // insertion meteo_vent
+            if(this.vent.getValue() == null) {
+                sql4 += "null,";
+            }else {
+                String vent = (String) this.vent.getValue();
+                sql4+="'" + vent + "',";
             }
 
-
-            if(this.gestant.getValue()==null){
-                sql4+="null);";
-            }else{
-                int gestant = (int) this.gestant.getValue();
-                sql4+="'"+ gestant+"');";
+            // insertion meteo_pluie
+            if(this.pluie.getValue() == null) {
+                sql4 += "null,";
+            }else {
+                String pluie = (String) this.pluie.getValue();
+                sql4+="'" + pluie + "',";
             }
+
+            // recuperation de l'id max dans zonehumide
+            String sql41 = "SELECT MAX(zh_id) FROM Zonehumide;";
+            ResultSet exec41 = stmt.executeQuery(sql41);
+            int idZH =0;
+            if(exec41.next()) idZH = exec41.getInt("MAX(zh_id)") + 1;
+
+            // recuperation de l'id max dans vegetation
+            String sql42 = "SELECT MAX(idVege) FROM Zonehumide;";
+            ResultSet exec42 = stmt.executeQuery(sql42);
+            int idVege =0;
+            if(exec42.next()) idVege = exec42.getInt("MAX(idVege)") + 1;
             
+            // insertion concerne_ZH
+            sql4 += idZH + ",";
+
+            // insertion concernes_Vege
+            sql4 += idVege + "); ";
+
+            // insertion dans la table
+            System.out.println(sql4);
             i= stmt.executeUpdate(sql4);
             if (i > 0) {
-                System.out.println("data insérer");
+                System.out.println("data insérée");
             } else {
-                System.out.println("data non insérer");
+                System.out.println("data non insérée");
             }
 
             for(Integer o : this.observateur){
                 String sql5 = "INSERT AObserve VALUES("+o.intValue()+","+idObs+");";
                 i=stmt.executeUpdate(sql5);
                 if (i > 0) {
-                    System.out.println("data insérer");
+                    System.out.println("data insérée");
                 } else {
-                    System.out.println("data non insérer");
+                    System.out.println("data non insérée");
                 }
             }
+            
+            // insertion zoneTmp dans zoneHumide
+            String sql6 = "";
+            if(this.zoneTmp.getText() == null) {
+                sql6 += "INSERT zonehumide VALUES("+idZH+",null,";
+            } 
+            else if(!this.zoneTmp.getText().equals("") && !BatracienController.valideInt(this.zoneTmp.getText())) {
+
+                this.errLabel.setText("Erreur - zone temporaire invalide");
+
+            }
+            else {
+
+                String zoneTmp = (String) this.zoneTmp.getText();
+                 sql6+= "INSERT zonehumide VALUES(" + idZH + "," + zoneTmp + ",";
+
+            }
+
+            // insertion profondeur dans zoneHumide
+            if(this.profondeur.getText() == null) {
+                sql6 += "null,";
+            } 
+            else if(!this.profondeur.getText().equals("") && !BatracienController.valideDouble(this.profondeur.getText())) {
+
+                this.errLabel.setText("Erreur - profondeur invalide");
+
+            }
+            else {
+
+                String profondeur = (String) this.profondeur.getText();
+                 sql6+= profondeur + ",";
+
+            }
+
+            // insertion surface dans zoneHumide
+            if(this.surface.getText() == null) {
+                sql6 += "null,";
+            } 
+            else if(!this.surface.getText().equals("") && !BatracienController.valideDouble(this.surface.getText())) {
+
+                this.errLabel.setText("Erreur - surface invalide");
+
+            }
+            else {
+
+                String surface = (String) this.surface.getText();
+                 sql6+= surface + ",";
+
+            }
+
+            // insertion type de la mare dans zoneHumide
+            if(this.typeMare.getText() == null) {
+                sql6 += "null,";
+            } 
+            else {
+
+                String typeMare = (String) this.typeMare.getText();
+                 sql6+= "'" + typeMare + "',";
+
+            }
+
+            // insertion pente dans zoneHumide
+            if(this.pente.getValue() == null) {
+                sql6 += "null,";
+            } 
+            else {
+
+                String pente = (String) this.pente.getValue();
+                 sql6+= "'" + pente + "',";
+
+            }
+
+            // insertion ouvertures dans zoneHumide
+            if(this.ouverture.getValue() == null) {
+                sql6 += "null,";
+            } 
+            else {
+
+                String ouverture = (String) this.ouverture.getValue();
+                 sql6+= "'" + ouverture + "'); ";
+
+            }
+
+            // insertion dans la table
+            System.out.println(sql6);
+            i= stmt.executeUpdate(sql6);
+            if (i > 0) {
+                System.out.println("data insérée");
+            } else {
+                System.out.println("data non insérée");
+            }
+
+            // insertion idVege + natureVegetation dans vegetation
+            String sql7 = "";
+            if(this.natureVegetation.getText() == null) {
+                sql7 += "INSERT vegetation VALUES("+idVege+",null,";
+            } 
+            else {
+
+                String natureVegetation = (String) this.natureVegetation.getText();
+                 sql7+= "INSERT vegetation VALUES(" + idVege + ",'" + natureVegetation + "',";
+
+            }
+
+            // insertion nomVegetation dans vegetation
+            if(this.nomVegetation.getText() == null) {
+                sql7 += "null,";
+            } 
+            else {
+
+                String nomVegetation = (String) this.nomVegetation.getText();
+                 sql7+= "INSERT vegetation VALUES(" + idVege + "," + nomVegetation + ",";
+
+            }
+
+            // recuperation de l'id max dans vegetation
+            String sql71 = "SELECT MAX(idVegeLieu) FROM lieu_vegetation;";
+            ResultSet exec71 = stmt.executeQuery(sql71);
+            int lieuVege =0;
+            if(exec71.next()) lieuVege = exec71.getInt("MAX(lieuVegeLieu)") + 1;
+
+            // insertion lieuVege
+            sql7 += lieuVege + "); ";
+
+            // insertion dans la table
+            System.out.println(sql7);
+            i= stmt.executeUpdate(sql7);
+            if (i > 0) {
+                System.out.println("data insérée");
+            } else {
+                System.out.println("data non insérée");
+            }
+
+            // insertion dans lieu_vegeation
+            String sql8 = "";
+            sql8 += "INSERT lieu_vegetation VALUES (" + lieuVege + "); ";
+
+            // insertion dans la table
+            System.out.println(sql8);
+            i= stmt.executeUpdate(sql8);
+            if (i > 0) {
+                System.out.println("data insérée");
+            } else {
+                System.out.println("data non insérée");
+            }
+
+
+
 
         } catch (Exception e) {
             
             e.printStackTrace();
         }
 
-        switchScene(event, "../vue/BatracienLieu.fxml");
+        switchScene(event, "../vue/NewEntry.fxml");
     }
     
 
@@ -498,6 +839,8 @@ public class BatracienController extends NavigationControls {
         this.temp.setItems(this.listTemp);
         this.vent.setItems(this.listVent);
         this.pluie.setItems(this.listPluie);
+        this.pente.setItems(this.listPentes);
+        this.ouverture.setItems(this.listOuvertures);
     }
 
     /**
@@ -514,6 +857,19 @@ public class BatracienController extends NavigationControls {
 		}
 		return ret;		
 	}
-}
 
+    /**
+     * Methode pour verifier si un String est un int
+     * @param str un String
+     * @return ret un boolean true si str n'est pas un Double, false dans le contraire
+     */
+    public static boolean valideInt(String str) {
+        boolean ret =true;
+		try {
+			Integer.parseInt(str);
+		} catch (NumberFormatException nfe) {
+			ret = false;
+		}
+		return ret;		
+	}
 }
