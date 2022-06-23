@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -143,7 +142,12 @@ public class BatracienController extends NavigationControls {
      * Zone de texte pour le type de la mare
      */
     @FXML
-    private TextField typeMare;
+    private ComboBox<String> typeMare;
+
+    /**
+     * Liste des types de mares
+     */
+    private ObservableList<String> listMares = FXCollections.observableArrayList("Prairie", "Etang", "Mare", "Marais");
 
     /**
      * Zone de texte pour l'ouverture
@@ -177,13 +181,24 @@ public class BatracienController extends NavigationControls {
      * zone de texte pour le lieuVege decrit
      */
     @FXML
-    private TextField nomVegetation;
+    private ComboBox<String> nomVegetation;
+
+    /**
+     * Liste des noms de vegetation
+     */
+    private ObservableList<String> listVege = FXCollections.observableArrayList("Prairie,Culture,Fourrés", "Prairie", "Autres", "Fourrés,Autres", "Prairie,Fourrés", 
+    "Prairie,Fourrés,Autres", "Culture", "Fourrés", "Culture,Fourrés,Autres", "Prairie,Culture", "Prairie,Autres", "Culture,Autres");
 
     /**
      * zone de texte pour le lieuVege decrit
      */
     @FXML
-    private TextField natureVegetation;
+    private ComboBox<String> natureVegetation;
+
+    /**
+     * Liste des natures de vegetation
+     */
+    private ObservableList<String> listNature = FXCollections.observableArrayList("environnement", "bordure");
 
     /**
      * Bouton pour l'ajout de donnee 
@@ -302,7 +317,7 @@ public class BatracienController extends NavigationControls {
      * @param event un actionEvent 
      */
     @FXML
-    private void ajoutDonne(ActionEvent event)throws IOException{
+    private void ajoutDonnees(ActionEvent event) throws IOException {
         
         
         try{
@@ -327,7 +342,7 @@ public class BatracienController extends NavigationControls {
                         System.out.println("data non insérée");
                     }
 
-                } System.out.println("data non insérer");
+                }
 
             String sql2 = "SELECT MAX(idObs) FROM Observation;";
             ResultSet res = stmt.executeQuery(sql2);
@@ -348,9 +363,9 @@ public class BatracienController extends NavigationControls {
             
             i= stmt.executeUpdate(sql3);
             if (i > 0) {
-                System.out.println("data insérer");
+                System.out.println("data insérée");
             } else {
-                System.out.println("data non insérer");
+                System.out.println("data non insérée");
             }
 
             String sql4="";    
@@ -482,7 +497,7 @@ public class BatracienController extends NavigationControls {
             if(exec41.next()) idZH = exec41.getInt("MAX(zh_id)") + 1;
 
             // recuperation de l'id max dans vegetation
-            String sql42 = "SELECT MAX(idVege) FROM Zonehumide;";
+            String sql42 = "SELECT MAX(idVege) FROM vegetation;";
             ResultSet exec42 = stmt.executeQuery(sql42);
             int idVege =0;
             if(exec42.next()) idVege = exec42.getInt("MAX(idVege)") + 1;
@@ -493,24 +508,6 @@ public class BatracienController extends NavigationControls {
             // insertion concernes_Vege
             sql4 += idVege + "); ";
 
-            // insertion dans la table
-            System.out.println(sql4);
-            i= stmt.executeUpdate(sql4);
-            if (i > 0) {
-                System.out.println("data insérée");
-            } else {
-                System.out.println("data non insérée");
-            }
-
-            for(Integer o : this.observateur){
-                String sql5 = "INSERT AObserve VALUES("+o.intValue()+","+idObs+");";
-                i=stmt.executeUpdate(sql5);
-                if (i > 0) {
-                    System.out.println("data insérée");
-                } else {
-                    System.out.println("data non insérée");
-                }
-            }
             
             // insertion zoneTmp dans zoneHumide
             String sql6 = "";
@@ -562,12 +559,12 @@ public class BatracienController extends NavigationControls {
             }
 
             // insertion type de la mare dans zoneHumide
-            if(this.typeMare.getText() == null) {
+            if(this.typeMare.getValue() == null) {
                 sql6 += "null,";
             } 
             else {
 
-                String typeMare = (String) this.typeMare.getText();
+                String typeMare = (String) this.typeMare.getValue();
                  sql6+= "'" + typeMare + "',";
 
             }
@@ -605,24 +602,24 @@ public class BatracienController extends NavigationControls {
 
             // insertion idVege + natureVegetation dans vegetation
             String sql7 = "";
-            if(this.natureVegetation.getText() == null) {
+            if(this.natureVegetation.getValue() == null) {
                 sql7 += "INSERT vegetation VALUES("+idVege+",null,";
             } 
             else {
 
-                String natureVegetation = (String) this.natureVegetation.getText();
+                String natureVegetation = (String) this.natureVegetation.getValue();
                  sql7+= "INSERT vegetation VALUES(" + idVege + ",'" + natureVegetation + "',";
 
             }
 
             // insertion nomVegetation dans vegetation
-            if(this.nomVegetation.getText() == null) {
+            if(this.nomVegetation.getValue() == null) {
                 sql7 += "null,";
             } 
             else {
 
-                String nomVegetation = (String) this.nomVegetation.getText();
-                 sql7+= "INSERT vegetation VALUES(" + idVege + "," + nomVegetation + ",";
+                String nomVegetation = (String) this.nomVegetation.getValue();
+                 sql7+= "'" + nomVegetation + "',";
 
             }
 
@@ -630,21 +627,13 @@ public class BatracienController extends NavigationControls {
             String sql71 = "SELECT MAX(idVegeLieu) FROM lieu_vegetation;";
             ResultSet exec71 = stmt.executeQuery(sql71);
             int lieuVege =0;
-            if(exec71.next()) lieuVege = exec71.getInt("MAX(lieuVegeLieu)") + 1;
+            if(exec71.next()) lieuVege = exec71.getInt("MAX(idVegeLieu)") + 1;
 
             // insertion lieuVege
             sql7 += lieuVege + "); ";
 
-            // insertion dans la table
-            System.out.println(sql7);
-            i= stmt.executeUpdate(sql7);
-            if (i > 0) {
-                System.out.println("data insérée");
-            } else {
-                System.out.println("data non insérée");
-            }
 
-            // insertion dans lieu_vegeation
+            // insertion dans lieu_vegetation
             String sql8 = "";
             sql8 += "INSERT lieu_vegetation VALUES (" + lieuVege + "); ";
 
@@ -655,6 +644,34 @@ public class BatracienController extends NavigationControls {
                 System.out.println("data insérée");
             } else {
                 System.out.println("data non insérée");
+            }
+
+            // insertion dans la table vegetation
+            System.out.println(sql7);
+            i= stmt.executeUpdate(sql7);
+            if (i > 0) {
+                System.out.println("data insérée");
+            } else {
+                System.out.println("data non insérée");
+            }
+
+            // insertion dans la table Obs_Batracien 
+            System.out.println(sql4);
+            i= stmt.executeUpdate(sql4);
+            if (i > 0) {
+                System.out.println("data insérée");
+            } else {
+                System.out.println("data non insérée");
+            }
+
+            for(Integer o : this.observateur){
+                String sql5 = "INSERT AObserve VALUES("+o.intValue()+","+idObs+");";
+                i=stmt.executeUpdate(sql5);
+                if (i > 0) {
+                    System.out.println("data insérée");
+                } else {
+                    System.out.println("data non insérée");
+                }
             }
 
 
@@ -779,9 +796,9 @@ public class BatracienController extends NavigationControls {
                     String sql2 = "INSERT INTO Observateur (idObservateur, nom, prenom) VALUES("+(max+1)+",'"+this.nom.getText()+"','"+this.prenom.getText()+"');";
                     int i = stmt.executeUpdate(sql2);
                     if (i > 0) {
-                        System.out.println("data insérer");
+                        System.out.println("data insérée");
                     } else {
-                        System.out.println("data non insérer");
+                        System.out.println("data non insérée");
                     }
                     this.observateur.add(max+1);
                 }
@@ -841,6 +858,9 @@ public class BatracienController extends NavigationControls {
         this.pluie.setItems(this.listPluie);
         this.pente.setItems(this.listPentes);
         this.ouverture.setItems(this.listOuvertures);
+        this.typeMare.setItems(this.listMares);
+        this.nomVegetation.setItems(this.listVege);
+        this.natureVegetation.setItems(this.listNature);
     }
 
     /**
